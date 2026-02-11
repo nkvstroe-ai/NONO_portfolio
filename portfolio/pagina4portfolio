@@ -1,0 +1,78 @@
+/* BASIS: achtergrond beige + lettertype */
+body{
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: beige;
+}
+
+/* HEADER */
+.header{
+  background: white;
+  padding: 20px;
+  text-align: center;
+  border-bottom: 1px solid #bbb;
+}
+
+/* NAV LINKS */
+.nav a{
+  margin: 5px;
+  padding: 10px 14px;
+  background: beige;
+  text-decoration: none;
+  color: black;
+  border: 1px solid #888;
+  border-radius: 10px;
+  display: inline-block;
+}
+
+/* MAIN: content blok */
+.main{
+  max-width: 900px;
+  margin: 20px auto;
+  padding: 15px;
+  background: white;
+  border-radius: 10px;
+  border: 1px solid #bbb;
+}
+
+/* DISPLAY (FLEX): blokken naast elkaar zetten */
+.blokjes{
+  display: flex;     /* DISPLAY oefening */
+  gap: 10px;         /* ruimte tussen blokken */
+  margin-top: 15px;
+}
+
+/* Elk blok */
+.blok{
+  flex: 1;                   /* alle blokken even breed */
+  border: 1px solid #888;
+  border-radius: 10px;
+  padding: 10px;
+  background: white;
+}
+
+/* Foto in elk blok */
+.blok img{
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+  border-radius: 10px;
+  border: 1px solid #888;
+}
+
+/* Knoppen onderaan */
+.buttons{
+  margin-top: 20px;
+  text-align: center;
+}
+
+.buttons a{
+  margin: 5px;
+  padding: 10px 14px;
+  background: beige;
+  text-decoration: none;
+  color: black;
+  border: 1px solid #888;
+  border-radius: 10px;
+  display: inline-block;
+}
