@@ -1,7 +1,7 @@
 body{
   margin: 0;
   font-family: Arial, sans-serif;
-  background: beige;
+  background: #d6ccc2;
   color: #2b2b2b;
 }
 
@@ -88,4 +88,35 @@ body{
   padding: 18px;
   font-size: 14px;
   opacity: 0.8;
+}
+/* ===== NIEUWE MIDDENBALK VOOR CREATIES ===== */
+.midden-balk {
+  background: #f5ebe0;
+  border: 1px solid #888;
+  border-radius: 10px;
+  padding: 20px;
+  margin-top: 25px;
+}
+
+.creaties-container {
+  display: flex;
+  gap: 20px;
+  margin-top: 15px;
+}
+
+.creatie-balk {
+  flex: 1;
+  background: #d6ccc2;
+  border: 1px solid #888;
+  border-radius: 10px;
+  padding: 15px;
+}
+
+.creatie-balk img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 10px;
+  border: 1px solid #888;
+  margin-top: 10px;
 }
