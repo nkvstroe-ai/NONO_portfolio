@@ -1,267 +1,321 @@
 <!doctype html>
 <html lang="nl">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Moi Portfolio - Home</title>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MOI Portfolio</title>
 
-    <!-- INTERNAL CSS: css staat in dezelfde html pagina -->
-    <style>
-      /* Achtergrond + standaard lettertype */
-      body {
-        margin: 0;
-        font-family: Arial, sans-serif;
-        background: #d6ccc2;
+  <!-- INTERNAL CSS: alle styling staat hier -->
+  <style>
+    /* ===== BASIS ===== */
+    body{
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #d6ccc2; /* jouw achtergrondkleur */
+      color: #222;
+    }
+
+    /* ===== HEADER / NAV ===== */
+    header{
+      background: #f5ebe0;
+      padding: 18px;
+      text-align: center;
+      border-bottom: 1px solid rgba(0,0,0,0.15);
+    }
+
+    nav a{
+      margin: 5px;
+      padding: 10px 14px;
+      background: #d6ccc2;
+      text-decoration: none;
+      color: black;
+      border: 1px solid #888;
+      border-radius: 10px;
+      display: inline-block;
+    }
+
+    /* ===== MAIN CONTAINER ===== */
+    main{
+      max-width: 950px;
+      margin: 20px auto;
+      padding: 10px;
+    }
+
+    /* ===== HERO (GROTE TITEL) ===== */
+    .hero{
+      background: #f5ebe0;
+      border: 1px solid rgba(0,0,0,0.15);
+      border-radius: 14px;
+      padding: 35px 15px;
+      text-align: center;
+    }
+
+    /* Grote titel met “leuk en bold” lettertype (zonder externe fonts) */
+    .hero-title{
+      margin: 0;
+      font-size: 64px;       /* heel groot */
+      font-weight: 900;      /* extra bold */
+      letter-spacing: 2px;
+      line-height: 1.05;
+    }
+
+    /* Letters komen om de beurt tevoorschijn */
+    .hero-title span{
+      display: inline-block;
+      opacity: 0;
+      transform: translateY(18px);
+      animation: letterIn 0.6s forwards;
+    }
+
+    @keyframes letterIn{
+      to{
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Subtekst onder titel */
+    .hero-sub{
+      margin-top: 12px;
+      font-size: 16px;
+      opacity: 0.85;
+    }
+
+    /* ===== BALK / SECTION ===== */
+    .balk{
+      background: #f5ebe0;
+      border: 1px solid rgba(0,0,0,0.15);
+      border-radius: 14px;
+      padding: 18px;
+      margin-top: 18px;
+    }
+
+    .balk h2{
+      margin-top: 0;
+    }
+
+    /* ===== ABOUT ME (POSITION verplicht) ===== */
+    .about-wrap{
+      position: relative;      /* nodig voor absolute */
+      min-height: 240px;
+      padding-right: 270px;    /* ruimte maken voor de foto rechts */
+    }
+
+    /* Foto rechts met POSITION */
+    .about-photo{
+      position: absolute;      /* POSITION: absolute */
+      right: 10px;
+      top: 10px;
+      width: 240px;
+      height: 240px;
+      object-fit: cover;
+      border-radius: 14px;
+      border: 1px solid #888;
+      background: white;
+    }
+
+    /* Icon rij in About Me */
+    .icon-row{
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 12px;
+    }
+
+    /* Eén “icon kaartje” */
+    .icon-card{
+      background: #d6ccc2;
+      border: 1px solid #888;
+      border-radius: 12px;
+      padding: 10px;
+      min-width: 170px;
+      flex: 1;
+    }
+
+    .icon-big{
+      font-size: 22px;
+      margin-right: 8px;
+    }
+
+    /* ===== ANNEMIJN / FAMILIE FOTO GRID (simpel) ===== */
+    .foto-grid{
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: center;
+      margin-top: 10px;
+    }
+
+    .foto-grid img{
+      width: 120px;
+      height: 120px;
+      object-fit: cover;
+      border-radius: 12px;
+      border: 1px solid #888;
+      background: white;
+    }
+
+    /* ===== GIRLIES “TIJDLIJN” (scrollbaar) ===== */
+    .timeline{
+      display: flex;
+      gap: 12px;
+      overflow-x: auto; /* scroll naar rechts */
+      padding: 10px 0;
+      margin-top: 10px;
+    }
+
+    .timeline-item{
+      min-width: 140px;
+      text-align: center;
+    }
+
+    .timeline-item img{
+      width: 140px;
+      height: 140px;
+      object-fit: cover;
+      border-radius: 12px;
+      border: 1px solid #888;
+      background: white;
+    }
+
+    .timeline-item p{
+      margin: 6px 0 0 0;
+      font-size: 13px;
+    }
+
+    /* ===== KNOPPEN ONDERAAN ===== */
+    .buttons{
+      margin-top: 18px;
+      text-align: center;
+    }
+
+    .buttons a{
+      margin: 5px;
+      padding: 10px 14px;
+      background: #d6ccc2;
+      text-decoration: none;
+      color: black;
+      border: 1px solid #888;
+      border-radius: 10px;
+      display: inline-block;
+    }
+
+    /* ===== RESPONSIVE (telefoon) ===== */
+    @media (max-width: 800px){
+      .hero-title{ font-size: 44px; }
+
+      .about-wrap{
+        padding-right: 0;
+        min-height: auto;
       }
 
-      /* Header bovenaan */
-      header {
-        background: #f5ebe0;
-        padding: 20px;
-        text-align: center;
+      .about-photo{
+        position: static;     /* foto komt dan onder/naast tekst vanzelf */
+        width: 100%;
+        height: 260px;
+        margin-top: 10px;
       }
+    }
+  </style>
+</head>
 
-      /* Linkjes in de navigatie */
-      nav a {
-        margin: 5px;
-        padding: 10px 14px;
-        background: #d6ccc2;
-        text-decoration: none;
-        color: black;
-        border: 1px solid #888;
-        border-radius: 10px;
-        display: inline-block;
-      }
+<body>
+  <!-- ANKER: hier springt de "Terug naar boven" knop naartoe -->
+<div id="top"></div>
 
-      /* Hoofdblok */
-      main {
-        max-width: 900px;
-        margin: 20px auto;
-        padding: 10px;
-        background: #f5ebe0;
-        border-radius: 10px;
-      }
 
-      /* POSITION: container voor tekst + foto */
-      .about-wrap {
-        position: relative; /* nodig voor absolute */
-        padding-right: 260px; /* ruimte voor de foto */
-        min-height: 220px;
-      }
+  <!-- HEADER: navigatie bovenaan -->
+  <header>
+    <!-- Navigatie: linkt de 3 pagina’s -->
+    <nav>
+      <a href="index.html">MOI & co</a>
+      <a href="kat.html">Katje</a>
+      <a href="school.html">Creations</a>
+    </nav>
+  </header>
 
-      /* Foto rechts naast tekst */
-      .about-photo {
-        position: absolute; /* POSITION voorbeeld */
-        right: 10px;
-        top: 10px;
-        width: 220px;
-        height: 220px;
-        object-fit: cover;
-        border-radius: 10px;
-        border: 1px solid #888;
-      }
+  <main>
 
-      /* KNOPPEN: 3 CSS-onderdelen */
-      .buttons {
-        margin-top: 20px;
-        text-align: center;
-      }
+    <!-- ===== HERO: grote titel met animatie ===== -->
+    <section class="hero">
+      <!-- Titel: letters om de beurt (span per letter) -->
+      <h1 class="hero-title" aria-label="MOI Portfolio">
+        <!-- M O I -->
+        <span style="animation-delay:0s">M</span>
+        <span style="animation-delay:0.08s">O</span>
+        <span style="animation-delay:0.16s">I</span>
+        <span style="animation-delay:0.24s">&nbsp;</span>
+        <!-- P o r t f o l i o -->
+        <span style="animation-delay:0.32s">P</span>
+        <span style="animation-delay:0.40s">o</span>
+        <span style="animation-delay:0.48s">r</span>
+        <span style="animation-delay:0.56s">t</span>
+        <span style="animation-delay:0.64s">f</span>
+        <span style="animation-delay:0.72s">o</span>
+        <span style="animation-delay:0.80s">l</span>
+        <span style="animation-delay:0.88s">i</span>
+        <span style="animation-delay:0.96s">o</span>
+      </h1>
 
-      .buttons a {
-        margin: 5px;
-        padding: 10px 14px;
-        background: #d6ccc2;
-        text-decoration: none;
-        color: black;
-        border: 1px solid #888;
-        border-radius: 10px;
-        display: inline-block;
-      }
-      /* ===== VRIENDEN FOTO'S: FOTO + TEKST NAAST ELKAAR ===== */
+      <!-- Klein tekstje -->
+      <p class="hero-sub">
+        Welkom op mijn portfolio, scroll om meer te zien ✨
+      </p>
+    </section>
 
-      /* Container (gewoon ruimte boven) */
-      .vrienden-fotos {
-        margin-top: 25px;
-      }
+    <!-- ===== BALK: ABOUT ME (met foto + icons) ===== -->
+    <section class="balk">
+      <h2>About Me</h2>
 
-      /* Eén rij: HIER gebeurt de magie */
-      .vriend-rij {
-        display: flex; /* ZET FOTO EN TEKST NAAST ELKAAR */
-        align-items: center; /* alles netjes in het midden */
-        gap: 15px; /* ruimte tussen foto en tekst */
-        margin-bottom: 15px;
-        padding: 10px;
-        background: #d6ccc2;
-        border: 1px solid #888;
-        border-radius: 10px;
-      }
-
-      /* Foto */
-      .vriend-rij img {
-        width: 180px;
-        height: 180px;
-        object-fit: cover;
-        border-radius: 10px;
-        border: 1px solid #888;
-      }
-
-      /* Tekst */
-      .vriend-rij p {
-        margin: 0;
-        font-size: 15px;
-      }
-
-      /* FOTO LINKS */
-      .links {
-        flex-direction: row; /* normale volgorde */
-      }
-
-      /* FOTO RECHTS */
-      .rechts {
-        flex-direction: row-reverse; /* draait foto & tekst om */
-      }
-      /* ===== NIEUWE BALKEN / BOXEN ===== */
-
-/* Elke balk/box onder elkaar */
-.balk {
-  background: #d6ccc2;          /* zelfde kleur als je boxen nu */
-  border: 1px solid #888;
-  border-radius: 10px;
-  padding: 15px;
-  margin-top: 20px;
-}
-
-/* Titel in de balken */
-.balk h3 {
-  margin-top: 0;
-}
-
-/* Twee helften: links tekst / rechts foto's */
-.twee-kolommen {
-  display: flex;
-  gap: 15px;
-  align-items: flex-start;
-}
-
-/* Linkerkant tekst */
-.kolom-tekst {
-  flex: 1;
-}
-
-/* Rechterkant foto's */
-.kolom-fotos {
-  flex: 1;
-}
-
-/* Foto grid voor 10 foto's */
-.foto-grid {
-  display: flex;
-  flex-wrap: wrap;           /* gaat automatisch naar volgende rij */
-  gap: 10px;
-  justify-content: center;   /* netjes in het midden */
-}
-
-/* Elke foto in grid */
-.foto-grid img {
-  width: 120px;
-  height: 120px;
-  object-fit: cover;
-  border-radius: 10px;
-  border: 1px solid #888;
-}
-
-/* ===== TIMELINE (Girlies) ===== */
-
-/* Timeline container (horizontaal scrollen) */
-.timeline {
-  display: flex;
-  gap: 12px;
-  overflow-x: auto;          /* scrollen naar rechts */
-  padding: 10px 0;
-}
-
-/* Elk timeline item (foto + kleine tekst) */
-.timeline-item {
-  min-width: 140px;          /* zorgt dat alles netjes naast elkaar blijft */
-  text-align: center;
-}
-
-/* Foto in timeline */
-.timeline-item img {
-  width: 140px;
-  height: 140px;
-  object-fit: cover;
-  border-radius: 10px;
-  border: 1px solid #888;
-}
-
-/* Tekst onder timeline foto */
-.timeline-item p {
-  margin: 6px 0 0 0;
-  font-size: 13px;
-}
-
-    </style>
-  </head>
-
-  <body>
-    <!-- HEADER: titel + navigatie -->
-    <header>
-      <!-- Titel -->
-      <h1>MOI Portfolio</h1>
-
-      <!-- Navigatie: linkt de 3 pagina’s aan elkaar -->
-      <nav>
-        <a href="index.html">MOI & co</a>
-        <a href="kat.html">Katje</a>
-        <a href="school.html">Creations</a>
-      </nav>
-    </header>
-
-    <!-- MAIN: inhoud -->
-    <main>
-      <h2>Mijn privé leven (vriendinnen & familie)</h2>
-
-      <!-- Tekst + foto naast elkaar met POSITION -->
+      <!-- Position: tekst links + foto rechts -->
       <div class="about-wrap">
-        <!-- tekst -->
+
+        <!-- Tekst over jou -->
         <p>
-          Ik ben spontaan, sociaal en soms een beetje onhandig, maar altijd
-          enthousiast. Ik haal veel energie uit tijd doorbrengen met mijn
-          vriendinnen en familie, en thuis word ik bijna altijd gevolgd door
-          mijn lieve kat. Creatief bezig zijn past helemaal bij mij en geeft me
-          ruimte om mezelf te uiten.
+          Ik ben spontaan, sociaal en soms een beetje onhandig, maar altijd enthousiast.
+          Ik haal veel energie uit tijd doorbrengen met mijn vriendinnen en familie,
+          en thuis word ik bijna altijd gevolgd door mijn lieve kat.
+          Creatief bezig zijn past helemaal bij mij en geeft me ruimte om mezelf te uiten.
         </p>
 
-        <!-- Foto placeholder/ik.jpg -->
-        <img
-          class="about-photo"
-          src="foto/WhatsApp Image 2026-02-10 at 21.53.03.jpeg"
-          alt="Foto van mij (placeholder)"
-        />
+        <!-- Icons (emoji = simpel & werkt altijd) -->
+        <div class="icon-row">
+          <!-- Muziek -->
+          <div class="icon-card">
+            <span class="icon-big">🎵</span><strong>Favo artiest</strong>
+            <p style="margin:6px 0 0 0;">Gracie Abrams</p>
+          </div>
+
+          <!-- Sterrenbeeld -->
+          <div class="icon-card">
+            <span class="icon-big">🦂</span><strong>Sterrenbeeld</strong>
+            <p style="margin:6px 0 0 0;">Schorpioen</p>
+          </div>
+
+          <!-- Student -->
+          <div class="icon-card">
+            <span class="icon-big">📚</span><strong>Student</strong>
+            <p style="margin:6px 0 0 0;">GD Student</p>
+          </div>
+
+          <!-- Lief -->
+          <div class="icon-card">
+            <span class="icon-big">❤️</span><strong>loveeeeeeee</strong>
+            <p style="margin:6px 0 0 0;">Ik ben heel lief 😄</p>
+          </div>
+        </div>
+
+        <!-- Jouw foto (vervang later de src) -->
+        <img class="about-photo" src="c:\Users\nkvst\Aeres Groep\HWUD\HWUD04\NONO_portfolio\foto\WhatsApp Image 2026-02-10 at 21.52.11.jpeg" alt="Foto van mij (placeholder)" />
       </div>
+    </section>
 
-      <!-- ===== BALK 2: IK & ANNEMIJN ===== -->
+  </main>
+</body>
+</html>
+<!-- ===== BALK: ANNEMIJN ===== -->
 <section class="balk">
-  <h3>Annemijn & MOI </h3>
-
-  <!-- Twee helften: links tekst, rechts 10 foto's -->
-  <div class="twee-kolommen">
-
-    <!-- Linkerkant (tekst) -->
-    <div class="kolom-tekst">
-      <p>
-        <!-- Schrijf hier jouw tekst over Annemijn -->
-        Annemientje en ik hebben elkaar leren kennen op het HBO. We klikkte gelijk en trokken snel naar elkaar toe. we zijn als 2 druppels water en zijn het altijd met elkaar en gieren en brullen om alles. 
-      </p>
-
-      <ul>
-        <li>We doen vaak huiswerk samen omdat we altijd hetzelfde denken en we gaan graag op coffee dates</li>
-        <li>funfact we hebben natuurlijk dezelfde opleding gekozen maar we hadden ook dezelfde tweede keuze voor opleiding</li>
-        <li>funfact we doen dezelfde dagelijkse wandeling</li>
-        <li>funfact we zijn gewoon meant to be</li>
-      </ul>
-    </div>
+  <h3>Annemijn</h3>
 
     <!-- Rechterkant (10 foto's) -->
     <div class="kolom-fotos">
@@ -594,13 +648,13 @@
     <img src="foto/familie4.jpg" alt="Familie foto 4">
     <img src="foto/familie5.jpg" alt="Familie foto 5">
 
+      <!-- KNOP: terug naar boven -->
+<div style="text-align:center; margin: 25px 0;">
+  <a href="#top" style="display:inline-block; padding:10px 14px; background:#d6ccc2; border:1px solid #888; border-radius:10px; text-decoration:none; color:black;">
+    ↑ Terug naar boven
+  </a>
+</div>
 
-      <!--3 knoppen: dit zijn de 3 CSS-dingen -->
-      <div class="buttons">
-        <a href="index.html">MOI & co</a>
-        <a href="kat.html">Pinkie</a>
-        <a href="school.html">creations</a>
-      </div>
     </main>
   </body>
 </html>
