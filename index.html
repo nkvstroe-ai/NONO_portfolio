@@ -215,7 +215,132 @@
         height: 260px;
         margin-top: 10px;
       }
-    }
+    }/* ===== GIRLIES GROTE BALK ===== */
+
+/* De grote balk die er “anders” uitziet */
+.girlies-balk{
+  background: #f5ebe0;
+  border: 2px solid #888;
+  border-radius: 18px;
+  padding: 30px 18px;
+  margin-top: 22px;
+}
+
+/* Layout: links foto's, midden titel+foto, rechts foto's */
+.girlies-layout{
+  display: flex;
+  gap: 15px;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Linker en rechter kolom met 3 foto's */
+.girlies-side{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* Foto stijl in girlies balk */
+.girlies-side img,
+.girlies-center img{
+  width: 140px;
+  height: 140px;
+  object-fit: cover;
+  border-radius: 14px;
+  border: 1px solid #888;
+  background: white;
+}
+
+/* Midden gedeelte */
+.girlies-center{
+  text-align: center;
+  padding: 10px;
+}
+
+/* Grote titel */
+.girlies-title{
+  margin: 0;
+  font-size: 64px;
+  font-weight: 900;
+  letter-spacing: 3px;
+}
+
+/* Letters animeren om de beurt */
+.girlies-title span{
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(18px);
+  animation: letterIn 0.6s forwards;
+}
+
+/* Zorgt dat de animatie pas start wanneer je er naartoe scrollt */
+.girlies-balk{
+  scroll-margin-top: 20px;
+}
+
+/* Centrale foto onder het woord GIRLIES */
+.girlies-main-photo{
+  margin-top: 12px;
+  width: 260px;
+  height: 260px;
+  object-fit: cover;
+  border-radius: 16px;
+  border: 1px solid #888;
+  background: white;
+}
+
+/* Responsive: op telefoon alles onder elkaar */
+@media (max-width: 800px){
+  .girlies-layout{
+    flex-direction: column;
+  }
+
+  .girlies-side{
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .girlies-title{
+    font-size: 46px;
+  }
+
+  .girlies-main-photo{
+    width: 100%;
+    height: 260px;
+  }
+
+@keyframes bounceIn{
+  0%{ opacity: 0; transform: translateY(-40px); }
+  60%{ opacity: 1; transform: translateY(10px); }
+  80%{ transform: translateY(-5px); }
+  100%{ opacity: 1; transform: translateY(0); }
+}
+
+}
+.girlies-balk{
+  background: #f5ebe0;
+  border-radius: 22px;
+  padding: 50px 25px;
+  margin-top: 60px;
+
+  /* SCHADUW */
+  box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+
+  /* Klein verschil in kleur rand */
+  border: 2px solid rgba(0,0,0,0.1);
+}.girlies-title{
+  margin: 0;
+  font-size: 70px;
+  font-weight: 900;
+  letter-spacing: 4px;
+
+  /* Subtiele tekstschaduw */
+  text-shadow: 3px 6px 10px rgba(0,0,0,0.2);
+}
+
+
   </style>
 </head>
 
@@ -336,300 +461,53 @@
 
   </div>
 </section>
+<!-- ===== GIRLIES: GROTE BALK ===== -->
+<section class="girlies-balk" id="girlies">
 
-<!-- ===== BALK 3: TIJDLIJN "THE GIRLIES" (45 FOTO'S) ===== -->
-<section class="balk">
-  <h3>The Girlies - Tijdlijn</h3>
+  <!-- Layout met 3 links, titel+middenfoto, 3 rechts -->
+  <div class="girlies-layout">
 
-  <p>
-    <!-- Kleine uitleg boven je timeline -->
-    Dit is de tijdlijn van de girlies met onze herinneringen. Je kunt naar rechts scrollen om meer foto's te zien.
-  </p>
-
-  <!-- Timeline (45 items): jij kopieert dit item tot je er 45 hebt -->
-  <div class="timeline">
-
-    <!-- ITEM 1 -->
-    <div class="timeline-item">
-      <img src="foto/WhatsApp Image 2026-02-11 at 14.42.22.jpeg" alt="Girlies foto 1">
-      <p>Met de Girlies in paris</p>
+    <!-- LINKS: 3 foto's -->
+    <div class="girlies-side">
+      <img src="foto/girlies1.jpg" alt="Girlies foto 1">
+      <img src="foto/girlies2.jpg" alt="Girlies foto 2">
+      <img src="foto/girlies3.jpg" alt="Girlies foto 3">
     </div>
 
-    <!-- ITEM 2 -->
-    <div class="timeline-item">
-      <img src="foto/WhatsApp Image 2026-02-11 at 14.42.45.jpeg" alt="Girlies foto 2">
-      <p>Met de girlies in paris2.0</p>
+    <!-- MIDDEN: titel + centrale foto -->
+    <div class="girlies-center">
+
+      <!-- Grote titel met letters om de beurt -->
+      <h2 class="girlies-title" aria-label="GIRLIES">
+        <span style="animation-delay:0s">G</span>
+        <span style="animation-delay:0.08s">I</span>
+        <span style="animation-delay:0.16s">R</span>
+        <span style="animation-delay:0.24s">L</span>
+        <span style="animation-delay:0.32s">I</span>
+        <span style="animation-delay:0.40s">E</span>
+        <span style="animation-delay:0.48s">S</span>
+      </h2>
+
+      <!-- Centrale foto onder GIRLIES -->
+      <img class="girlies-main-photo" src="foto/WhatsApp Image 2026-02-10 at 21.53.51.jpeg" alt="Centrale girlies foto">
+
+      <!-- Klein tekstje -->
+      <p style="margin:10px 0 0 0;">
+        Mijn vriendinnen groep: <strong>The Girlies</strong> 💗
+      </p>
     </div>
 
-    <!-- ITEM 3 -->
-    <div class="timeline-item">
-      <img src="foto/WhatsApp Image 2026-02-11 at 14.42.36.jpeg" alt="Girlies foto 3">
-      <p>Met de girlies naar de bios</p>
+    <!-- RECHTS: 3 foto's -->
+    <div class="girlies-side">
+      <img src="foto/girlies4.jpg" alt="Girlies foto 4">
+      <img src="foto/girlies5.jpg" alt="Girlies foto 5">
+      <img src="foto/girlies6.jpg" alt="Girlies foto 6">
     </div>
-
-<!-- ITEM 4 -->
-    <div class="timeline-item">
-      <img src="foto/WhatsApp Image 2026-02-11 at 14.43.19.jpeg" alt="Girlies foto 3">
-      <p>Met de girlies naar een tuinfeest</p>
-    </div>
-   
-<!-- ITEM 5 -->
-    <div class="timeline-item">
-      <img src="foto/WhatsApp Image 2026-02-11 at 14.43.34.jpeg" alt="Girlies foto 3">
-      <p>Met de girlies naar kerstgala havo 4</p>
-    </div>
-
-<!-- ITEM 6 -->
-    <div class="timeline-item">
-      <img src="foto/WhatsApp Image 2026-02-11 at 14.43.44.jpeg" alt="Girlies foto 3">
-      <p>Met de girlies naar de kermis alkmaar</p>
-    </div>
-
-<!-- ITEM 7 -->
-    <div class="timeline-item">
-      <img src="foto/WhatsApp Image 2026-02-11 at 14.43.46.jpeg" alt="Girlies foto 3">
-      <p>Met de girlies naar de MAC</p>
-    </div>
-
-<!-- ITEM 8 -->
-    <div class="timeline-item">
-      <img src="foto/WhatsApp Image 2026-02-11 at 14.44.30.jpeg" alt="Girlies foto 3">
-      <p>Met de girlies naar nyny's 16e verjaardag</p>
-    </div>
-
-<!-- ITEM 9 -->
-    <div class="timeline-item">
-      <img src="foto/WhatsApp Image 2026-02-11 at 14.45.36.jpeg" alt="Girlies foto 3">
-      <p>Met de girlies naar nyny's 16e verjaardag2.0</p>
-    </div>
-
-<!-- ITEM 10 -->
-    <div class="timeline-item">
-      <img src="foto/WhatsApp Image 2026-02-11 at 14.45.44.jpeg" alt="Girlies foto 3">
-      <p>Met de girlies omw</p>
-    </div>
-
-<!-- ITEM 11 -->
-    <div class="timeline-item">
-      <img src="foto/WhatsApp Image 2026-02-11 at 14.45.59.jpeg" alt="Girlies foto 3">
-      <p>Met de girlies bowlen</p>
-    </div>
-
-<!-- ITEM 12 -->
-    <div class="timeline-item">
-      <img src="foto/WhatsApp Image 2026-02-11 at 14.46.07.jpeg" alt="Girlies foto 3">
-      <p>Met de girlies bowlen2.0</p>
-    </div>
-
-<!-- ITEM 13 -->
-    <div class="timeline-item">
-      <img src="foto/WhatsApp Image 2026-02-11 at 14.46.19.jpeg" alt="Girlies foto 3">
-      <p>Met de girlies chillen op mijn kamer</p>
-    </div>
-
-<!-- ITEM 14 -->
-    <div class="timeline-item">
-      <img src="foto/WhatsApp Image 2026-02-11 at 14.46.26.jpeg" alt="Girlies foto 3">
-      <p>Met de girlies omw</p>
-    </div>
-
-<!-- ITEM 15 -->
-    <div class="timeline-item">
-      <img src="foto/WhatsApp Image 2026-02-11 at 14.46.58.jpeg" alt="Girlies foto 3">
-      <p>Met de girlies MAC2.0</p>
-    </div>
-
-<!-- ITEM 16 -->
-    <div class="timeline-item">
-      <img src="foto/WhatsApp Image 2026-02-11 at 14.47.06.jpeg" alt="Girlies foto 3">
-      <p>Met de girlies eerste keer uit</p>
-    </div>
-
-<!-- ITEM 17 -->
-    <div class="timeline-item">
-      <img src="foto/WhatsApp Image 2026-02-11 at 14.47.12.jpeg" alt="Girlies foto 3">
-      <p>Met de girlies iftar bij fanny</p>
-    </div>
-
-<!-- ITEM 18 -->
-    <div class="timeline-item">
-      <img src="foto/WhatsApp Image 2026-02-11 at 14.47.39.jpeg" alt="Girlies foto 3">
-      <p>Met de girlies koken</p>
-    </div>
-
-<!-- ITEM 19 -->
-    <div class="timeline-item">
-      <img src="foto/WhatsApp Image 2026-02-11 at 14.47.44.jpeg" alt="Girlies foto 3">
-      <p>Met de girlies examen foto's maken</p>
-    </div>
-
-<!-- ITEM 20 -->
-    <div class="timeline-item">
-      <img src="foto/WhatsApp Image 2026-02-11 at 14.47.54.jpeg" alt="Girlies foto 3">
-      <p>Met de girlies chillen op de bank</p>
-    </div>
-
-<!-- ITEM 21 -->
-    <div class="timeline-item">
-      <img src="foto/WhatsApp Image 2026-02-11 at 14.48.12.jpeg" alt="Girlies foto 3">
-      <p>Met de girlies iftar bij fanny2.0</p>
-    </div>
-
-<!-- ITEM 22 -->
-    <div class="timeline-item">
-      <img src="foto/WhatsApp Image 2026-02-11 at 14.48.27.jpeg" alt="Girlies foto 3">
-      <p>Met de girlies examentrainingen</p>
-    </div>
-
-<!-- ITEM 23 -->
-    <div class="timeline-item">
-      <img src="foto/WhatsApp Image 2026-02-11 at 14.48.55.jpeg" alt="Girlies foto 3">
-      <p>Met de girlies maccie na fanny haar rijbewijs</p>
-    </div>
-
-<!-- ITEM 24 -->
-    <div class="timeline-item">
-      <img src="foto/WhatsApp Image 2026-02-11 at 14.50.29.jpeg" alt="Girlies foto 3">
-      <p>Met de girlies koken2.0</p>
-    </div>
-
-<!-- ITEM 25 -->
-    <div class="timeline-item">
-      <img src="foto/WhatsApp Image 2026-02-11 at 14.50.43.jpeg" alt="Girlies foto 3">
-      <p>Met de girlies taylor swift</p>
-    </div>
-
-<!-- ITEM 26 -->
-    <div class="timeline-item">
-      <img src="foto/WhatsApp Image 2026-02-11 at 14.50.54.jpeg" alt="Girlies foto 3">
-      <p>Met de girlies examenuitrijking</p>
-    </div>
-
-<!-- ITEM 27 -->
-    <div class="timeline-item">
-      <img src="foto/WhatsApp Image 2026-02-11 at 14.51.13.jpeg" alt="Girlies foto 3">
-      <p>Met de girlies Amsterdammie</p>
-    </div>
-
-<!-- ITEM 28 -->
-    <div class="timeline-item">
-      <img src="foto/WhatsApp Image 2026-02-11 at 14.51.39.jpeg" alt="Girlies foto 3">
-      <p>Met de girlies halloween</p>
-    </div>
-
-<!-- ITEM 29 -->
-    <div class="timeline-item">
-      <img src="foto/WhatsApp Image 2026-02-11 at 14.51.50.jpeg" alt="Girlies foto 3">
-      <p>Met de girlies halloween2.0</p>
-    </div>
-
-<!-- ITEM 30 -->
-    <div class="timeline-item">
-      <img src="foto/WhatsApp Image 2026-02-11 at 14.52.05.jpeg" alt="Girlies foto 3">
-      <p>Met de girlies Amsterdammie2.0 </p>
-    </div>
-
-<!-- ITEM 31 -->
-    <div class="timeline-item">
-      <img src="foto/WhatsApp Image 2026-02-11 at 14.52.25.jpeg" alt="Girlies foto 3">
-      <p>Met de girlies baebadobee</p>
-    </div>
-    
-<!-- ITEM 32 -->
-    <div class="timeline-item">
-      <img src="foto/WhatsApp Image 2026-02-11 at 14.52.35.jpeg" alt="Girlies foto 3">
-      <p>Met de girlies keshi</p>
-    </div>
-
-<!-- ITEM 33 -->
-    <div class="timeline-item">
-      <img src="foto/WhatsApp Image 2026-02-11 at 14.52.48.jpeg" alt="Girlies foto 3">
-      <p>Met de girlies wave2earth</p>
-    </div>
-
-<!-- ITEM 34 -->
-    <div class="timeline-item">
-      <img src="foto/WhatsApp Image 2026-02-11 at 14.53.13.jpeg" alt="Girlies foto 3">
-      <p>Met de girlies Amsterdammie3.0</p>
-    </div>
-
-<!-- ITEM 35 -->
-    <div class="timeline-item">
-      <img src="foto/WhatsApp Image 2026-02-11 at 14.53.24.jpeg" alt="Girlies foto 3">
-      <p>Met de girlies koken3.0</p>
-    </div>
-
-<!-- ITEM 36 -->
-    <div class="timeline-item">
-      <img src="foto/WhatsApp Image 2026-02-11 at 14.53.34.jpeg" alt="Girlies foto 3">
-      <p>Met de girlies vacay</p>
-    </div>
-
-<!-- ITEM 37 -->
-    <div class="timeline-item">
-      <img src="foto/WhatsApp Image 2026-02-11 at 14.53.51.jpeg" alt="Girlies foto 3">
-      <p>Met de girlies vacay2.0</p>
-    </div>
-
-<!-- ITEM 38 -->
-    <div class="timeline-item">
-      <img src="foto/WhatsApp Image 2026-02-10 at 21.54.23.jpeg" alt="Girlies foto 3">
-      <p>Met de girlies uiteten</p>
-    </div>   
-
-
-<!-- ITEM 39 -->
-    <div class="timeline-item">
-      <img src="foto/WhatsApp Image 2026-02-11 at 14.55.12.jpeg" alt="Girlies foto 3">
-      <p>Met de girlies nyny birthday 18!</p>
-    </div>
-
-<!-- ITEM 40 -->
-    <div class="timeline-item">
-      <img src="foto/WhatsApp Image 2026-02-11 at 14.55.33.jpeg" alt="Girlies foto 3">
-      <p>Met de girlies nyny birthday 18!2.0</p>
-    </div>
-
-<!-- ITEM 41 -->
-    <div class="timeline-item">
-      <img src="foto/WhatsApp Image 2026-02-11 at 14.56.06.jpeg" alt="Girlies foto 3">
-      <p>Met de girlies nyny birthday 18!3.0</p>
-    </div>
-
-<!-- ITEM 42 -->
-    <div class="timeline-item">
-      <img src="foto/WhatsApp Image 2026-02-10 at 21.53.51.jpeg" alt="Girlies foto 3">
-      <p>Met de girlies nyny birthday 18!4.0</p>
-    </div>  
-
-<!-- ITEM 43 -->
-    <div class="timeline-item">
-      <img src="foto/WhatsApp Image 2026-02-11 at 14.56.20.jpeg" alt="Girlies foto 3">
-      <p>Met de girlies lift</p>
-    </div>
-
-<!-- ITEM 44 -->
-    <div class="timeline-item">
-      <img src="foto/WhatsApp Image 2026-02-11 at 14.56.37.jpeg" alt="Girlies foto 3">
-      <p>Met de girlies in de plus</p>
-    </div>
-
- <!-- ITEM 45 -->
-    <div class="timeline-item">
-      <img src="foto/WhatsApp Image 2026-02-10 at 21.51.41.jpeg" alt="Girlies foto 3">
-      <p>Met de girlies fanny birthday</p>
-    </div>   
-
-
-
-
-
-
-
-
 
   </div>
+
 </section>
+
 
 <!-- ===== BALK 4: FAMILIE ===== -->
 <section class="balk">
@@ -642,11 +520,11 @@
 
   <!-- 10 foto's van familie -->
   <div class="foto-grid">
-    <img src="foto/familie1.jpg" alt="Familie foto 1">
-    <img src="foto/familie2.jpg" alt="Familie foto 2">
-    <img src="foto/familie3.jpg" alt="Familie foto 3">
-    <img src="foto/familie4.jpg" alt="Familie foto 4">
-    <img src="foto/familie5.jpg" alt="Familie foto 5">
+    <img src="foto/1.jpeg" alt="Familie foto 1">
+    <img src="foto/WhatsApp Image 2026-02-11 at 19.51.11.jpeg" alt="Familie foto 2">
+    <img src="foto/WhatsApp Image 2026-02-11 at 19.51.22.jpeg" alt="Familie foto 3">
+    <img src="foto/WhatsApp Image 2026-02-11 at 19.55.39.jpeg" alt="Familie foto 4">
+    <img src="foto/WhatsApp Image 2026-02-11 at 19.52.30.jpeg" alt="Familie foto 5">
 
       <!-- KNOP: terug naar boven -->
 <div style="text-align:center; margin: 25px 0;">
