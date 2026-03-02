@@ -7,7 +7,7 @@
 </head>
 
 <!-- INLINE CSS: alle css staat in style="" -->
-<body style="margin:0; font-family:Arial, sans-serif; background:#d6ccc2;">
+<body style="margin:0; font-family:Arial, sans-serif; background:#d6ccc2; color:#222;">
 
   <!-- HEADER -->
   <header style="background:#f5ebe0; padding:20px; text-align:center; border-bottom:1px solid #bbb;">
@@ -22,23 +22,19 @@
   </header>
 
   <!-- MAIN -->
-  <main style="max-width:900px; margin:20px auto; padding:15px; background:#f5ebe0; border-radius:10px; border:1px solid #bbb;">
-    <h2>Mijn katje</h2>
+  <main style="max-width:900px; margin:20px auto; padding:15px; background:#f5ebe0; border-radius:12px; border:1px solid #bbb;">
+
+    <h2 style="margin-top:0;">Mijn katje</h2>
 
     <!-- FLOAT: foto zweeft rechts en tekst loopt er langs -->
-    <img src="foto/WhatsApp Image 2026-02-10 at 21.51.08.jpeg" alt="Mijn kat (placeholder)"
+    <img src="foto/WhatsApp Image 2026-02-10 at 21.51.08.jpeg"
+         alt="Mijn kat"
          style="float:right; width:220px; height:220px; object-fit:cover; border-radius:10px; border:1px solid #888; margin:0 0 10px 10px; background:white;">
 
-    <!-- Tekst (simpel, beginner) -->
-    <p>
-      Dit is mijn lieve beestje 
-    </p>
+    <p>Dit is mijn lieve beestje.</p>
 
-    <p>
-      Hier iets meer over mijn kat, zoals:
-    </p>
+    <p>Hier iets meer over mijn kat, zoals:</p>
 
-    <!-- Lijstje (makkelijke tags) -->
     <ul>
       <li>mijn katje pinkie</li>
       <li>hij is niet dik maar pluizig</li>
@@ -47,40 +43,63 @@
 
     <!-- Dit stopt het float-effect zodat alles erna weer normaal staat -->
     <div style="clear:both;"></div>
-    <!-- FOTO GALERIJ MET 6 FOTO'S -->
-<div style="text-align:center; margin-top:30px;">
 
-  <h3>Fotogalerij van Pinkie 🐾</h3>
+    <!-- ===== FOTO GALERIJ MET 6 FOTO'S (2 per rij, in het midden) ===== -->
+    <div style="margin-top:30px;">
 
-  <!-- Rij 1 -->
-  <div>
-    <img src="foto/WhatsApp Image 2026-02-11 at 14.24.15.jpeg" alt="Kat foto 1"
-         style="width:200px; height:200px; object-fit:cover; margin:10px; border-radius:10px; border:1px solid #888; display:inline-block;">
-    
-    <img src="foto/WhatsApp Image 2026-02-11 at 14.24.26.jpeg" alt="Kat foto 2"
-         style="width:200px; height:200px; object-fit:cover; margin:10px; border-radius:10px; border:1px solid #888; display:inline-block;">
-  </div>
+      <h3 style="text-align:center; margin:0 0 15px 0;">Fotogalerij van Pinkie 🐾</h3>
 
-  <!-- Rij 2 -->
-  <div>
-    <img src="foto/WhatsApp Image 2026-02-11 at 14.24.57.jpeg" alt="Kat foto 3"
-         style="width:200px; height:200px; object-fit:cover; margin:10px; border-radius:10px; border:1px solid #888; display:inline-block;">
-    
-    <img src="foto/WhatsApp Image 2026-02-11 at 14.25.32.jpeg" alt="Kat foto 4"
-         style="width:200px; height:200px; object-fit:cover; margin:10px; border-radius:10px; border:1px solid #888; display:inline-block;">
-  </div>
+      <!-- Galerij container -->
+      <div style="
+        display:flex;
+        flex-wrap:wrap;
+        justify-content:center;
+        gap:14px;
+      ">
 
-  <!-- Rij 3 -->
-  <div>
-    <img src="foto/WhatsApp Image 2026-02-11 at 14.25.44.jpeg" alt="Kat foto 5"
-         style="width:200px; height:200px; object-fit:cover; margin:10px; border-radius:10px; border:1px solid #888; display:inline-block;">
-    
-    <img src="foto/WhatsApp Image 2026-02-11 at 14.25.56.jpeg" alt="Kat foto 6"
-         style="width:200px; height:200px; object-fit:cover; margin:10px; border-radius:10px; border:1px solid #888; display:inline-block;">
-  </div>
+        <!-- FOTO 1 -->
+        <div style="background:#d6ccc2; border:1px solid #888; border-radius:12px; padding:10px; box-shadow:0 10px 20px rgba(0,0,0,0.12);">
+          <img src="foto/WhatsApp Image 2026-02-11 at 14.24.15.jpeg" alt="Kat foto 1"
+               style="width:200px; height:200px; object-fit:cover; border-radius:10px; border:1px solid #888; display:block;">
+        </div>
 
-</div>
+        <!-- FOTO 2 -->
+        <div style="background:#d6ccc2; border:1px solid #888; border-radius:12px; padding:10px; box-shadow:0 10px 20px rgba(0,0,0,0.12);">
+          <img src="foto/WhatsApp Image 2026-02-11 at 14.24.26.jpeg" alt="Kat foto 2"
+               style="width:200px; height:200px; object-fit:cover; border-radius:10px; border:1px solid #888; display:block;">
+        </div>
 
+        <!-- FOTO 3 -->
+        <div style="background:#d6ccc2; border:1px solid #888; border-radius:12px; padding:10px; box-shadow:0 10px 20px rgba(0,0,0,0.12);">
+          <img src="foto/WhatsApp Image 2026-02-11 at 14.24.57.jpeg" alt="Kat foto 3"
+               style="width:200px; height:200px; object-fit:cover; border-radius:10px; border:1px solid #888; display:block;">
+        </div>
+
+        <!-- FOTO 4 -->
+        <div style="background:#d6ccc2; border:1px solid #888; border-radius:12px; padding:10px; box-shadow:0 10px 20px rgba(0,0,0,0.12);">
+          <img src="foto/WhatsApp Image 2026-02-11 at 14.25.32.jpeg" alt="Kat foto 4"
+               style="width:200px; height:200px; object-fit:cover; border-radius:10px; border:1px solid #888; display:block;">
+        </div>
+
+        <!-- FOTO 5 -->
+        <div style="background:#d6ccc2; border:1px solid #888; border-radius:12px; padding:10px; box-shadow:0 10px 20px rgba(0,0,0,0.12);">
+          <img src="foto/WhatsApp Image 2026-02-11 at 14.25.44.jpeg" alt="Kat foto 5"
+               style="width:200px; height:200px; object-fit:cover; border-radius:10px; border:1px solid #888; display:block;">
+        </div>
+
+        <!-- FOTO 6 -->
+        <div style="background:#d6ccc2; border:1px solid #888; border-radius:12px; padding:10px; box-shadow:0 10px 20px rgba(0,0,0,0.12);">
+          <img src="foto/WhatsApp Image 2026-02-11 at 14.25.56.jpeg" alt="Kat foto 6"
+               style="width:200px; height:200px; object-fit:cover; border-radius:10px; border:1px solid #888; display:block;">
+        </div>
+
+      </div>
+
+      <!-- Kleine tip tekst -->
+      <p style="text-align:center; margin:14px 0 0 0; font-size:14px; opacity:0.8;">
+        Tip: op mobiel gaan de foto’s automatisch onder elkaar als het scherm smaller is.
+      </p>
+    </div>
 
     <!-- Knoppen: 3 CSS-dingen -->
     <div style="margin-top:20px; text-align:center;">
@@ -88,7 +107,84 @@
       <a href="kat.html" style="margin:5px; padding:10px 14px; background:#d6ccc2; text-decoration:none; color:black; border:1px solid #888; border-radius:10px; display:inline-block;">Float</a>
       <a href="school.html" style="margin:5px; padding:10px 14px; background:#d6ccc2; text-decoration:none; color:black; border:1px solid #888; border-radius:10px; display:inline-block;">Display</a>
     </div>
-  </main>
 
+  </main>
+<!-- ===== JAVASCRIPT: zwevende katjes die steeds komen & verdwijnen ===== -->
+<script>
+  // ✅ Zet hier welke icoontjes je wil (je kan uitbreiden)
+  const kittyIcons = ["🐱", "🐾", "😺", "🐈"];
+
+  // ✅ Hoeveel katjes maximaal tegelijk op je scherm
+  const MAX_KITTIES = 12;
+
+  // ✅ Maak 1 katje aan
+  function spawnKitty() {
+    // als er al genoeg katjes zijn, stop
+    if (document.querySelectorAll(".kitty").length >= MAX_KITTIES) return;
+
+    const kitty = document.createElement("span");
+    kitty.className = "kitty";
+
+    // random icoon
+    kitty.textContent = kittyIcons[Math.floor(Math.random() * kittyIcons.length)];
+
+    // random start positie (in je scherm)
+    const startX = Math.random() * (window.innerWidth - 40);
+    const startY = window.innerHeight + 30; // start net onder het scherm
+
+    // random beweging
+    const driftX = (Math.random() * 1.5) - 0.75; // beetje links/rechts
+    const speedY = 0.6 + Math.random() * 1.2;    // omhoog snelheid
+
+    // levensduur in ms
+    const life = 2500 + Math.random() * 2000; // 2.5s tot 4.5s
+
+    // INLINE STYLE (zodat dit nog steeds "inline CSS" blijft)
+    kitty.style.position = "fixed";
+    kitty.style.left = startX + "px";
+    kitty.style.top = startY + "px";
+    kitty.style.fontSize = (18 + Math.random() * 16) + "px"; // random grootte
+    kitty.style.opacity = "0";
+    kitty.style.zIndex = "9999";
+    kitty.style.pointerEvents = "none"; // je kan nog op knoppen klikken
+
+    document.body.appendChild(kitty);
+
+    const startTime = performance.now();
+
+    // animatie loop
+    function animate(now) {
+      const t = now - startTime;
+      const p = Math.min(t / life, 1); // 0 -> 1
+
+      // fade in + fade out
+      let opacity = 0;
+      if (p < 0.15) opacity = p / 0.15;                 // fade in
+      else if (p > 0.85) opacity = (1 - p) / 0.15;      // fade out
+      else opacity = 1;
+
+      // beweging omhoog + beetje naar links/rechts
+      const y = startY - (p * 220); // 220px omhoog
+      const x = startX + (p * 80 * driftX); // sideways drift
+
+      kitty.style.top = y + "px";
+      kitty.style.left = x + "px";
+      kitty.style.opacity = opacity.toFixed(2);
+
+      // klaar? remove
+      if (p >= 1) {
+        kitty.remove();
+        return;
+      }
+
+      requestAnimationFrame(animate);
+    }
+
+    requestAnimationFrame(animate);
+  }
+
+  // ✅ Spawnt steeds nieuwe katjes
+  setInterval(spawnKitty, 400); // elke 0.4 sec een nieuwe (pas aan als je wil)
+</script>
 </body>
 </html>
