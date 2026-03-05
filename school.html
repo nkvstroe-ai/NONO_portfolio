@@ -2,6 +2,86 @@
 <html lang="nl">
   
 <head>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+     integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+     crossorigin=""/>
+  <!-- Make sure you put this AFTER Leaflet's CSS -->
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+     integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+     crossorigin=""></script>
+  
+  <!-- Registreer bij https://fontawesome.com -->
+  <script src="https://kit.fontawesome.com/e766bcebc4.js" crossorigin="anonymous"></script>
+  <style>
+    #map {
+    height:400px;
+    }
+
+    /* Zie: https://gist.github.com/adriennn/4678d585ac3774650c16 */
+    .fontawesome_icon{
+    color: rgb(229, 153, 211);   
+    }
+  </style>
+</head>
+<body>
+  
+  <div id="map"></div>
+    <script>
+
+        const osm = L.tileLayer('https://{s}.tile.osm.org/{z}/{x}/{y}.png')
+
+        const map = L.map('map', {
+            center: [52.3565363874106, 5.22309285574719],
+            zoom: 16,
+          layers: [osm]
+        });
+        
+        const fontAwesomeIcon = L.divIcon({
+            html: '<i class="fa-solid fa-graduation-cap fa-3x"></i>',
+            iconSize: [20, 20],
+            className: 'fontawesome_icon'
+        });
+
+        let geojson_marker = {
+            "crs": {
+                "properties": {
+                    "name": "urn:ogc:def:crs:OGC:1.3:CRS84"
+                },
+                "type": "name"
+            },
+            "features": [
+                {
+                    "geometry": {
+                        "coordinates": [
+                            5.22309285574719,
+                            52.3565363874106
+                        ],
+                        "type": "Point"
+                    },
+                    "properties": {
+                        "naam": "Hogeschool Aeres waar ik heb geleerd/leer om al deze creaties te maken:)",
+                        "adres": "Arboretum West 98, 1325 WB Almere"
+                    },
+                    "type": "Feature"
+                }
+            ],
+            "name": "Aeres",
+            "type": "FeatureCollection"
+        };
+
+        let jsonlayer = L.geoJson(geojson_marker, {
+        onEachFeature: onEachFeature,
+        pointToLayer: function (ftr, latlng) {
+          return L.marker([latlng.lat, latlng.lng], {icon: fontAwesomeIcon})
+        }
+        }).addTo(map);
+
+        function onEachFeature(feature, layer) {
+        layer.bindPopup('<b>' + feature.properties.naam + '</b>', {width:'600px'});
+        }
+
+
+    </script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Moi Portfolio - School</title>
@@ -46,7 +126,7 @@
             logo's of andere creatieve opdrachten.
           </p>
 
-          <!-- Jij vervangt later de foto -->
+        
           <img src="images/design1.jpg" alt="Design project (placeholder)">
         </div>
 
@@ -58,7 +138,7 @@
             analyses of schoolopdrachten met data.
           </p>
 
-          <!-- Jij vervangt later de foto -->
+        
           <img src="images/gis1.jpg" alt="GIS project (placeholder)">
         </div>
 
