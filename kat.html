@@ -1,190 +1,500 @@
 <!DOCTYPE html>
 <html lang="nl">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>MOI Portfolio - Katje</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MOI Portfolio - Pinkie</title>
+
+  <style>
+    :root{
+      --honey-bronze:#f6bd60;
+      --linen:#f7ede2;
+      --cotton-rose:#f5cac3;
+      --muted-teal:#84a59d;
+      --light-coral:#f28482;
+      --text:#2f2a26;
+      --white:#ffffff;
+      --shadow: 0 12px 30px rgba(0,0,0,0.10);
+      --radius-lg: 24px;
+      --radius-md: 16px;
+      --radius-sm: 12px;
+    }
+
+    *{
+      box-sizing: border-box;
+    }
+
+    html{
+      scroll-behavior: smooth;
+    }
+
+    body{
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background:
+        radial-gradient(circle at top, rgba(246,189,96,0.18), transparent 30%),
+        linear-gradient(180deg, var(--linen), #fffaf6);
+      color: var(--text);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    img{
+      max-width: 100%;
+      display: block;
+    }
+
+    a{
+      color: inherit;
+    }
+
+    #top{
+      position: absolute;
+      top: 0;
+    }
+
+    /* HEADER */
+    header{
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      backdrop-filter: blur(10px);
+      background: rgba(247, 237, 226, 0.88);
+      border-bottom: 1px solid rgba(132,165,157,0.35);
+    }
+
+    .nav-wrap{
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 16px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .logo{
+      font-size: 22px;
+      font-weight: 900;
+      letter-spacing: 2px;
+    }
+
+    nav{
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    nav a{
+      padding: 10px 16px;
+      background: var(--white);
+      border: 1px solid rgba(132,165,157,0.5);
+      border-radius: 999px;
+      text-decoration: none;
+      transition: 0.25s ease;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.04);
+    }
+
+    nav a:hover{
+      transform: translateY(-2px);
+      background: var(--honey-bronze);
+    }
+
+    /* MAIN */
+    main{
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 28px 18px 40px;
+    }
+
+    /* HERO */
+    .hero{
+      position: relative;
+      overflow: hidden;
+      background: linear-gradient(135deg, var(--cotton-rose), var(--linen));
+      border: 1px solid rgba(132,165,157,0.35);
+      border-radius: 30px;
+      box-shadow: var(--shadow);
+      padding: 60px 24px 46px;
+      text-align: center;
+    }
+
+    .hero::before,
+    .hero::after{
+      content: "";
+      position: absolute;
+      border-radius: 50%;
+      opacity: 0.4;
+      pointer-events: none;
+    }
+
+    .hero::before{
+      width: 220px;
+      height: 220px;
+      background: var(--honey-bronze);
+      top: -70px;
+      left: -70px;
+    }
+
+    .hero::after{
+      width: 180px;
+      height: 180px;
+      background: var(--light-coral);
+      right: -50px;
+      bottom: -50px;
+    }
+
+    .hero-badge{
+      display: inline-block;
+      background: rgba(255,255,255,0.72);
+      border: 1px solid rgba(132,165,157,0.35);
+      padding: 8px 14px;
+      border-radius: 999px;
+      margin-bottom: 16px;
+      font-size: 14px;
+      font-weight: bold;
+      letter-spacing: 0.5px;
+    }
+
+    .hero-title{
+      margin: 0;
+      font-size: clamp(40px, 7vw, 72px);
+      font-weight: 900;
+      line-height: 1.02;
+      letter-spacing: 2px;
+    }
+
+    .hero-sub{
+      max-width: 650px;
+      margin: 14px auto 0;
+      font-size: 18px;
+      opacity: 0.9;
+    }
+
+    /* CARDS */
+    .section-card{
+      background: rgba(255,255,255,0.7);
+      border: 1px solid rgba(132,165,157,0.30);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow);
+      padding: 26px;
+      margin-top: 24px;
+    }
+
+    .section-title{
+      margin: 0 0 18px 0;
+      font-size: 28px;
+    }
+
+    /* ABOUT PINKIE */
+    .pinkie-grid{
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 24px;
+      align-items: center;
+    }
+
+    .pinkie-text p{
+      margin-top: 0;
+      font-size: 17px;
+    }
+
+    .pinkie-list{
+      margin: 14px 0 0 0;
+      padding-left: 20px;
+    }
+
+    .pinkie-list li{
+      margin-bottom: 10px;
+    }
+
+    .pinkie-photo-wrap{
+      background: linear-gradient(180deg, var(--cotton-rose), var(--linen));
+      padding: 12px;
+      border-radius: 24px;
+      border: 1px solid rgba(132,165,157,0.35);
+    }
+
+    .pinkie-photo{
+      width: 100%;
+      height: 380px;
+      object-fit: cover;
+      border-radius: 18px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+    }
+
+    /* GALLERY */
+    .gallery-title{
+      margin: 0 0 8px 0;
+      font-size: 24px;
+      text-align: center;
+    }
+
+    .gallery-text{
+      text-align: center;
+      margin: 0 0 20px 0;
+      opacity: 0.85;
+    }
+
+    .foto-grid{
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 14px;
+    }
+
+    .foto-card{
+      background: linear-gradient(135deg, var(--linen), #fff);
+      border: 1px solid rgba(132,165,157,0.28);
+      border-radius: 18px;
+      padding: 10px;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.08);
+      transition: 0.25s ease;
+    }
+
+    .foto-card:hover{
+      transform: translateY(-4px) scale(1.01);
+    }
+
+    .foto-card img{
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      object-fit: cover;
+      border-radius: 14px;
+      border: 1px solid rgba(132,165,157,0.35);
+      background: var(--white);
+    }
+
+    /* BUTTON ROW */
+    .button-row{
+      margin-top: 22px;
+      text-align: center;
+    }
+
+    .button-row a,
+    .top-btn{
+      display: inline-block;
+      margin: 5px;
+      padding: 12px 18px;
+      background: var(--white);
+      border: 1px solid rgba(132,165,157,0.5);
+      border-radius: 999px;
+      text-decoration: none;
+      transition: 0.25s ease;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.04);
+      font-weight: bold;
+    }
+
+    .button-row a:hover,
+    .top-btn:hover{
+      transform: translateY(-2px);
+      background: var(--honey-bronze);
+    }
+
+    .top-wrap{
+      text-align: center;
+      margin: 30px 0 12px;
+    }
+
+    .top-btn{
+      background: var(--honey-bronze);
+      box-shadow: 0 8px 20px rgba(246,189,96,0.35);
+    }
+
+    footer{
+      text-align: center;
+      padding: 20px;
+      color: rgba(47,42,38,0.75);
+      font-size: 14px;
+    }
+
+    /* FLOATING KITTIES */
+    .kitty{
+      position: fixed;
+      z-index: 9999;
+      pointer-events: none;
+      user-select: none;
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 900px){
+      .pinkie-grid{
+        grid-template-columns: 1fr;
+      }
+
+      .pinkie-photo{
+        height: 320px;
+      }
+    }
+
+    @media (max-width: 640px){
+      main{
+        padding: 20px 14px 34px;
+      }
+
+      .hero{
+        padding: 48px 16px 38px;
+      }
+
+      .section-card{
+        padding: 20px;
+      }
+    }
+  </style>
 </head>
 
-<!-- INLINE CSS: alle css staat in style="" -->
-<body style="margin:0; font-family:Arial, sans-serif; background:#d6ccc2; color:#222;">
+<body>
+  <div id="top"></div>
 
-  <!-- HEADER -->
-  <header style="background:#f5ebe0; padding:20px; text-align:center; border-bottom:1px solid #bbb;">
-    <h1 style="margin:0;">Moi Portfolio</h1>
+  <header>
+    <div class="nav-wrap">
+      <div class="logo">MOI</div>
 
-    <!-- Navigatie -->
-    <nav style="margin-top:10px;">
-      <a href="index.html" style="margin:5px; padding:10px 14px; background:#d6ccc2; text-decoration:none; color:black; border:1px solid #888; border-radius:10px; display:inline-block;">MOI & co</a>
-      <a href="kat.html" style="margin:5px; padding:10px 14px; background:#d6ccc2; text-decoration:none; color:black; border:1px solid #888; border-radius:10px; display:inline-block;">Pinkie</a>
-      <a href="school.html" style="margin:5px; padding:10px 14px; background:#d6ccc2; text-decoration:none; color:black; border:1px solid #888; border-radius:10px; display:inline-block;">Creations</a>
-    </nav>
+      <nav>
+        <a href="index.html">MOI &amp; co</a>
+        <a href="kat.html">Pinkie</a>
+        <a href="school.html">Creations</a>
+      </nav>
+    </div>
   </header>
 
-  <!-- MAIN -->
-  <main style="max-width:900px; margin:20px auto; padding:15px; background:#f5ebe0; border-radius:12px; border:1px solid #bbb;">
+  <main>
+    <section class="hero">
+      <div class="hero-badge">Mijn fluffy bestie</div>
+      <h1 class="hero-title">Pinkie</h1>
+      <p class="hero-sub">
+        Een pagina vol schattige foto's en leuke weetjes over mijn lieve katje.
+      </p>
+    </section>
 
-    <h2 style="margin-top:0;">Mijn katje</h2>
+    <section class="section-card">
+      <h2 class="section-title">Mijn katje</h2>
 
-    <!-- FLOAT: foto zweeft rechts en tekst loopt er langs -->
-    <img src="foto/WhatsApp Image 2026-02-10 at 21.51.08.jpeg"
-         alt="Mijn kat"
-         style="float:right; width:220px; height:220px; object-fit:cover; border-radius:10px; border:1px solid #888; margin:0 0 10px 10px; background:white;">
+      <div class="pinkie-grid">
+        <div class="pinkie-text">
+          <p>
+            Dit is mijn lieve beestje, Pinkie. Hij is echt een belangrijk deel van thuis
+            en zorgt altijd voor gezelligheid.
+          </p>
 
-    <p>Dit is mijn lieve beestje.</p>
+          <p>Een paar dingen over Pinkie:</p>
 
-    <p>Hier iets meer over mijn kat, zoals:</p>
-
-    <ul>
-      <li>mijn katje pinkie</li>
-      <li>hij is niet dik maar pluizig</li>
-      <li>hij kan arrogant zijn naar andere dieren maar naar mensen is die heel lief</li>
-    </ul>
-
-    <!-- Dit stopt het float-effect zodat alles erna weer normaal staat -->
-    <div style="clear:both;"></div>
-
-    <!-- ===== FOTO GALERIJ MET 6 FOTO'S (2 per rij, in het midden) ===== -->
-    <div style="margin-top:30px;">
-
-      <h3 style="text-align:center; margin:0 0 15px 0;">Fotogalerij van Pinkie 🐾</h3>
-
-      <!-- Galerij container -->
-      <div style="
-        display:flex;
-        flex-wrap:wrap;
-        justify-content:center;
-        gap:14px;
-      ">
-
-        <!-- FOTO 1 -->
-        <div style="background:#d6ccc2; border:1px solid #888; border-radius:12px; padding:10px; box-shadow:0 10px 20px rgba(0,0,0,0.12);">
-          <img src="foto/WhatsApp Image 2026-02-11 at 14.24.15.jpeg" alt="Kat foto 1"
-               style="width:200px; height:200px; object-fit:cover; border-radius:10px; border:1px solid #888; display:block;">
+          <ul class="pinkie-list">
+            <li>mijn katje heet Pinkie</li>
+            <li>hij is niet dik maar gewoon heel pluizig</li>
+            <li>naar andere dieren kan hij een beetje arrogant zijn, maar naar mensen is hij superlief</li>
+          </ul>
         </div>
 
-        <!-- FOTO 2 -->
-        <div style="background:#d6ccc2; border:1px solid #888; border-radius:12px; padding:10px; box-shadow:0 10px 20px rgba(0,0,0,0.12);">
-          <img src="foto/WhatsApp Image 2026-02-11 at 14.24.26.jpeg" alt="Kat foto 2"
-               style="width:200px; height:200px; object-fit:cover; border-radius:10px; border:1px solid #888; display:block;">
+        <div class="pinkie-photo-wrap">
+          <img
+            class="pinkie-photo"
+            src="foto/WhatsApp Image 2026-02-10 at 21.51.08.jpeg"
+            alt="Mijn kat Pinkie"
+          />
+        </div>
+      </div>
+    </section>
+
+    <section class="section-card">
+      <h3 class="gallery-title">Fotogalerij van Pinkie 🐾</h3>
+      <p class="gallery-text">Mijn favoriete foto's van mijn katje.</p>
+
+      <div class="foto-grid">
+        <div class="foto-card">
+          <img src="foto/WhatsApp Image 2026-02-11 at 14.24.15.jpeg" alt="Kat foto 1">
         </div>
 
-        <!-- FOTO 3 -->
-        <div style="background:#d6ccc2; border:1px solid #888; border-radius:12px; padding:10px; box-shadow:0 10px 20px rgba(0,0,0,0.12);">
-          <img src="foto/WhatsApp Image 2026-02-11 at 14.24.57.jpeg" alt="Kat foto 3"
-               style="width:200px; height:200px; object-fit:cover; border-radius:10px; border:1px solid #888; display:block;">
+        <div class="foto-card">
+          <img src="foto/WhatsApp Image 2026-02-11 at 14.24.26.jpeg" alt="Kat foto 2">
         </div>
 
-        <!-- FOTO 4 -->
-        <div style="background:#d6ccc2; border:1px solid #888; border-radius:12px; padding:10px; box-shadow:0 10px 20px rgba(0,0,0,0.12);">
-          <img src="foto/WhatsApp Image 2026-02-11 at 14.25.32.jpeg" alt="Kat foto 4"
-               style="width:200px; height:200px; object-fit:cover; border-radius:10px; border:1px solid #888; display:block;">
+        <div class="foto-card">
+          <img src="foto/WhatsApp Image 2026-02-11 at 14.24.57.jpeg" alt="Kat foto 3">
         </div>
 
-        <!-- FOTO 5 -->
-        <div style="background:#d6ccc2; border:1px solid #888; border-radius:12px; padding:10px; box-shadow:0 10px 20px rgba(0,0,0,0.12);">
-          <img src="foto/WhatsApp Image 2026-02-11 at 14.25.44.jpeg" alt="Kat foto 5"
-               style="width:200px; height:200px; object-fit:cover; border-radius:10px; border:1px solid #888; display:block;">
+        <div class="foto-card">
+          <img src="foto/WhatsApp Image 2026-02-11 at 14.25.32.jpeg" alt="Kat foto 4">
         </div>
 
-        <!-- FOTO 6 -->
-        <div style="background:#d6ccc2; border:1px solid #888; border-radius:12px; padding:10px; box-shadow:0 10px 20px rgba(0,0,0,0.12);">
-          <img src="foto/WhatsApp Image 2026-02-11 at 14.25.56.jpeg" alt="Kat foto 6"
-               style="width:200px; height:200px; object-fit:cover; border-radius:10px; border:1px solid #888; display:block;">
+        <div class="foto-card">
+          <img src="foto/WhatsApp Image 2026-02-11 at 14.25.44.jpeg" alt="Kat foto 5">
         </div>
 
+        <div class="foto-card">
+          <img src="foto/WhatsApp Image 2026-02-11 at 14.25.56.jpeg" alt="Kat foto 6">
+        </div>
       </div>
 
-      <!-- Kleine tip tekst -->
-      <p style="text-align:center; margin:14px 0 0 0; font-size:14px; opacity:0.8;">
-       
-      </p>
-    </div>
+      <div class="button-row">
+        <a href="index.html">Position</a>
+        <a href="kat.html">Float</a>
+        <a href="school.html">Display</a>
+      </div>
+    </section>
 
-    <!-- Knoppen: 3 CSS-dingen -->
-    <div style="margin-top:20px; text-align:center;">
-      <a href="index.html" style="margin:5px; padding:10px 14px; background:#d6ccc2; text-decoration:none; color:black; border:1px solid #888; border-radius:10px; display:inline-block;">Position</a>
-      <a href="kat.html" style="margin:5px; padding:10px 14px; background:#d6ccc2; text-decoration:none; color:black; border:1px solid #888; border-radius:10px; display:inline-block;">Float</a>
-      <a href="school.html" style="margin:5px; padding:10px 14px; background:#d6ccc2; text-decoration:none; color:black; border:1px solid #888; border-radius:10px; display:inline-block;">Display</a>
+    <div class="top-wrap">
+      <a class="top-btn" href="#top">↑ Terug naar boven</a>
     </div>
-
   </main>
-<!-- ===== JAVASCRIPT: zwevende katjes die steeds komen & verdwijnen ===== -->
-<script>
-  // ✅ Zet hier welke icoontjes je wil (je kan uitbreiden)
-  const kittyIcons = ["🐱", "🐾", "😺", "🐈"];
 
-  // ✅ Hoeveel katjes maximaal tegelijk op je scherm
-  const MAX_KITTIES = 12;
+  <footer>
+    MOI Portfolio
+  </footer>
 
-  // ✅ Maak 1 katje aan
-  function spawnKitty() {
-    // als er al genoeg katjes zijn, stop
-    if (document.querySelectorAll(".kitty").length >= MAX_KITTIES) return;
+  <script>
+    const kittyIcons = ["🐱", "🐾", "😺", "🐈"];
+    const MAX_KITTIES = 12;
 
-    const kitty = document.createElement("span");
-    kitty.className = "kitty";
+    function spawnKitty() {
+      if (document.querySelectorAll(".kitty").length >= MAX_KITTIES) return;
 
-    // random icoon
-    kitty.textContent = kittyIcons[Math.floor(Math.random() * kittyIcons.length)];
+      const kitty = document.createElement("span");
+      kitty.className = "kitty";
+      kitty.textContent = kittyIcons[Math.floor(Math.random() * kittyIcons.length)];
 
-    // random start positie (in je scherm)
-    const startX = Math.random() * (window.innerWidth - 40);
-    const startY = window.innerHeight + 30; // start net onder het scherm
+      const startX = Math.random() * (window.innerWidth - 40);
+      const startY = window.innerHeight + 30;
+      const driftX = (Math.random() * 1.5) - 0.75;
+      const life = 2500 + Math.random() * 2000;
 
-    // random beweging
-    const driftX = (Math.random() * 1.5) - 0.75; // beetje links/rechts
-    const speedY = 0.6 + Math.random() * 1.2;    // omhoog snelheid
+      kitty.style.left = startX + "px";
+      kitty.style.top = startY + "px";
+      kitty.style.fontSize = (18 + Math.random() * 16) + "px";
+      kitty.style.opacity = "0";
 
-    // levensduur in ms
-    const life = 2500 + Math.random() * 2000; // 2.5s tot 4.5s
+      document.body.appendChild(kitty);
 
-    // INLINE STYLE (zodat dit nog steeds "inline CSS" blijft)
-    kitty.style.position = "fixed";
-    kitty.style.left = startX + "px";
-    kitty.style.top = startY + "px";
-    kitty.style.fontSize = (18 + Math.random() * 16) + "px"; // random grootte
-    kitty.style.opacity = "0";
-    kitty.style.zIndex = "9999";
-    kitty.style.pointerEvents = "none"; // je kan nog op knoppen klikken
+      const startTime = performance.now();
 
-    document.body.appendChild(kitty);
+      function animate(now) {
+        const t = now - startTime;
+        const p = Math.min(t / life, 1);
 
-    const startTime = performance.now();
+        let opacity = 0;
+        if (p < 0.15) opacity = p / 0.15;
+        else if (p > 0.85) opacity = (1 - p) / 0.15;
+        else opacity = 1;
 
-    // animatie loop
-    function animate(now) {
-      const t = now - startTime;
-      const p = Math.min(t / life, 1); // 0 -> 1
+        const y = startY - (p * 220);
+        const x = startX + (p * 80 * driftX);
 
-      // fade in + fade out
-      let opacity = 0;
-      if (p < 0.15) opacity = p / 0.15;                 // fade in
-      else if (p > 0.85) opacity = (1 - p) / 0.15;      // fade out
-      else opacity = 1;
+        kitty.style.top = y + "px";
+        kitty.style.left = x + "px";
+        kitty.style.opacity = opacity.toFixed(2);
 
-      // beweging omhoog + beetje naar links/rechts
-      const y = startY - (p * 220); // 220px omhoog
-      const x = startX + (p * 80 * driftX); // sideways drift
+        if (p >= 1) {
+          kitty.remove();
+          return;
+        }
 
-      kitty.style.top = y + "px";
-      kitty.style.left = x + "px";
-      kitty.style.opacity = opacity.toFixed(2);
-
-      // klaar? remove
-      if (p >= 1) {
-        kitty.remove();
-        return;
+        requestAnimationFrame(animate);
       }
 
       requestAnimationFrame(animate);
     }
 
-    requestAnimationFrame(animate);
-  }
-
-  // ✅ Spawnt steeds nieuwe katjes
-  setInterval(spawnKitty, 400); // elke 0.4 sec een nieuwe (pas aan als je wil)
-</script>
+    setInterval(spawnKitty, 400);
+  </script>
 </body>
 </html>

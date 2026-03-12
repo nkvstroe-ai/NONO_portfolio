@@ -5,61 +5,167 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>MOI Portfolio</title>
 
-  <!-- INTERNAL CSS -->
   <style>
-    /* ===== BASIS ===== */
+    :root{
+      --honey-bronze:#f6bd60;
+      --linen:#f7ede2;
+      --cotton-rose:#f5cac3;
+      --muted-teal:#84a59d;
+      --light-coral:#f28482;
+      --text:#2f2a26;
+      --white:#ffffff;
+      --shadow: 0 12px 30px rgba(0,0,0,0.10);
+      --radius-lg: 24px;
+      --radius-md: 16px;
+      --radius-sm: 12px;
+    }
+
+    *{
+      box-sizing: border-box;
+    }
+
+    html{
+      scroll-behavior: smooth;
+    }
+
     body{
       margin: 0;
       font-family: Arial, sans-serif;
-      background: #d6ccc2;
-      color: #222;
+      background:
+        radial-gradient(circle at top, rgba(246,189,96,0.18), transparent 30%),
+        linear-gradient(180deg, var(--linen), #fffaf6);
+      color: var(--text);
+      line-height: 1.6;
     }
 
-    /* ===== HEADER ===== */
+    img{
+      max-width: 100%;
+      display: block;
+    }
+
+    a{
+      color: inherit;
+    }
+
+    /* TOP ANCHOR */
+    #top{
+      position: absolute;
+      top: 0;
+    }
+
+    /* HEADER */
     header{
-      background: #f5ebe0;
-      padding: 18px;
-      text-align: center;
-      border-bottom: 1px solid rgba(0,0,0,0.15);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      backdrop-filter: blur(10px);
+      background: rgba(247, 237, 226, 0.88);
+      border-bottom: 1px solid rgba(132,165,157,0.35);
     }
 
-    /* Navigatie knoppen */
+    .nav-wrap{
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 16px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .logo{
+      font-size: 22px;
+      font-weight: 900;
+      letter-spacing: 2px;
+    }
+
+    nav{
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
     nav a{
-      margin: 5px;
-      padding: 10px 14px;
-      background: #d6ccc2;
+      padding: 10px 16px;
+      background: var(--white);
+      border: 1px solid rgba(132,165,157,0.5);
+      border-radius: 999px;
       text-decoration: none;
-      color: black;
-      border: 1px solid #888;
-      border-radius: 10px;
-      display: inline-block;
+      transition: 0.25s ease;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.04);
     }
 
-    /* ===== MAIN ===== */
+    nav a:hover{
+      transform: translateY(-2px);
+      background: var(--honey-bronze);
+    }
+
+    /* MAIN */
     main{
-      max-width: 950px;
-      margin: 20px auto;
-      padding: 10px;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 28px 18px 40px;
     }
 
-    /* ===== HERO ===== */
+    /* HERO */
     .hero{
-      background: #f5ebe0;
-      border: 1px solid rgba(0,0,0,0.15);
-      border-radius: 14px;
-      padding: 35px 15px;
+      position: relative;
+      overflow: hidden;
+      background: linear-gradient(135deg, var(--cotton-rose), var(--linen));
+      border: 1px solid rgba(132,165,157,0.35);
+      border-radius: 30px;
+      box-shadow: var(--shadow);
+      padding: 70px 24px 55px;
       text-align: center;
+    }
+
+    .hero::before,
+    .hero::after{
+      content: "";
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(10px);
+      opacity: 0.45;
+      pointer-events: none;
+    }
+
+    .hero::before{
+      width: 220px;
+      height: 220px;
+      background: var(--honey-bronze);
+      top: -60px;
+      left: -70px;
+    }
+
+    .hero::after{
+      width: 190px;
+      height: 190px;
+      background: var(--light-coral);
+      bottom: -60px;
+      right: -50px;
+    }
+
+    .hero-badge{
+      display: inline-block;
+      background: rgba(255,255,255,0.72);
+      border: 1px solid rgba(132,165,157,0.35);
+      padding: 8px 14px;
+      border-radius: 999px;
+      margin-bottom: 18px;
+      font-size: 14px;
+      font-weight: bold;
+      letter-spacing: 0.5px;
     }
 
     .hero-title{
       margin: 0;
-      font-size: 64px;
+      font-size: clamp(44px, 8vw, 82px);
       font-weight: 900;
+      line-height: 1.02;
       letter-spacing: 2px;
-      line-height: 1.05;
     }
 
-    /* HERO letters komen om de beurt */
     .hero-title span{
       display: inline-block;
       opacity: 0;
@@ -68,224 +174,321 @@
     }
 
     @keyframes letterIn{
-      to{ opacity: 1; transform: translateY(0); }
+      to{
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
     .hero-sub{
-      margin-top: 12px;
-      font-size: 16px;
-      opacity: 0.85;
+      max-width: 650px;
+      margin: 16px auto 0;
+      font-size: 18px;
+      opacity: 0.9;
     }
 
-    /* ===== BALKEN ===== */
-    .balk{
-      background: #f5ebe0;
-      border: 1px solid rgba(0,0,0,0.15);
-      border-radius: 14px;
-      padding: 18px;
-      margin-top: 18px;
+    /* GENERAL CARDS */
+    .section-card{
+      background: rgba(255,255,255,0.68);
+      border: 1px solid rgba(132,165,157,0.30);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow);
+      padding: 26px;
+      margin-top: 24px;
     }
 
-    /* ===== ABOUT (POSITION opdracht) ===== */
-    .about-wrap{
-      position: relative;     /* nodig voor absolute */
-      min-height: 240px;
-      padding-right: 270px;   /* ruimte voor de foto rechts */
+    .section-title{
+      margin: 0 0 18px 0;
+      font-size: 28px;
+    }
+
+    /* ABOUT */
+    .about-grid{
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 24px;
+      align-items: center;
+    }
+
+    .about-text{
+      font-size: 17px;
+    }
+
+    .about-photo-wrap{
+      background: linear-gradient(180deg, var(--cotton-rose), var(--linen));
+      padding: 12px;
+      border-radius: 24px;
+      border: 1px solid rgba(132,165,157,0.35);
     }
 
     .about-photo{
-      position: absolute;     /* POSITION */
-      right: 10px;
-      top: 10px;
-      width: 240px;
-      height: 240px;
+      width: 100%;
+      height: 380px;
       object-fit: cover;
-      border-radius: 14px;
-      border: 1px solid #888;
-      background: white;
+      border-radius: 18px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.08);
     }
 
-    /* About icons */
-    .icon-row{
-      display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
-      margin-top: 12px;
+    .info-grid{
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0,1fr));
+      gap: 14px;
+      margin-top: 22px;
     }
 
-    .icon-card{
-      background: #d6ccc2;
-      border: 1px solid #888;
-      border-radius: 12px;
-      padding: 10px;
-      min-width: 170px;
-      flex: 1;
+    .info-card{
+      background: linear-gradient(135deg, var(--linen), #fff);
+      border: 1px solid rgba(132,165,157,0.28);
+      border-radius: 18px;
+      padding: 16px;
+      transition: 0.25s ease;
     }
 
-    .icon-big{
-      font-size: 22px;
-      margin-right: 8px;
+    .info-card:hover{
+      transform: translateY(-4px);
+      box-shadow: 0 10px 24px rgba(0,0,0,0.07);
     }
 
-    /* ===== FOTO GRID (Annemijn / Familie) ===== */
+    .info-label{
+      display: inline-block;
+      font-size: 13px;
+      font-weight: bold;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      color: var(--muted-teal);
+      margin-bottom: 6px;
+    }
+
+    .info-card p{
+      margin: 0;
+      font-size: 15px;
+    }
+
+    /* PHOTO SECTIONS */
+    .sub-title{
+      margin: 0 0 14px 0;
+      font-size: 24px;
+    }
+
+    .section-intro{
+      margin: 0 0 18px 0;
+      max-width: 750px;
+    }
+
     .foto-grid{
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      justify-content: center;
-      margin-top: 10px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 14px;
     }
 
     .foto-grid img{
-      width: 120px;
-      height: 120px;
+      width: 100%;
+      aspect-ratio: 1 / 1;
       object-fit: cover;
-      border-radius: 12px;
-      border: 1px solid #888;
-      background: white;
+      border-radius: 18px;
+      border: 1px solid rgba(132,165,157,0.35);
+      background: var(--white);
+      transition: 0.25s ease;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.06);
     }
 
-    /* ===== GIRLIES GROTE BALK ===== */
-    .girlies-balk{
-      background: #f5ebe0;
-      border-radius: 22px;
-      padding: 50px 25px;
-      margin-top: 60px;
-      box-shadow: 0 20px 40px rgba(0,0,0,0.15);
-      border: 2px solid rgba(0,0,0,0.1);
+    .foto-grid img:hover{
+      transform: translateY(-4px) scale(1.02);
+    }
+
+    /* GIRLIES */
+    .girlies{
+      position: relative;
+      overflow: hidden;
+      background: linear-gradient(135deg, var(--cotton-rose), var(--linen));
+      border: 1px solid rgba(132,165,157,0.28);
+      border-radius: 32px;
+      box-shadow: 0 20px 45px rgba(0,0,0,0.12);
+      padding: 34px 24px;
+      margin-top: 28px;
+    }
+
+    .girlies::before{
+      content: "";
+      position: absolute;
+      width: 240px;
+      height: 240px;
+      background: rgba(242,132,130,0.18);
+      border-radius: 50%;
+      right: -70px;
+      top: -70px;
     }
 
     .girlies-layout{
-      display: flex;
-      gap: 15px;
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: 1fr 1.2fr 1fr;
+      gap: 18px;
       align-items: center;
-      justify-content: center;
     }
 
     .girlies-side{
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
+      display: grid;
+      gap: 12px;
     }
 
-    /* Foto’s in girlies */
-    .girlies-side img,
+    .cycle-img,
     .girlies-main-photo{
-      width: 140px;
-      height: 140px;
+      width: 100%;
       object-fit: cover;
-      border-radius: 14px;
-      border: 1px solid #888;
-      background: white;
+      border-radius: 18px;
+      border: 1px solid rgba(132,165,157,0.35);
+      background: var(--white);
+      box-shadow: 0 8px 22px rgba(0,0,0,0.08);
     }
 
-    /* Centrale foto onder GIRLIES */
-    .girlies-main-photo{
-      width: 260px;
-      height: 260px;
-      margin-top: 12px;
+    .cycle-img{
+      aspect-ratio: 1 / 1;
+      cursor: pointer;
+      transition: 0.25s ease;
     }
 
-    /* GIRLIES titel */
+    .cycle-img:hover{
+      transform: scale(1.03);
+    }
+
+    .girlies-center{
+      text-align: center;
+    }
+
     .girlies-title{
       margin: 0;
-      font-size: 70px;
+      font-size: clamp(46px, 6vw, 76px);
       font-weight: 900;
       letter-spacing: 4px;
-      text-shadow: 3px 6px 10px rgba(0,0,0,0.2);
+      text-shadow: 3px 5px 10px rgba(0,0,0,0.12);
     }
 
-    /* WAVE animatie (blijft continu bewegen) */
     .girlies-title span{
       display: inline-block;
-      animation: wave 1.6s ease-in-out infinite;
+      animation: wave 1.8s ease-in-out infinite;
       animation-delay: calc(var(--i) * 0.12s);
     }
 
     @keyframes wave{
-      0%, 100%{ transform: translateY(0); }
+      0%,100%{ transform: translateY(0); }
       50%{ transform: translateY(-10px); }
     }
 
-    /* Klikbaar effect bij girlies foto’s */
-    .cycle-img{
-      cursor: pointer;
-      transition: transform 0.2s ease;
-    }
-    .cycle-img:hover{
-      transform: scale(1.05);
+    .girlies-main-photo{
+      aspect-ratio: 1 / 1;
+      margin: 16px auto 0;
+      max-width: 330px;
     }
 
-    /* Terug naar boven knop */
+    .girlies-text{
+      margin: 14px auto 0;
+      max-width: 420px;
+      font-size: 16px;
+    }
+
+    /* FAMILY */
+    .family-text{
+      margin: 0 0 18px 0;
+      max-width: 760px;
+    }
+
+    /* TOP BUTTON */
     .top-wrap{
       text-align: center;
-      margin: 25px 0;
+      margin: 30px 0 12px;
     }
+
     .top-btn{
       display: inline-block;
-      padding: 10px 14px;
-      background: #d6ccc2;
-      border: 1px solid #888;
-      border-radius: 10px;
+      padding: 12px 18px;
+      background: var(--honey-bronze);
+      border: none;
+      border-radius: 999px;
       text-decoration: none;
-      color: black;
+      font-weight: bold;
+      box-shadow: 0 8px 20px rgba(246,189,96,0.35);
+      transition: 0.25s ease;
     }
 
-    /* ===== RESPONSIVE ===== */
-    @media (max-width: 800px){
-      .hero-title{ font-size: 44px; }
+    .top-btn:hover{
+      transform: translateY(-2px) scale(1.02);
+    }
 
-      .about-wrap{
-        padding-right: 0;
-        min-height: auto;
+    /* FOOTER */
+    footer{
+      text-align: center;
+      padding: 20px;
+      color: rgba(47,42,38,0.75);
+      font-size: 14px;
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 900px){
+      .about-grid{
+        grid-template-columns: 1fr;
       }
 
       .about-photo{
-        position: static;
-        width: 100%;
-        height: 260px;
-        margin-top: 10px;
+        height: 320px;
       }
 
       .girlies-layout{
-        flex-direction: column;
+        grid-template-columns: 1fr;
       }
 
       .girlies-side{
-        flex-direction: row;
-        flex-wrap: wrap;
-        justify-content: center;
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    @media (max-width: 640px){
+      main{
+        padding: 20px 14px 34px;
       }
 
-      .girlies-title{
-        font-size: 46px;
+      .hero{
+        padding: 52px 16px 42px;
       }
 
-      .girlies-main-photo{
-        width: 100%;
-        height: 260px;
+      .section-card,
+      .girlies{
+        padding: 20px;
+      }
+
+      .info-grid{
+        grid-template-columns: 1fr;
+      }
+
+      .girlies-side{
+        grid-template-columns: repeat(2, 1fr);
       }
     }
   </style>
 </head>
 
 <body>
-  <!-- ANKER voor "terug naar boven" -->
   <div id="top"></div>
 
-  <!-- HEADER -->
   <header>
-    <nav>
-      <a href="index.html">MOI & co</a>
-      <a href="kat.html">Katje</a>
-      <a href="school.html">Creations</a>
-    </nav>
+    <div class="nav-wrap">
+      <div class="logo">MOI</div>
+
+      <nav>
+        <a href="index.html">MOI &amp; co</a>
+        <a href="kat.html">Katje</a>
+        <a href="school.html">Creations</a>
+      </nav>
+    </div>
   </header>
 
   <main>
 
     <!-- HERO -->
     <section class="hero">
+      <div class="hero-badge">Mijn persoonlijke portfolio</div>
+
       <h1 class="hero-title" aria-label="MOI Portfolio">
         <span style="animation-delay:0s">M</span>
         <span style="animation-delay:0.08s">O</span>
@@ -302,53 +505,64 @@
         <span style="animation-delay:0.96s">o</span>
       </h1>
 
-      <p class="hero-sub">Welkom</p>
+      <p class="hero-sub">
+        Welkom op mijn pagina een plek met foto's, herinneringen, vriendinnen,
+        familie en een beetje van wie ik ben.
+      </p>
     </section>
 
-    <!-- ABOUT ME -->
-    <section class="balk">
-      <h2>About Me</h2>
+    <!-- ABOUT -->
+    <section class="section-card">
+      <h2 class="section-title">About Me</h2>
 
-      <div class="about-wrap">
-        <p>
-          Ik ben spontaan, sociaal en soms een beetje onhandig, maar altijd enthousiast.
-          Ik haal veel energie uit tijd doorbrengen met mijn vriendinnen en familie,
-          en thuis word ik bijna altijd gevolgd door mijn lieve kat.
-          Creatief bezig zijn past helemaal bij mij en geeft me ruimte om mezelf te uiten.
-        </p>
+      <div class="about-grid">
+        <div>
+          <p class="about-text">
+            Ik ben spontaan, sociaal en soms een beetje onhandig, maar altijd enthousiast.
+            Ik haal veel energie uit tijd doorbrengen met mijn vriendinnen en familie,
+            en thuis word ik bijna altijd gevolgd door mijn lieve kat.
+            Creatief bezig zijn past helemaal bij mij en geeft me ruimte om mezelf te uiten.
+          </p>
 
-        <div class="icon-row">
-          <div class="icon-card">
-            <span class="icon-big"></span><strong>Favo artiest</strong>
-            <p style="margin:6px 0 0 0;">Gracie Abrams, Olivia Dean en Wave 2 earth</p>
-          </div>
+          <div class="info-grid">
+            <div class="info-card">
+              <span class="info-label">Favo artiesten</span>
+              <p>Gracie Abrams, Olivia Dean en Wave to Earth</p>
+            </div>
 
-          <div class="icon-card">
-            <span class="icon-big"></span><strong>Sterrenbeeld</strong>
-            <p style="margin:6px 0 0 0;">Schorpioen 17-11</p>
-          </div>
+            <div class="info-card">
+              <span class="info-label">Sterrenbeeld</span>
+              <p>Schorpioen — 17/11</p>
+            </div>
 
-          <div class="icon-card">
-            <span class="icon-big"></span><strong>Student</strong>
-            <p style="margin:6px 0 0 0;">GD Student</p>
-          </div>
+            <div class="info-card">
+              <span class="info-label">Student</span>
+              <p>GD Student</p>
+            </div>
 
-          <div class="icon-card">
-            <span class="icon-big"></span><strong>motto</strong>
-            <p style="margin:6px 0 0 0;">life,laugh,live</p>
+            <div class="info-card">
+              <span class="info-label">Motto</span>
+              <p>Life, laugh, live</p>
+            </div>
           </div>
         </div>
 
-        <!-- Foto: gebruik een pad uit je projectmap (niet C:\...) -->
-        <img class="about-photo"
-             src="foto/WhatsApp Image 2026-02-10 at 21.52.11.jpeg"
-             alt="Foto van mij" />
+        <div class="about-photo-wrap">
+          <img
+            class="about-photo"
+            src="foto/WhatsApp Image 2026-02-10 at 21.52.11.jpeg"
+            alt="Foto van mij"
+          />
+        </div>
       </div>
     </section>
 
     <!-- ANNEMIJN -->
-    <section class="balk">
-      <h3>Annemijn</h3>
+    <section class="section-card">
+      <h3 class="sub-title">Annemijn</h3>
+      <p class="section-intro">
+        Een verzameling lieve foto's en herinneringen samen.
+      </p>
 
       <div class="foto-grid">
         <img src="foto/WhatsApp Image 2026-02-10 at 21.53.29.jpeg" alt="Ik en Annemijn foto 1">
@@ -365,33 +579,33 @@
     </section>
 
     <!-- GIRLIES -->
-    <section class="girlies-balk" id="girlies">
+    <section class="girlies" id="girlies">
       <div class="girlies-layout">
 
-        <!-- LINKS: 3 klik-plekken (elk wisselt door 3 foto’s) -->
         <div class="girlies-side">
-          <!-- Klikplek 1: wisselt tussen 3 afbeeldingen -->
-          <img class="cycle-img"
-               src="foto/girlies1.jpg"
-               data-images="foto/girlies1.jpg|foto/girlies1_2.jpg|foto/girlies1_3.jpg"
-               alt="Girlies links 1">
+          <img
+            class="cycle-img"
+            src="foto/girlies1.jpg"
+            data-images="foto/girlies1.jpg|foto/girlies1_2.jpg|foto/girlies1_3.jpg"
+            alt="Girlies links 1"
+          >
 
-          <!-- Klikplek 2 -->
-          <img class="cycle-img"
-               src="foto/girlies2.jpg"
-               data-images="foto/girlies2.jpg|foto/girlies2_2.jpg|foto/girlies2_3.jpg"
-               alt="Girlies links 2">
+          <img
+            class="cycle-img"
+            src="foto/girlies2.jpg"
+            data-images="foto/girlies2.jpg|foto/girlies2_2.jpg|foto/girlies2_3.jpg"
+            alt="Girlies links 2"
+          >
 
-          <!-- Klikplek 3 -->
-          <img class="cycle-img"
-               src="foto/girlies3.jpg"
-               data-images="foto/girlies3.jpg|foto/girlies3_2.jpg|foto/girlies3_3.jpg"
-               alt="Girlies links 3">
+          <img
+            class="cycle-img"
+            src="foto/girlies3.jpg"
+            data-images="foto/girlies3.jpg|foto/girlies3_2.jpg|foto/girlies3_3.jpg"
+            alt="Girlies links 3"
+          >
         </div>
 
-        <!-- MIDDEN -->
         <div class="girlies-center">
-          <!-- WAVE titel (blijft bewegen) -->
           <h2 class="girlies-title" aria-label="GIRLIES">
             <span style="--i:0">G</span>
             <span style="--i:1">I</span>
@@ -402,40 +616,50 @@
             <span style="--i:6">S</span>
           </h2>
 
-          <img class="girlies-main-photo"
-               src="foto/WhatsApp Image 2026-02-10 at 21.53.51.jpeg"
-               alt="Centrale girlies foto">
+          <img
+            class="girlies-main-photo"
+            src="foto/WhatsApp Image 2026-02-10 at 21.53.51.jpeg"
+            alt="Centrale girlies foto"
+          >
 
-          <p style="margin:10px 0 0 0;">
-            Mijn vriendinnen groep: <strong>The Girlies</strong> 
+          <p class="girlies-text">
+            Mijn vriendinnengroep: <strong>The Girlies</strong>. Klik op de foto's aan de zijkant
+            om tussen verschillende beelden te wisselen.
           </p>
         </div>
 
-        <!-- RECHTS: 3 klik-plekken -->
         <div class="girlies-side">
-          <img class="cycle-img"
-               src="foto/girlies4.jpg"
-               data-images="foto/girlies4.jpg|foto/girlies4_2.jpg|foto/girlies4_3.jpg"
-               alt="Girlies rechts 1">
+          <img
+            class="cycle-img"
+            src="foto/girlies4.jpg"
+            data-images="foto/girlies4.jpg|foto/girlies4_2.jpg|foto/girlies4_3.jpg"
+            alt="Girlies rechts 1"
+          >
 
-          <img class="cycle-img"
-               src="foto/girlies5.jpg"
-               data-images="foto/girlies5.jpg|foto/girlies5_2.jpg|foto/girlies5_3.jpg"
-               alt="Girlies rechts 2">
+          <img
+            class="cycle-img"
+            src="foto/girlies5.jpg"
+            data-images="foto/girlies5.jpg|foto/girlies5_2.jpg|foto/girlies5_3.jpg"
+            alt="Girlies rechts 2"
+          >
 
-          <img class="cycle-img"
-               src="foto/girlies6.jpg"
-               data-images="foto/girlies6.jpg|foto/girlies6_2.jpg|foto/girlies6_3.jpg"
-               alt="Girlies rechts 3">
+          <img
+            class="cycle-img"
+            src="foto/girlies6.jpg"
+            data-images="foto/girlies6.jpg|foto/girlies6_2.jpg|foto/girlies6_3.jpg"
+            alt="Girlies rechts 3"
+          >
         </div>
-
       </div>
     </section>
 
     <!-- FAMILIE -->
-    <section class="balk">
-      <h3>Mijn familie</h3>
-      <p>Hier kan ik iets vertellen over mijn familie, wat we graag samen doen en waarom ze belangrijk voor me zijn.</p>
+    <section class="section-card">
+      <h3 class="sub-title">Mijn familie</h3>
+      <p class="family-text">
+        Mijn familie is heel belangrijk voor mij. Met hen maak ik de fijnste herinneringen,
+        en samen zijn brengt altijd gezelligheid, steun en liefde.
+      </p>
 
       <div class="foto-grid">
         <img src="foto/1.jpeg" alt="Familie foto 1">
@@ -446,33 +670,30 @@
       </div>
     </section>
 
-    <!-- TERUG NAAR BOVEN -->
+    <!-- TOP BUTTON -->
     <div class="top-wrap">
       <a class="top-btn" href="#top">↑ Terug naar boven</a>
     </div>
-
   </main>
 
-  <!-- JAVASCRIPT: klik = volgende foto (3 per klik, blijft rondgaan) -->
+  <footer>
+    MOI Portfolio
+  </footer>
+
   <script>
-    // Pak alle klikbare "cycle" foto’s
     const cycleImgs = document.querySelectorAll(".cycle-img");
 
     cycleImgs.forEach(img => {
-      // Maak lijst van 3 foto’s uit data-images
       const list = img.dataset.images.split("|");
-
-      // Start op index 0
       img.dataset.index = "0";
 
       img.addEventListener("click", () => {
         let i = parseInt(img.dataset.index, 10);
-        i = (i + 1) % list.length;     // 0->1->2->0...
+        i = (i + 1) % list.length;
         img.dataset.index = String(i);
         img.src = list[i];
       });
     });
   </script>
-
 </body>
 </html>

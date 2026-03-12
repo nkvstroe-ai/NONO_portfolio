@@ -1,158 +1,481 @@
 <!DOCTYPE html>
 <html lang="nl">
-  
 <head>
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
-     integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
-     crossorigin=""/>
-  <!-- Make sure you put this AFTER Leaflet's CSS -->
-  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
-     integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
-     crossorigin=""></script>
-  
-  <!-- Registreer bij https://fontawesome.com -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MOI Portfolio - Creations</title>
+
+  <!-- Leaflet -->
+  <link
+    rel="stylesheet"
+    href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+    crossorigin=""
+  />
+  <script
+    src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+    integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+    crossorigin=""
+  ></script>
+
+  <!-- Font Awesome -->
   <script src="https://kit.fontawesome.com/e766bcebc4.js" crossorigin="anonymous"></script>
+
   <style>
-    #map {
-    height:400px;
+    :root{
+      --honey-bronze:#f6bd60;
+      --linen:#f7ede2;
+      --cotton-rose:#f5cac3;
+      --muted-teal:#84a59d;
+      --light-coral:#f28482;
+      --text:#2f2a26;
+      --white:#ffffff;
+      --shadow: 0 12px 30px rgba(0,0,0,0.10);
+      --radius-lg: 24px;
+      --radius-md: 16px;
+      --radius-sm: 12px;
     }
 
-    /* Zie: https://gist.github.com/adriennn/4678d585ac3774650c16 */
+    *{
+      box-sizing: border-box;
+    }
+
+    html{
+      scroll-behavior: smooth;
+    }
+
+    body{
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background:
+        radial-gradient(circle at top, rgba(246,189,96,0.18), transparent 30%),
+        linear-gradient(180deg, var(--linen), #fffaf6);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    img{
+      max-width: 100%;
+      display: block;
+    }
+
+    a{
+      color: inherit;
+    }
+
+    #top{
+      position: absolute;
+      top: 0;
+    }
+
+    /* HEADER */
+    header{
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      backdrop-filter: blur(10px);
+      background: rgba(247, 237, 226, 0.88);
+      border-bottom: 1px solid rgba(132,165,157,0.35);
+    }
+
+    .nav-wrap{
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 16px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .logo{
+      font-size: 22px;
+      font-weight: 900;
+      letter-spacing: 2px;
+    }
+
+    nav{
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    nav a{
+      padding: 10px 16px;
+      background: var(--white);
+      border: 1px solid rgba(132,165,157,0.5);
+      border-radius: 999px;
+      text-decoration: none;
+      transition: 0.25s ease;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.04);
+    }
+
+    nav a:hover{
+      transform: translateY(-2px);
+      background: var(--honey-bronze);
+    }
+
+    /* MAIN */
+    main{
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 28px 18px 40px;
+    }
+
+    /* HERO */
+    .hero{
+      position: relative;
+      overflow: hidden;
+      background: linear-gradient(135deg, var(--cotton-rose), var(--linen));
+      border: 1px solid rgba(132,165,157,0.35);
+      border-radius: 30px;
+      box-shadow: var(--shadow);
+      padding: 60px 24px 46px;
+      text-align: center;
+    }
+
+    .hero::before,
+    .hero::after{
+      content: "";
+      position: absolute;
+      border-radius: 50%;
+      opacity: 0.4;
+      pointer-events: none;
+    }
+
+    .hero::before{
+      width: 220px;
+      height: 220px;
+      background: var(--honey-bronze);
+      top: -70px;
+      left: -70px;
+    }
+
+    .hero::after{
+      width: 180px;
+      height: 180px;
+      background: var(--light-coral);
+      right: -50px;
+      bottom: -50px;
+    }
+
+    .hero-badge{
+      display: inline-block;
+      background: rgba(255,255,255,0.72);
+      border: 1px solid rgba(132,165,157,0.35);
+      padding: 8px 14px;
+      border-radius: 999px;
+      margin-bottom: 16px;
+      font-size: 14px;
+      font-weight: bold;
+      letter-spacing: 0.5px;
+    }
+
+    .hero-title{
+      margin: 0;
+      font-size: clamp(40px, 7vw, 72px);
+      font-weight: 900;
+      line-height: 1.02;
+      letter-spacing: 2px;
+    }
+
+    .hero-sub{
+      max-width: 700px;
+      margin: 14px auto 0;
+      font-size: 18px;
+      opacity: 0.9;
+    }
+
+    /* SECTION CARDS */
+    .section-card{
+      background: rgba(255,255,255,0.7);
+      border: 1px solid rgba(132,165,157,0.30);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow);
+      padding: 26px;
+      margin-top: 24px;
+    }
+
+    .section-title{
+      margin: 0 0 10px 0;
+      font-size: 28px;
+    }
+
+    .section-text{
+      margin: 0 0 18px 0;
+      opacity: 0.9;
+      max-width: 780px;
+    }
+
+    /* MAP */
+    .map-wrap{
+      background: linear-gradient(135deg, var(--linen), #fff);
+      border: 1px solid rgba(132,165,157,0.28);
+      border-radius: 20px;
+      padding: 12px;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.06);
+    }
+
+    #map{
+      width: 100%;
+      height: 420px;
+      border-radius: 16px;
+      overflow: hidden;
+    }
+
     .fontawesome_icon{
-    color: rgb(229, 153, 211);   
+      color: var(--light-coral);
+    }
+
+    /* CREATIES */
+    .creaties-container{
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0,1fr));
+      gap: 18px;
+    }
+
+    .creatie-balk{
+      background: linear-gradient(135deg, var(--linen), #fff);
+      border: 1px solid rgba(132,165,157,0.28);
+      border-radius: 22px;
+      padding: 18px;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.06);
+      transition: 0.25s ease;
+    }
+
+    .creatie-balk:hover{
+      transform: translateY(-4px);
+      box-shadow: 0 14px 28px rgba(0,0,0,0.08);
+    }
+
+    .creatie-balk h4{
+      margin-top: 0;
+      margin-bottom: 10px;
+      font-size: 21px;
+    }
+
+    .creatie-balk p{
+      margin-top: 0;
+      margin-bottom: 16px;
+    }
+
+    .creatie-balk img{
+      width: 100%;
+      aspect-ratio: 4 / 3;
+      object-fit: cover;
+      border-radius: 16px;
+      border: 1px solid rgba(132,165,157,0.35);
+      background: var(--white);
+    }
+
+    /* BUTTONS */
+    .button-row{
+      margin-top: 22px;
+      text-align: center;
+    }
+
+    .button-row a,
+    .top-btn{
+      display: inline-block;
+      margin: 5px;
+      padding: 12px 18px;
+      background: var(--white);
+      border: 1px solid rgba(132,165,157,0.5);
+      border-radius: 999px;
+      text-decoration: none;
+      transition: 0.25s ease;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.04);
+      font-weight: bold;
+    }
+
+    .button-row a:hover,
+    .top-btn:hover{
+      transform: translateY(-2px);
+      background: var(--honey-bronze);
+    }
+
+    .top-wrap{
+      text-align: center;
+      margin: 30px 0 12px;
+    }
+
+    .top-btn{
+      background: var(--honey-bronze);
+      box-shadow: 0 8px 20px rgba(246,189,96,0.35);
+    }
+
+    footer{
+      text-align: center;
+      padding: 20px;
+      color: rgba(47,42,38,0.75);
+      font-size: 14px;
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 900px){
+      .creaties-container{
+        grid-template-columns: 1fr;
+      }
+
+      #map{
+        height: 340px;
+      }
+    }
+
+    @media (max-width: 640px){
+      main{
+        padding: 20px 14px 34px;
+      }
+
+      .hero{
+        padding: 48px 16px 38px;
+      }
+
+      .section-card{
+        padding: 20px;
+      }
+
+      #map{
+        height: 300px;
+      }
     }
   </style>
 </head>
-<body>
-  
-  <div id="map"></div>
-    <script>
-
-        const osm = L.tileLayer('https://{s}.tile.osm.org/{z}/{x}/{y}.png')
-
-        const map = L.map('map', {
-            center: [52.3565363874106, 5.22309285574719],
-            zoom: 16,
-          layers: [osm]
-        });
-        
-        const fontAwesomeIcon = L.divIcon({
-            html: '<i class="fa-solid fa-graduation-cap fa-3x"></i>',
-            iconSize: [20, 20],
-            className: 'fontawesome_icon'
-        });
-
-        let geojson_marker = {
-            "crs": {
-                "properties": {
-                    "name": "urn:ogc:def:crs:OGC:1.3:CRS84"
-                },
-                "type": "name"
-            },
-            "features": [
-                {
-                    "geometry": {
-                        "coordinates": [
-                            5.22309285574719,
-                            52.3565363874106
-                        ],
-                        "type": "Point"
-                    },
-                    "properties": {
-                        "naam": "Hogeschool Aeres waar ik heb geleerd/leer om al deze creaties te maken:)",
-                        "adres": "Arboretum West 98, 1325 WB Almere"
-                    },
-                    "type": "Feature"
-                }
-            ],
-            "name": "Aeres",
-            "type": "FeatureCollection"
-        };
-
-        let jsonlayer = L.geoJson(geojson_marker, {
-        onEachFeature: onEachFeature,
-        pointToLayer: function (ftr, latlng) {
-          return L.marker([latlng.lat, latlng.lng], {icon: fontAwesomeIcon})
-        }
-        }).addTo(map);
-
-        function onEachFeature(feature, layer) {
-        layer.bindPopup('<b>' + feature.properties.naam + '</b>', {width:'600px'});
-        }
-
-
-    </script>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Moi Portfolio - School</title>
-
-  <!-- EXTERNAL CSS: css staat in styles.css -->
-  <link rel="stylesheet" href="C:\Users\nkvst\Aeres Groep\HWUD\HWUD04\NONO_portfolio\body{.css">
-</head>
 
 <body>
+  <div id="top"></div>
 
-  <!-- HEADER: titel + navigatie -->
-  <header class="header">
-    <h1>Moi Portfolio</h1>
+  <header>
+    <div class="nav-wrap">
+      <div class="logo">MOI</div>
 
-    <!-- Navigatie -->
-    <nav class="nav">
-      <a href="index.html">Position (Privé)</a>
-      <a href="kat.html">Float (Katje)</a>
-      <a href="school.html">Display (School)</a>
-    </nav>
+      <nav>
+        <a href="index.html">MOI &amp; co</a>
+        <a href="kat.html">Pinkie</a>
+        <a href="school.html">Creations</a>
+      </nav>
+    </div>
   </header>
 
-  <!-- MAIN: alles wat in het midden staat -->
-  <main class="main">
+  <main>
+    <section class="hero">
+      <div class="hero-badge">School &amp; creatieve projecten</div>
+      <h1 class="hero-title">Creations</h1>
+      <p class="hero-sub">
+        Hier staan dingen die ik op school heb gemaakt, van designprojecten tot GIS-opdrachten en creatieve werken waar ik trots op ben.
+      </p>
+    </section>
 
-    <h2>Dingen die ik heb gemaakt yay</h2>
+    <section class="section-card">
+      <h2 class="section-title">Waar ik dit leer</h2>
+      <p class="section-text">
+        Op deze plek leer ik en maak ik creaties voor school. De kaart hieronder laat zien waar mijn opleiding zit.
+      </p>
 
-   
-  
-
-    <!-- ===== MIDDENBALK MET DESIGN EN GIS ===== -->
-    <section class="midden-balk">
-      <h3>Mijn Creaties</h3>
-
-      <div class="creaties-container">
-
-        <!-- DESIGN BALK -->
-        <div class="creatie-balk">
-          <h4>Design Creaties</h4>
-          <p>
-            Hier staan mijn design projecten. Bijvoorbeeld posters,
-            logo's of andere creatieve opdrachten.
-          </p>
-
-        
-          <img src="images/design1.jpg" alt="Design project (placeholder)">
-        </div>
-
-        <!-- GIS BALK -->
-        <div class="creatie-balk">
-          <h4>GIS Creaties</h4>
-          <p>
-            Hier staan mijn GIS projecten. Bijvoorbeeld kaarten,
-            analyses of schoolopdrachten met data.
-          </p>
-
-        
-          <img src="images/gis1.jpg" alt="GIS project (placeholder)">
-        </div>
-
+      <div class="map-wrap">
+        <div id="map"></div>
       </div>
     </section>
 
-    <!-- Knoppen: 3 CSS-dingen -->
-    <div class="buttons">
-      <a href="index.html">Position</a>
-      <a href="kat.html">Float</a>
-      <a href="school.html">Display</a>
-    </div>
+    <section class="section-card">
+      <h3 class="section-title">Mijn Creaties</h3>
+      <p class="section-text">
+        Een overzicht van verschillende soorten werk die ik maak tijdens mijn opleiding.
+      </p>
 
+      <div class="creaties-container">
+        <div class="creatie-balk">
+          <h4>Design Creaties</h4>
+          <p>
+            Hier staan mijn designprojecten, zoals posters, logo’s of andere creatieve opdrachten waarin vormgeving centraal staat.
+          </p>
+          <img src="images/design1.jpg" alt="Design project">
+        </div>
+
+        <div class="creatie-balk">
+          <h4>GIS Creaties</h4>
+          <p>
+            Hier staan mijn GIS-projecten, zoals kaarten, analyses en schoolopdrachten waarbij ik werk met data en locaties.
+          </p>
+          <img src="images/gis1.jpg" alt="GIS project">
+        </div>
+      </div>
+
+      <div class="button-row">
+        <a href="index.html">Position</a>
+        <a href="kat.html">Float</a>
+        <a href="school.html">Display</a>
+      </div>
+    </section>
+
+    <div class="top-wrap">
+      <a class="top-btn" href="#top">↑ Terug naar boven</a>
+    </div>
   </main>
 
+  <footer>
+    MOI Portfolio
+  </footer>
+
+  <script>
+   const osm = L.tileLayer("https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png", {
+          attribution:
+            '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/">CARTO</a>',
+          subdomains: "abcd",
+          maxZoom: 19,
+        });
+    const map = L.map('map', {
+      center: [52.3565363874106, 5.22309285574719],
+      zoom: 16,
+      layers: [osm]
+    });
+
+    const fontAwesomeIcon = L.divIcon({
+      html: '<i class="fa-solid fa-graduation-cap fa-3x"></i>',
+      iconSize: [20, 20],
+      className: 'fontawesome_icon'
+    });
+
+    const geojson_marker = {
+      "crs": {
+        "properties": {
+          "name": "urn:ogc:def:crs:OGC:1.3:CRS84"
+        },
+        "type": "name"
+      },
+      "features": [
+        {
+          "geometry": {
+            "coordinates": [
+              5.22309285574719,
+              52.3565363874106
+            ],
+            "type": "Point"
+          },
+          "properties": {
+            "naam": "Hogeschool Aeres waar ik heb geleerd en leer om al deze creaties te maken :)",
+            "adres": "Arboretum West 98, 1325 WB Almere"
+          },
+          "type": "Feature"
+        }
+      ],
+      "name": "Aeres",
+      "type": "FeatureCollection"
+    };
+
+    function onEachFeature(feature, layer) {
+      layer.bindPopup(
+        '<b>' + feature.properties.naam + '</b><br>' + feature.properties.adres
+      );
+    }
+
+    L.geoJson(geojson_marker, {
+      onEachFeature: onEachFeature,
+      pointToLayer: function (feature, latlng) {
+        return L.marker(latlng, { icon: fontAwesomeIcon });
+      }
+    }).addTo(map);
+  </script>
 </body>
 </html>
