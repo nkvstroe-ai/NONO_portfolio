@@ -20,13 +20,8 @@
       --radius-sm: 12px;
     }
 
-    *{
-      box-sizing: border-box;
-    }
-
-    html{
-      scroll-behavior: smooth;
-    }
+    *{ box-sizing: border-box; }
+    html{ scroll-behavior: smooth; }
 
     body{
       margin: 0;
@@ -38,432 +33,246 @@
       line-height: 1.6;
     }
 
-    img{
-      max-width: 100%;
-      display: block;
-    }
-
-    a{
-      color: inherit;
-    }
-
-    /* TOP ANCHOR */
-    #top{
-      position: absolute;
-      top: 0;
-    }
+    img{ max-width: 100%; display: block; }
+    a{ color: inherit; }
+    #top{ position: absolute; top: 0; }
 
     /* HEADER */
     header{
-      position: sticky;
-      top: 0;
-      z-index: 1000;
+      position: sticky; top: 0; z-index: 1000;
       backdrop-filter: blur(10px);
-      background: rgba(247, 237, 226, 0.88);
+      background: rgba(247,237,226,0.88);
       border-bottom: 1px solid rgba(132,165,157,0.35);
     }
-
     .nav-wrap{
-      max-width: 1100px;
-      margin: 0 auto;
+      max-width: 1100px; margin: 0 auto;
       padding: 16px 20px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 16px;
-      flex-wrap: wrap;
+      display: flex; justify-content: space-between;
+      align-items: center; gap: 16px; flex-wrap: wrap;
     }
-
-    .logo{
-      font-size: 22px;
-      font-weight: 900;
-      letter-spacing: 2px;
-    }
-
-    nav{
-      display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
-    }
-
+    .logo{ font-size: 22px; font-weight: 900; letter-spacing: 2px; }
+    nav{ display: flex; gap: 10px; flex-wrap: wrap; }
     nav a{
-      padding: 10px 16px;
-      background: var(--white);
+      padding: 10px 16px; background: var(--white);
       border: 1px solid rgba(132,165,157,0.5);
-      border-radius: 999px;
-      text-decoration: none;
+      border-radius: 999px; text-decoration: none;
       transition: 0.25s ease;
       box-shadow: 0 4px 12px rgba(0,0,0,0.04);
     }
-
-    nav a:hover{
-      transform: translateY(-2px);
-      background: var(--honey-bronze);
-    }
+    nav a:hover{ transform: translateY(-2px); background: var(--honey-bronze); }
 
     /* MAIN */
-    main{
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 28px 18px 40px;
-    }
+    main{ max-width: 1100px; margin: 0 auto; padding: 28px 18px 40px; }
 
     /* HERO */
     .hero{
-      position: relative;
-      overflow: hidden;
+      position: relative; overflow: hidden;
       background: linear-gradient(135deg, var(--cotton-rose), var(--linen));
       border: 1px solid rgba(132,165,157,0.35);
-      border-radius: 30px;
-      box-shadow: var(--shadow);
-      padding: 70px 24px 55px;
-      text-align: center;
+      border-radius: 30px; box-shadow: var(--shadow);
+      padding: 70px 24px 55px; text-align: center;
     }
-
-    .hero::before,
-    .hero::after{
-      content: "";
-      position: absolute;
-      border-radius: 50%;
-      filter: blur(10px);
-      opacity: 0.45;
-      pointer-events: none;
+    .hero::before, .hero::after{
+      content: ""; position: absolute; border-radius: 50%;
+      filter: blur(10px); opacity: 0.45; pointer-events: none;
     }
-
-    .hero::before{
-      width: 220px;
-      height: 220px;
-      background: var(--honey-bronze);
-      top: -60px;
-      left: -70px;
-    }
-
-    .hero::after{
-      width: 190px;
-      height: 190px;
-      background: var(--light-coral);
-      bottom: -60px;
-      right: -50px;
-    }
-
+    .hero::before{ width:220px; height:220px; background:var(--honey-bronze); top:-60px; left:-70px; }
+    .hero::after{  width:190px; height:190px; background:var(--light-coral); bottom:-60px; right:-50px; }
     .hero-badge{
-      display: inline-block;
-      background: rgba(255,255,255,0.72);
+      display: inline-block; background: rgba(255,255,255,0.72);
       border: 1px solid rgba(132,165,157,0.35);
-      padding: 8px 14px;
-      border-radius: 999px;
-      margin-bottom: 18px;
-      font-size: 14px;
-      font-weight: bold;
-      letter-spacing: 0.5px;
+      padding: 8px 14px; border-radius: 999px;
+      margin-bottom: 18px; font-size: 14px; font-weight: bold; letter-spacing: 0.5px;
     }
-
     .hero-title{
-      margin: 0;
-      font-size: clamp(44px, 8vw, 82px);
-      font-weight: 900;
-      line-height: 1.02;
-      letter-spacing: 2px;
+      margin: 0; font-size: clamp(44px,8vw,82px);
+      font-weight: 900; line-height: 1.02; letter-spacing: 2px;
     }
-
     .hero-title span{
-      display: inline-block;
-      opacity: 0;
-      transform: translateY(18px);
+      display: inline-block; opacity: 0; transform: translateY(18px);
       animation: letterIn 0.6s forwards;
     }
+    @keyframes letterIn{ to{ opacity:1; transform:translateY(0); } }
+    .hero-sub{ max-width:650px; margin:16px auto 0; font-size:18px; opacity:0.9; }
 
-    @keyframes letterIn{
-      to{
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    .hero-sub{
-      max-width: 650px;
-      margin: 16px auto 0;
-      font-size: 18px;
-      opacity: 0.9;
-    }
-
-    /* GENERAL CARDS */
+    /* SECTION CARDS */
     .section-card{
       background: rgba(255,255,255,0.68);
       border: 1px solid rgba(132,165,157,0.30);
       border-radius: var(--radius-lg);
       box-shadow: var(--shadow);
-      padding: 26px;
-      margin-top: 24px;
+      padding: 26px; margin-top: 24px;
     }
-
-    .section-title{
-      margin: 0 0 18px 0;
-      font-size: 28px;
-    }
+    .section-title{ margin: 0 0 18px 0; font-size: 28px; }
+    .sub-title{ margin: 0 0 8px 0; font-size: 24px; }
+    .section-intro{ margin: 0 0 24px 0; max-width: 750px; }
 
     /* ABOUT */
-    .about-grid{
-      display: grid;
-      grid-template-columns: 1.2fr 0.8fr;
-      gap: 24px;
-      align-items: center;
-    }
-
-    .about-text{
-      font-size: 17px;
-    }
-
+    .about-grid{ display:grid; grid-template-columns:1.2fr 0.8fr; gap:24px; align-items:center; }
+    .about-text{ font-size: 17px; }
     .about-photo-wrap{
       background: linear-gradient(180deg, var(--cotton-rose), var(--linen));
-      padding: 12px;
-      border-radius: 24px;
+      padding: 12px; border-radius: 24px;
       border: 1px solid rgba(132,165,157,0.35);
     }
-
-    .about-photo{
-      width: 100%;
-      height: 380px;
-      object-fit: cover;
-      border-radius: 18px;
-      box-shadow: 0 8px 24px rgba(0,0,0,0.08);
-    }
-
-    .info-grid{
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0,1fr));
-      gap: 14px;
-      margin-top: 22px;
-    }
-
+    .about-photo{ width:100%; height:380px; object-fit:cover; border-radius:18px; box-shadow:0 8px 24px rgba(0,0,0,0.08); }
+    .info-grid{ display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:14px; margin-top:22px; }
     .info-card{
       background: linear-gradient(135deg, var(--linen), #fff);
       border: 1px solid rgba(132,165,157,0.28);
-      border-radius: 18px;
-      padding: 16px;
-      transition: 0.25s ease;
+      border-radius: 18px; padding: 16px; transition: 0.25s ease;
+    }
+    .info-card:hover{ transform:translateY(-4px); box-shadow:0 10px 24px rgba(0,0,0,0.07); }
+    .info-label{ display:inline-block; font-size:13px; font-weight:bold; letter-spacing:0.5px; text-transform:uppercase; color:var(--muted-teal); margin-bottom:6px; }
+    .info-card p{ margin:0; font-size:15px; }
+
+    /* ── ANNEMIJN POTLODEN ── */
+
+    /* Elke rij is een flex-rij met onderkant-uitlijning */
+    .potlood-groep{
+      display: flex;
+      align-items: flex-end;
+      flex-wrap: nowrap;
+      gap: 0;
+      margin-bottom: 18px;
+    }
+    .potlood-groep:last-child{ margin-bottom: 0; }
+
+    .potlood-wrap{
+      flex: 0 0 88px;
+      position: relative;
+      cursor: crosshair;
+      margin-right: -10px;
+      z-index: 1;
+      transition: transform 0.3s cubic-bezier(0.34,1.56,0.64,1);
+
+      /* verschijnen */
+      opacity: 0;
+      animation: potloodIn 0.5s cubic-bezier(0.34,1.56,0.64,1) forwards;
+    }
+    .potlood-wrap:last-child{ margin-right: 0; }
+
+    .potlood-wrap:hover{
+      transform: translateY(-14px) scale(1.1) !important;
+      z-index: 50 !important;
     }
 
-    .info-card:hover{
-      transform: translateY(-4px);
-      box-shadow: 0 10px 24px rgba(0,0,0,0.07);
+    @keyframes potloodIn{
+      from{ opacity:0; transform:translateY(40px); }
+      to{   opacity:1; transform:translateY(0); }
     }
 
-    .info-label{
-      display: inline-block;
-      font-size: 13px;
-      font-weight: bold;
-      letter-spacing: 0.5px;
-      text-transform: uppercase;
-      color: var(--muted-teal);
-      margin-bottom: 6px;
-    }
-
-    .info-card p{
-      margin: 0;
-      font-size: 15px;
-    }
-
-    /* PHOTO SECTIONS */
-    .sub-title{
-      margin: 0 0 14px 0;
-      font-size: 24px;
-    }
-
-    .section-intro{
-      margin: 0 0 18px 0;
-      max-width: 750px;
-    }
-
-    .foto-grid{
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-      gap: 14px;
-    }
-
-    .foto-grid img{
+    .potlood-wrap img{
       width: 100%;
-      aspect-ratio: 1 / 1;
+      height: 100%;
       object-fit: cover;
-      border-radius: 18px;
-      border: 1px solid rgba(132,165,157,0.35);
-      background: var(--white);
-      transition: 0.25s ease;
-      box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+      border-radius: 12px;
+      border: 2px solid rgba(255,255,255,0.9);
+      box-shadow: 0 6px 18px rgba(0,0,0,0.13);
+      display: block;
     }
 
-    .foto-grid img:hover{
-      transform: translateY(-4px) scale(1.02);
+    /* ── ZWEVENDE PREVIEW ── */
+    #foto-preview{
+      position: fixed;
+      width: 260px;
+      height: 260px;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 24px 60px rgba(0,0,0,0.30);
+      border: 3px solid var(--white);
+      pointer-events: none;
+      opacity: 0;
+      transform: scale(0.8);
+      transition: opacity 0.18s ease, transform 0.18s ease;
+      z-index: 9999;
+    }
+    #foto-preview.zichtbaar{
+      opacity: 1;
+      transform: scale(1);
+    }
+    #foto-preview img{
+      width: 100%; height: 100%;
+      object-fit: cover;
     }
 
     /* GIRLIES */
     .girlies{
-      position: relative;
-      overflow: hidden;
+      position: relative; overflow: hidden;
       background: linear-gradient(135deg, var(--cotton-rose), var(--linen));
       border: 1px solid rgba(132,165,157,0.28);
       border-radius: 32px;
       box-shadow: 0 20px 45px rgba(0,0,0,0.12);
-      padding: 34px 24px;
-      margin-top: 28px;
+      padding: 34px 24px; margin-top: 28px;
     }
-
     .girlies::before{
-      content: "";
-      position: absolute;
-      width: 240px;
-      height: 240px;
-      background: rgba(242,132,130,0.18);
-      border-radius: 50%;
-      right: -70px;
-      top: -70px;
+      content:""; position:absolute; width:240px; height:240px;
+      background:rgba(242,132,130,0.18); border-radius:50%; right:-70px; top:-70px;
     }
-
     .girlies-layout{
-      position: relative;
-      z-index: 1;
-      display: grid;
-      grid-template-columns: 1fr 1.2fr 1fr;
-      gap: 18px;
-      align-items: center;
+      position:relative; z-index:1;
+      display:grid; grid-template-columns:1fr 1.2fr 1fr; gap:18px; align-items:center;
     }
-
-    .girlies-side{
-      display: grid;
-      gap: 12px;
+    .girlies-side{ display:grid; gap:12px; }
+    .cycle-img, .girlies-main-photo{
+      width:100%; object-fit:cover; border-radius:18px;
+      border:1px solid rgba(132,165,157,0.35); background:var(--white);
+      box-shadow:0 8px 22px rgba(0,0,0,0.08);
     }
-
-    .cycle-img,
-    .girlies-main-photo{
-      width: 100%;
-      object-fit: cover;
-      border-radius: 18px;
-      border: 1px solid rgba(132,165,157,0.35);
-      background: var(--white);
-      box-shadow: 0 8px 22px rgba(0,0,0,0.08);
-    }
-
-    .cycle-img{
-      aspect-ratio: 1 / 1;
-      cursor: pointer;
-      transition: 0.25s ease;
-    }
-
-    .cycle-img:hover{
-      transform: scale(1.03);
-    }
-
-    .girlies-center{
-      text-align: center;
-    }
-
+    .cycle-img{ aspect-ratio:1/1; cursor:pointer; transition:0.25s ease; }
+    .cycle-img:hover{ transform:scale(1.03); }
+    .girlies-center{ text-align:center; }
     .girlies-title{
-      margin: 0;
-      font-size: clamp(46px, 6vw, 76px);
-      font-weight: 900;
-      letter-spacing: 4px;
-      text-shadow: 3px 5px 10px rgba(0,0,0,0.12);
+      margin:0; font-size:clamp(46px,6vw,76px); font-weight:900;
+      letter-spacing:4px; text-shadow:3px 5px 10px rgba(0,0,0,0.12);
     }
-
     .girlies-title span{
-      display: inline-block;
-      animation: wave 1.8s ease-in-out infinite;
-      animation-delay: calc(var(--i) * 0.12s);
+      display:inline-block;
+      animation:wave 1.8s ease-in-out infinite;
+      animation-delay:calc(var(--i)*0.12s);
     }
+    @keyframes wave{ 0%,100%{transform:translateY(0)} 50%{transform:translateY(-10px)} }
+    .girlies-main-photo{ aspect-ratio:1/1; margin:16px auto 0; max-width:330px; }
+    .girlies-text{ margin:14px auto 0; max-width:420px; font-size:16px; }
 
-    @keyframes wave{
-      0%,100%{ transform: translateY(0); }
-      50%{ transform: translateY(-10px); }
+    /* FAMILIE */
+    .foto-grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:14px; }
+    .foto-grid img{
+      width:100%; aspect-ratio:1/1; object-fit:cover;
+      border-radius:18px; border:1px solid rgba(132,165,157,0.35);
+      background:var(--white); transition:0.25s ease;
+      box-shadow:0 6px 18px rgba(0,0,0,0.06);
     }
+    .foto-grid img:hover{ transform:translateY(-4px) scale(1.02); }
+    .family-text{ margin:0 0 18px 0; max-width:760px; }
 
-    .girlies-main-photo{
-      aspect-ratio: 1 / 1;
-      margin: 16px auto 0;
-      max-width: 330px;
-    }
-
-    .girlies-text{
-      margin: 14px auto 0;
-      max-width: 420px;
-      font-size: 16px;
-    }
-
-    /* FAMILY */
-    .family-text{
-      margin: 0 0 18px 0;
-      max-width: 760px;
-    }
-
-    /* TOP BUTTON */
-    .top-wrap{
-      text-align: center;
-      margin: 30px 0 12px;
-    }
-
+    /* TOP BTN */
+    .top-wrap{ text-align:center; margin:30px 0 12px; }
     .top-btn{
-      display: inline-block;
-      padding: 12px 18px;
-      background: var(--honey-bronze);
-      border: none;
-      border-radius: 999px;
-      text-decoration: none;
-      font-weight: bold;
-      box-shadow: 0 8px 20px rgba(246,189,96,0.35);
-      transition: 0.25s ease;
+      display:inline-block; padding:12px 18px;
+      background:var(--honey-bronze); border:none; border-radius:999px;
+      text-decoration:none; font-weight:bold;
+      box-shadow:0 8px 20px rgba(246,189,96,0.35); transition:0.25s ease;
     }
+    .top-btn:hover{ transform:translateY(-2px) scale(1.02); }
 
-    .top-btn:hover{
-      transform: translateY(-2px) scale(1.02);
-    }
-
-    /* FOOTER */
-    footer{
-      text-align: center;
-      padding: 20px;
-      color: rgba(47,42,38,0.75);
-      font-size: 14px;
-    }
+    footer{ text-align:center; padding:20px; color:rgba(47,42,38,0.75); font-size:14px; }
 
     /* RESPONSIVE */
-    @media (max-width: 900px){
-      .about-grid{
-        grid-template-columns: 1fr;
-      }
-
-      .about-photo{
-        height: 320px;
-      }
-
-      .girlies-layout{
-        grid-template-columns: 1fr;
-      }
-
-      .girlies-side{
-        grid-template-columns: repeat(3, 1fr);
-      }
+    @media(max-width:900px){
+      .about-grid{ grid-template-columns:1fr; }
+      .about-photo{ height:320px; }
+      .girlies-layout{ grid-template-columns:1fr; }
+      .girlies-side{ grid-template-columns:repeat(3,1fr); }
     }
-
-    @media (max-width: 640px){
-      main{
-        padding: 20px 14px 34px;
-      }
-
-      .hero{
-        padding: 52px 16px 42px;
-      }
-
-      .section-card,
-      .girlies{
-        padding: 20px;
-      }
-
-      .info-grid{
-        grid-template-columns: 1fr;
-      }
-
-      .girlies-side{
-        grid-template-columns: repeat(2, 1fr);
-      }
+    @media(max-width:640px){
+      main{ padding:20px 14px 34px; }
+      .hero{ padding:52px 16px 42px; }
+      .section-card, .girlies{ padding:20px; }
+      .info-grid{ grid-template-columns:1fr; }
+      .girlies-side{ grid-template-columns:repeat(2,1fr); }
+      .potlood-wrap{ flex-basis: 64px !important; }
+      #foto-preview{ width:180px; height:180px; }
     }
   </style>
 </head>
@@ -471,10 +280,12 @@
 <body>
   <div id="top"></div>
 
+  <!-- Zwevende preview volgt de muis -->
+  <div id="foto-preview"><img id="preview-img" src="" alt="preview"></div>
+
   <header>
     <div class="nav-wrap">
       <div class="logo">MOI</div>
-
       <nav>
         <a href="index.html">MOI &amp; co</a>
         <a href="kat.html">Katje</a>
@@ -488,7 +299,6 @@
     <!-- HERO -->
     <section class="hero">
       <div class="hero-badge">Mijn persoonlijke portfolio</div>
-
       <h1 class="hero-title" aria-label="MOI Portfolio">
         <span style="animation-delay:0s">M</span>
         <span style="animation-delay:0.08s">O</span>
@@ -504,7 +314,6 @@
         <span style="animation-delay:0.88s">i</span>
         <span style="animation-delay:0.96s">o</span>
       </h1>
-
       <p class="hero-sub">
         Welkom op mijn pagina een plek met foto's, herinneringen, vriendinnen,
         familie en een beetje van wie ik ben.
@@ -514,7 +323,6 @@
     <!-- ABOUT -->
     <section class="section-card">
       <h2 class="section-title">About Me</h2>
-
       <div class="about-grid">
         <div>
           <p class="about-text">
@@ -523,132 +331,83 @@
             en thuis word ik bijna altijd gevolgd door mijn lieve kat.
             Creatief bezig zijn past helemaal bij mij en geeft me ruimte om mezelf te uiten.
           </p>
-
           <div class="info-grid">
             <div class="info-card">
               <span class="info-label">Favo artiesten</span>
               <p>Gracie Abrams, Olivia Dean en Wave to Earth</p>
             </div>
-
             <div class="info-card">
               <span class="info-label">Sterrenbeeld</span>
-              <p>Schorpioen — 17/11</p>
+              <p>Schorpioen-17/11</p>
             </div>
-
             <div class="info-card">
               <span class="info-label">Student</span>
               <p>GD Student</p>
             </div>
-
             <div class="info-card">
               <span class="info-label">Motto</span>
               <p>Life, laugh, live</p>
             </div>
           </div>
         </div>
-
         <div class="about-photo-wrap">
-          <img
-            class="about-photo"
+          <img class="about-photo"
             src="foto/WhatsApp Image 2026-02-10 at 21.52.11.jpeg"
-            alt="Foto van mij"
-          />
+            alt="Foto van mij"/>
         </div>
       </div>
     </section>
 
     <!-- ANNEMIJN -->
-    <section class="section-card">
+    <section class="section-card" id="annemijn">
       <h3 class="sub-title">Annemijn</h3>
       <p class="section-intro">
-        Een verzameling lieve foto's en herinneringen samen.
+        Een verzameling lieve foto's en herinneringen samen. Beweeg je muis over een foto om hem beter te bekijken ✨
       </p>
 
-      <div class="foto-grid">
-        <img src="foto/WhatsApp Image 2026-02-10 at 21.53.29.jpeg" alt="Ik en Annemijn foto 1">
-        <img src="foto/WhatsApp Image 2026-02-11 at 08.56.42.jpeg" alt="Ik en Annemijn foto 2">
-        <img src="foto/WhatsApp Image 2026-02-11 at 08.57.02.jpeg" alt="Ik en Annemijn foto 3">
-        <img src="foto/WhatsApp Image 2026-02-11 at 08.57.15.jpeg" alt="Ik en Annemijn foto 4">
-        <img src="foto/WhatsApp Image 2026-02-11 at 08.57.22.jpeg" alt="Ik en Annemijn foto 5">
-        <img src="foto/WhatsApp Image 2026-02-11 at 08.57.40.jpeg" alt="Ik en Annemijn foto 6">
-        <img src="foto/WhatsApp Image 2026-02-11 at 08.57.55.jpeg" alt="Ik en Annemijn foto 7">
-        <img src="foto/WhatsApp Image 2026-02-11 at 08.58.15.jpeg" alt="Ik en Annemijn foto 8">
-        <img src="foto/WhatsApp Image 2026-02-11 at 08.58.27.jpeg" alt="Ik en Annemijn foto 9">
-        <img src="foto/WhatsApp Image 2026-02-11 at 08.59.32.jpeg" alt="Ik en Annemijn foto 10">
-      </div>
+      <!-- JS vult dit in met de juiste groepen en hoogtes -->
+      <div id="potloodContainer"></div>
     </section>
 
     <!-- GIRLIES -->
     <section class="girlies" id="girlies">
       <div class="girlies-layout">
-
         <div class="girlies-side">
-          <img
-            class="cycle-img"
-            src="foto/girlies1.jpg"
-            data-images="foto/girlies1.jpg|foto/girlies1_2.jpg|foto/girlies1_3.jpg"
-            alt="Girlies links 1"
-          >
-
-          <img
-            class="cycle-img"
-            src="foto/girlies2.jpg"
+          <img class="cycle-img" src="foto/WhatsApp Image 2026-02-10 at 21.51.41.jpeg"
+            data-images="foto/WhatsApp Image 2026-02-10 at 21.51.41.jpeg|foto/girlies1_2.jpg|foto/girlies1_3.jpg"
+            alt="Girlies links 1">
+          <img class="cycle-img" src="foto/girlies2.jpg"
             data-images="foto/girlies2.jpg|foto/girlies2_2.jpg|foto/girlies2_3.jpg"
-            alt="Girlies links 2"
-          >
-
-          <img
-            class="cycle-img"
-            src="foto/girlies3.jpg"
+            alt="Girlies links 2">
+          <img class="cycle-img" src="foto/girlies3.jpg"
             data-images="foto/girlies3.jpg|foto/girlies3_2.jpg|foto/girlies3_3.jpg"
-            alt="Girlies links 3"
-          >
+            alt="Girlies links 3">
         </div>
-
         <div class="girlies-center">
           <h2 class="girlies-title" aria-label="GIRLIES">
-            <span style="--i:0">G</span>
-            <span style="--i:1">I</span>
-            <span style="--i:2">R</span>
-            <span style="--i:3">L</span>
-            <span style="--i:4">I</span>
-            <span style="--i:5">E</span>
+            <span style="--i:0">G</span><span style="--i:1">I</span>
+            <span style="--i:2">R</span><span style="--i:3">L</span>
+            <span style="--i:4">I</span><span style="--i:5">E</span>
             <span style="--i:6">S</span>
           </h2>
-
-          <img
-            class="girlies-main-photo"
+          <img class="girlies-main-photo"
             src="foto/WhatsApp Image 2026-02-10 at 21.53.51.jpeg"
-            alt="Centrale girlies foto"
-          >
-
+            alt="Centrale girlies foto">
           <p class="girlies-text">
             Mijn vriendinnengroep: <strong>The Girlies</strong>. Klik op de foto's aan de zijkant
             om tussen verschillende beelden te wisselen.
           </p>
         </div>
-
         <div class="girlies-side">
-          <img
-            class="cycle-img"
-            src="foto/girlies4.jpg"
+          <img class="cycle-img" src="foto/girlies4.jpg"
             data-images="foto/girlies4.jpg|foto/girlies4_2.jpg|foto/girlies4_3.jpg"
-            alt="Girlies rechts 1"
-          >
-
-          <img
-            class="cycle-img"
-            src="foto/girlies5.jpg"
+            alt="Girlies rechts 1">
+          <img class="cycle-img" src="foto/girlies5.jpg"
             data-images="foto/girlies5.jpg|foto/girlies5_2.jpg|foto/girlies5_3.jpg"
-            alt="Girlies rechts 2"
-          >
-
-          <img
-            class="cycle-img"
-            src="foto/girlies6.jpg"
+            alt="Girlies rechts 2">
+          <img class="cycle-img" src="foto/girlies6.jpg"
             data-images="foto/girlies6.jpg|foto/girlies6_2.jpg|foto/girlies6_3.jpg"
-            alt="Girlies rechts 3"
-          >
+            alt="Girlies rechts 3">
         </div>
       </div>
     </section>
@@ -660,7 +419,6 @@
         Mijn familie is heel belangrijk voor mij. Met hen maak ik de fijnste herinneringen,
         en samen zijn brengt altijd gezelligheid, steun en liefde.
       </p>
-
       <div class="foto-grid">
         <img src="foto/1.jpeg" alt="Familie foto 1">
         <img src="foto/WhatsApp Image 2026-02-11 at 19.51.11.jpeg" alt="Familie foto 2">
@@ -670,30 +428,144 @@
       </div>
     </section>
 
-    <!-- TOP BUTTON -->
     <div class="top-wrap">
       <a class="top-btn" href="#top">↑ Terug naar boven</a>
     </div>
   </main>
 
-  <footer>
-    MOI Portfolio
-  </footer>
+  <footer>MOI Portfolio</footer>
 
   <script>
-    const cycleImgs = document.querySelectorAll(".cycle-img");
-
-    cycleImgs.forEach(img => {
+    /* ── GIRLIES cycle ── */
+    document.querySelectorAll(".cycle-img").forEach(img => {
       const list = img.dataset.images.split("|");
       img.dataset.index = "0";
-
       img.addEventListener("click", () => {
-        let i = parseInt(img.dataset.index, 10);
-        i = (i + 1) % list.length;
+        let i = (parseInt(img.dataset.index, 10) + 1) % list.length;
         img.dataset.index = String(i);
         img.src = list[i];
       });
     });
+
+    /* ── ANNEMIJN potloden ── */
+    (function () {
+      const fotos = [
+        { src: "foto/WhatsApp Image 2026-02-10 at 21.53.29.jpeg", alt: "Annemijn 1" },
+        { src: "foto/WhatsApp Image 2026-02-11 at 08.56.42.jpeg",  alt: "Annemijn 2" },
+        { src: "foto/WhatsApp Image 2026-02-11 at 08.57.02.jpeg",  alt: "Annemijn 3" },
+        { src: "foto/WhatsApp Image 2026-02-11 at 08.57.15.jpeg",  alt: "Annemijn 4" },
+        { src: "foto/WhatsApp Image 2026-02-11 at 08.57.22.jpeg",  alt: "Annemijn 5" },
+        { src: "foto/WhatsApp Image 2026-02-11 at 08.57.40.jpeg",  alt: "Annemijn 6" },
+        { src: "foto/WhatsApp Image 2026-02-11 at 08.57.55.jpeg",  alt: "Annemijn 7" },
+        { src: "foto/WhatsApp Image 2026-02-11 at 08.58.15.jpeg",  alt: "Annemijn 8" },
+        { src: "foto/WhatsApp Image 2026-02-11 at 08.58.27.jpeg",  alt: "Annemijn 9" },
+        { src: "foto/WhatsApp Image 2026-02-11 at 08.59.32.jpeg",  alt: "Annemijn 10" },
+      ];
+
+      const container = document.getElementById("potloodContainer");
+      const ITEM_W    = window.innerWidth <= 640 ? 64 : 88;
+      const OVERLAP   = 10;
+      const STEP      = ITEM_W - OVERLAP;
+
+      /* hoeveel passen er per rij? */
+      function perRijAantal() {
+        const breedte = container.offsetWidth || 800;
+        return Math.max(1, Math.floor((breedte + OVERLAP) / STEP));
+      }
+
+      let globalIdx = 0; /* voor animatie delay over alle foto's */
+
+      function bouwRijen() {
+        container.innerHTML = "";
+        globalIdx = 0;
+        const perRij = perRijAantal();
+        const rijen  = Math.ceil(fotos.length / perRij);
+
+        for (let r = 0; r < rijen; r++) {
+          const groep = document.createElement("div");
+          groep.className = "potlood-groep";
+
+          const startI = r * perRij;
+          const eindI  = Math.min(startI + perRij, fotos.length);
+          const aantalInRij = eindI - startI;
+
+          for (let i = startI; i < eindI; i++) {
+            const posInRij = i - startI;
+            const frac     = aantalInRij > 1 ? posInRij / (aantalInRij - 1) : 0;
+
+            /* hoogte loopt op van min naar max per rij */
+            const minH = 155;
+            const maxH = 290;
+            const h    = Math.round(minH + frac * (maxH - minH));
+
+            const wrap = document.createElement("div");
+            wrap.className = "potlood-wrap";
+            wrap.style.height      = h + "px";
+            wrap.style.flexBasis   = ITEM_W + "px";
+            wrap.style.animationDelay = (globalIdx * 110) + "ms";
+            wrap.style.zIndex      = posInRij + 1;
+            globalIdx++;
+
+            const img = document.createElement("img");
+            img.src = fotos[i].src;
+            img.alt = fotos[i].alt;
+
+            wrap.appendChild(img);
+            groep.appendChild(wrap);
+          }
+
+          container.appendChild(groep);
+        }
+
+        /* preview koppelen aan nieuwe elementen */
+        koppelPreview();
+      }
+
+      /* eerste keer bouwen */
+      bouwRijen();
+
+      /* herbereken bij resize */
+      let resizeTimer;
+      window.addEventListener("resize", () => {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(bouwRijen, 200);
+      });
+
+      /* ── Preview die de muis volgt ── */
+      const preview    = document.getElementById("foto-preview");
+      const previewImg = document.getElementById("preview-img");
+      let   aktief     = false;
+
+      function koppelPreview() {
+        document.querySelectorAll(".potlood-wrap").forEach(wrap => {
+          const src = wrap.querySelector("img").src;
+
+          wrap.addEventListener("mouseenter", () => {
+            previewImg.src = src;
+            preview.classList.add("zichtbaar");
+            aktief = true;
+          });
+
+          wrap.addEventListener("mouseleave", () => {
+            preview.classList.remove("zichtbaar");
+            aktief = false;
+          });
+        });
+      }
+
+      document.addEventListener("mousemove", e => {
+        if (!aktief) return;
+        const pw = preview.offsetWidth;
+        const ph = preview.offsetHeight;
+        let   x  = e.clientX + 22;
+        let   y  = e.clientY + 22;
+        if (x + pw > window.innerWidth)  x = e.clientX - pw - 22;
+        if (y + ph > window.innerHeight) y = e.clientY - ph - 22;
+        preview.style.left = x + "px";
+        preview.style.top  = y + "px";
+      });
+
+    })();
   </script>
 </body>
 </html>
