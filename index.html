@@ -6,23 +6,33 @@
   <title>MOI Portfolio</title>
 
   <style>
+
+    /* ═══════════════════════════════════════════════════════════
+       GLOBALE KLEURVARIABELEN
+       Hier staan alle kleuren en schaduwen als herbruikbare namen.
+       Zo hoef je een kleur maar op 1 plek aan te passen.
+    ═══════════════════════════════════════════════════════════ */
     :root{
-      --honey-bronze:#f6bd60;
-      --linen:#f7ede2;
-      --cotton-rose:#f5cac3;
-      --muted-teal:#84a59d;
-      --light-coral:#f28482;
-      --text:#2f2a26;
+      --honey-bronze:#f6bd60;   /* warm goudgeel — voor knoppen en accenten */
+      --linen:#f7ede2;           /* zacht crème — achtergrondkleur */
+      --cotton-rose:#f5cac3;     /* zacht roze — hero en girlies achtergrond */
+      --muted-teal:#84a59d;      /* groen-grijs — labels en skill bars */
+      --light-coral:#f28482;     /* koraalrood — decoratieve cirkels */
+      --text:#2f2a26;            /* donkerbruin — standaard tekstkleur */
       --white:#ffffff;
-      --shadow: 0 12px 30px rgba(0,0,0,0.10);
-      --radius-lg: 24px;
+      --shadow: 0 12px 30px rgba(0,0,0,0.10); /* zachte schaduw voor kaarten */
+      --radius-lg: 24px;  /* grote afgeronde hoeken */
       --radius-md: 16px;
       --radius-sm: 12px;
     }
 
+    /* ── Reset: zorgt dat padding/border meegeteld worden in breedte ── */
     *{ box-sizing: border-box; }
+
+    /* ── Vloeiend scrollen bij ankerlinkjes zoals #top ── */
     html{ scroll-behavior: smooth; }
 
+    /* ── Body: achtergrond met twee gradienten voor diepte ── */
     body{
       margin: 0;
       font-family: Arial, sans-serif;
@@ -33,25 +43,43 @@
       line-height: 1.6;
     }
 
+    /* ── Afbeeldingen nooit breder dan hun container ── */
     img{ max-width: 100%; display: block; }
+
+    /* ── Links erven de tekstkleur van hun ouder ── */
     a{ color: inherit; }
+
+    /* ── Onzichtbaar anker voor de "terug naar boven" knop ── */
     #top{ position: absolute; top: 0; }
 
-    /* HEADER */
+
+    /* ═══════════════════════════════════════════════════════════
+       HEADER & NAVIGATIE
+       Sticky header die bovenaan blijft bij scrollen.
+       backdrop-filter geeft een glazen blur-effect.
+    ═══════════════════════════════════════════════════════════ */
     header{
       position: sticky; top: 0; z-index: 1000;
-      backdrop-filter: blur(10px);
-      background: rgba(247,237,226,0.88);
+      backdrop-filter: blur(10px); /* glazen blur achter de header */
+      background: rgba(247,237,226,0.88); /* half-transparant crème */
       border-bottom: 1px solid rgba(132,165,157,0.35);
     }
+
+    /* ── Wrapper voor logo + nav, gecentreerd met max breedte ── */
     .nav-wrap{
       max-width: 1100px; margin: 0 auto;
       padding: 16px 20px;
       display: flex; justify-content: space-between;
       align-items: center; gap: 16px; flex-wrap: wrap;
     }
+
+    /* ── Logo tekst ── */
     .logo{ font-size: 22px; font-weight: 900; letter-spacing: 2px; }
+
+    /* ── Nav links naast elkaar ── */
     nav{ display: flex; gap: 10px; flex-wrap: wrap; }
+
+    /* ── Navigatielinks als ronde pill-knoppen ── */
     nav a{
       padding: 10px 16px; background: var(--white);
       border: 1px solid rgba(132,165,157,0.5);
@@ -59,12 +87,22 @@
       transition: 0.25s ease;
       box-shadow: 0 4px 12px rgba(0,0,0,0.04);
     }
+    /* ── Hover: licht omhoog bewegen en goudkleur ── */
     nav a:hover{ transform: translateY(-2px); background: var(--honey-bronze); }
 
-    /* MAIN */
+
+    /* ═══════════════════════════════════════════════════════════
+       MAIN WRAPPER
+       Centreer alle content met een maximale breedte.
+    ═══════════════════════════════════════════════════════════ */
     main{ max-width: 1100px; margin: 0 auto; padding: 28px 18px 40px; }
 
-    /* HERO */
+
+    /* ═══════════════════════════════════════════════════════════
+       HERO SECTIE
+       Grote welkomstbanner bovenaan de pagina.
+       ::before en ::after zijn decoratieve wazige cirkels.
+    ═══════════════════════════════════════════════════════════ */
     .hero{
       position: relative; overflow: hidden;
       background: linear-gradient(135deg, var(--cotton-rose), var(--linen));
@@ -72,30 +110,48 @@
       border-radius: 30px; box-shadow: var(--shadow);
       padding: 70px 24px 55px; text-align: center;
     }
+
+    /* ── Decoratieve cirkel linksboven (goud) ── */
     .hero::before, .hero::after{
       content: ""; position: absolute; border-radius: 50%;
       filter: blur(10px); opacity: 0.45; pointer-events: none;
     }
     .hero::before{ width:220px; height:220px; background:var(--honey-bronze); top:-60px; left:-70px; }
+
+    /* ── Decoratieve cirkel rechtsonder (koraal) ── */
     .hero::after{  width:190px; height:190px; background:var(--light-coral); bottom:-60px; right:-50px; }
+
+    /* ── Klein badge-label boven de titel ── */
     .hero-badge{
       display: inline-block; background: rgba(255,255,255,0.72);
       border: 1px solid rgba(132,165,157,0.35);
       padding: 8px 14px; border-radius: 999px;
       margin-bottom: 18px; font-size: 14px; font-weight: bold; letter-spacing: 0.5px;
     }
+
+    /* ── Grote hero titel, schaalt mee met schermgrootte ── */
     .hero-title{
       margin: 0; font-size: clamp(44px,8vw,82px);
       font-weight: 900; line-height: 1.02; letter-spacing: 2px;
     }
+
+    /* ── Elke letter is een apart span voor de animatie ── */
     .hero-title span{
       display: inline-block; opacity: 0; transform: translateY(18px);
-      animation: letterIn 0.6s forwards;
+      animation: letterIn 0.6s forwards; /* animatie per letter */
     }
+
+    /* ── Keyframe: letter valt van onder naar zijn plek ── */
     @keyframes letterIn{ to{ opacity:1; transform:translateY(0); } }
+
+    /* ── Ondertitel onder de hero-titel ── */
     .hero-sub{ max-width:650px; margin:16px auto 0; font-size:18px; opacity:0.9; }
 
-    /* SECTION CARDS */
+
+    /* ═══════════════════════════════════════════════════════════
+       SECTIE KAARTEN
+       Witte glazen kaarten voor elke sectie op de pagina.
+    ═══════════════════════════════════════════════════════════ */
     .section-card{
       background: rgba(255,255,255,0.68);
       border: 1px solid rgba(132,165,157,0.30);
@@ -103,30 +159,54 @@
       box-shadow: var(--shadow);
       padding: 26px; margin-top: 24px;
     }
+
+    /* ── Titels binnen een sectiekaart ── */
     .section-title{ margin: 0 0 18px 0; font-size: 28px; }
     .sub-title{ margin: 0 0 8px 0; font-size: 24px; }
+
+    /* ── Intro-tekst met max breedte voor leesbaarheid ── */
     .section-intro{ margin: 0 0 24px 0; max-width: 750px; }
 
-    /* ABOUT */
+
+    /* ═══════════════════════════════════════════════════════════
+       ABOUT SECTIE
+       Twee-kolommen grid: tekst links, foto rechts.
+    ═══════════════════════════════════════════════════════════ */
     .about-grid{ display:grid; grid-template-columns:1.2fr 0.8fr; gap:24px; align-items:center; }
+
+    /* ── Iets grotere tekst voor de persoonlijke introductie ── */
     .about-text{ font-size: 17px; }
+
+    /* ── Roze omkadering rondom de profielfoto ── */
     .about-photo-wrap{
       background: linear-gradient(180deg, var(--cotton-rose), var(--linen));
       padding: 12px; border-radius: 24px;
       border: 1px solid rgba(132,165,157,0.35);
     }
+
+    /* ── Profielfoto zelf: vaste hoogte, bijgesneden ── */
     .about-photo{ width:100%; height:380px; object-fit:cover; border-radius:18px; box-shadow:0 8px 24px rgba(0,0,0,0.08); }
+
+    /* ── 2x2 grid voor de info-kaartjes (sterrenbeeld, motto enz.) ── */
     .info-grid{ display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:14px; margin-top:22px; }
+
+    /* ── Individuele info-kaart met hover-effect ── */
     .info-card{
       background: linear-gradient(135deg, var(--linen), #fff);
       border: 1px solid rgba(132,165,157,0.28);
       border-radius: 18px; padding: 16px; transition: 0.25s ease;
     }
     .info-card:hover{ transform:translateY(-4px); box-shadow:0 10px 24px rgba(0,0,0,0.07); }
+
+    /* ── Klein uppercase label bovenin de info-kaart ── */
     .info-label{ display:inline-block; font-size:13px; font-weight:bold; letter-spacing:0.5px; text-transform:uppercase; color:var(--muted-teal); margin-bottom:6px; }
     .info-card p{ margin:0; font-size:15px; }
 
-    /* OPLEIDING BANNER */
+
+    /* ═══════════════════════════════════════════════════════════
+       OPLEIDING BANNER
+       Horizontale banner met opleiding-info en tags.
+    ═══════════════════════════════════════════════════════════ */
     .opleiding-banner{
       display: flex; align-items: center; gap: 20px; flex-wrap: wrap;
       background: linear-gradient(135deg, rgba(132,165,157,0.13), rgba(246,189,96,0.10));
@@ -135,9 +215,13 @@
       box-shadow: var(--shadow);
       padding: 24px 28px; margin-top: 24px;
     }
+
+    /* ── Groot emoji-icoon links in de banner ── */
     .opleiding-icon{ font-size: 40px; flex-shrink: 0; }
     .opleiding-tekst h3{ margin: 0 0 5px; font-size: 20px; }
     .opleiding-tekst p{ margin: 0; font-size: 15px; opacity: 0.85; max-width: 680px; }
+
+    /* ── Rij met kleine pill-tags onder de beschrijving ── */
     .opleiding-tags{ display: flex; gap: 8px; flex-wrap: wrap; margin-top: 12px; }
     .opleiding-tag{
       background: rgba(255,255,255,0.80);
@@ -146,67 +230,110 @@
       font-size: 13px; font-weight: bold;
     }
 
-    /* SKILLS */
+
+    /* ═══════════════════════════════════════════════════════════
+       SKILLS SECTIE
+       Twee-kolommen grid met geanimeerde voortgangsbalken.
+       De balken bewegen pas als je ernaar scrollt (via JavaScript).
+    ═══════════════════════════════════════════════════════════ */
     .skills-grid{
       display: grid; grid-template-columns: 1fr 1fr;
       gap: 18px 40px;
     }
+
+    /* ── Eén skill-item: naam + balk ── */
     .skill-item{ display: flex; flex-direction: column; gap: 8px; }
+
+    /* ── Rij met naam links en percentage rechts ── */
     .skill-header{ display: flex; justify-content: space-between; align-items: center; }
     .skill-name{ font-size: 15px; font-weight: bold; }
     .skill-pct{ font-size: 13px; color: var(--muted-teal); font-weight: bold; }
+
+    /* ── Grijze achtergrondtrack van de balk ── */
     .skill-track{
       background: rgba(132,165,157,0.15);
       border-radius: 999px; height: 13px; overflow: hidden;
       border: 1px solid rgba(132,165,157,0.18);
     }
+
+    /* ── De gekleurde balk zelf — begint op 0%, groeit via JS ── */
     .skill-bar{
       height: 100%; border-radius: 999px;
       background: linear-gradient(90deg, var(--muted-teal), var(--honey-bronze));
-      width: 0%;
-      transition: width 1.3s cubic-bezier(0.22, 1, 0.36, 1);
+      width: 0%; /* start op nul */
+      transition: width 1.3s cubic-bezier(0.22, 1, 0.36, 1); /* vloeiende groei */
     }
+
+    /* ── Als JS de klasse 'animating' toevoegt, groeit de balk naar --target-width ── */
     .skill-bar.animating{ width: var(--target-width); }
 
-    /* POTLODEN */
+
+    /* ═══════════════════════════════════════════════════════════
+       ANNEMIJN POTLODEN
+       Overlappende foto's in een rij die omhoog bewegen bij hover.
+       Ze worden dynamisch aangemaakt via JavaScript.
+    ═══════════════════════════════════════════════════════════ */
+
+    /* ── Rij van foto's, uitgelijnd op de onderkant ── */
     .potlood-groep{
       display: flex; align-items: flex-end;
       flex-wrap: nowrap; gap: 0; margin-bottom: 18px;
     }
     .potlood-groep:last-child{ margin-bottom: 0; }
+
+    /* ── Eén foto-wrapper: vaste breedte, overlapping met negatieve marge ── */
     .potlood-wrap{
       flex: 0 0 88px; position: relative;
       cursor: crosshair; margin-right: -10px; z-index: 1;
       transition: transform 0.3s cubic-bezier(0.34,1.56,0.64,1);
-      opacity: 0;
+      opacity: 0; /* start onzichtbaar, animatie maakt zichtbaar */
       animation: potloodIn 0.5s cubic-bezier(0.34,1.56,0.64,1) forwards;
     }
     .potlood-wrap:last-child{ margin-right: 0; }
+
+    /* ── Hover: foto springt omhoog ── */
     .potlood-wrap:hover{ transform: translateY(-14px) scale(1.1) !important; z-index: 50 !important; }
+
+    /* ── Keyframe: foto valt van onder naar boven ── */
     @keyframes potloodIn{
       from{ opacity:0; transform:translateY(40px); }
       to{   opacity:1; transform:translateY(0); }
     }
+
+    /* ── Foto binnen de wrapper: bijgesneden en afgerond ── */
     .potlood-wrap img{
       width: 100%; height: 100%; object-fit: cover;
       border-radius: 12px; border: 2px solid rgba(255,255,255,0.9);
       box-shadow: 0 6px 18px rgba(0,0,0,0.13); display: block;
     }
 
-    /* PREVIEW */
+
+    /* ═══════════════════════════════════════════════════════════
+       FOTO PREVIEW (zweef-popup)
+       Verschijnt bij de muiscursor als je over een potlood-foto zweeft.
+       Positie wordt via JavaScript bijgehouden.
+    ═══════════════════════════════════════════════════════════ */
     #foto-preview{
       position: fixed; width: 260px; height: 260px;
       border-radius: 20px; overflow: hidden;
       box-shadow: 0 24px 60px rgba(0,0,0,0.30);
       border: 3px solid var(--white);
-      pointer-events: none; opacity: 0; transform: scale(0.8);
+      pointer-events: none; /* geen muisgebeurtenissen — volgt alleen de cursor */
+      opacity: 0; transform: scale(0.8);
       transition: opacity 0.18s ease, transform 0.18s ease;
-      z-index: 9999;
+      z-index: 9999; /* altijd bovenop alles */
     }
+
+    /* ── Klasse toegevoegd door JS als je over een foto zweeft ── */
     #foto-preview.zichtbaar{ opacity: 1; transform: scale(1); }
     #foto-preview img{ width: 100%; height: 100%; object-fit: cover; }
 
-    /* GIRLIES */
+
+    /* ═══════════════════════════════════════════════════════════
+       GIRLIES SECTIE
+       Roze kaart met drie kolommen: foto's links, titel+foto midden,
+       foto's rechts. Foto's wisselen bij klikken (via JavaScript).
+    ═══════════════════════════════════════════════════════════ */
     .girlies{
       position: relative; overflow: hidden;
       background: linear-gradient(135deg, var(--cotton-rose), var(--linen));
@@ -215,52 +342,67 @@
       box-shadow: 0 20px 45px rgba(0,0,0,0.12);
       padding: 34px 24px; margin-top: 28px;
     }
+
+    /* ── Decoratieve cirkel rechtsboven ── */
     .girlies::before{
       content:""; position:absolute; width:240px; height:240px;
       background:rgba(242,132,130,0.18); border-radius:50%; right:-70px; top:-70px;
     }
+
+    /* ── Drie-kolommen grid voor de layout ── */
     .girlies-layout{
       position:relative; z-index:1;
       display:grid; grid-template-columns:1fr 1.2fr 1fr; gap:18px; align-items:center;
     }
+
+    /* ── Zijkolommen: foto's onder elkaar ── */
     .girlies-side{ display:grid; gap:12px; }
+
+    /* ── Gedeelde stijl voor klikbare en vaste foto's ── */
     .cycle-img, .girlies-main-photo{
       width:100%; object-fit:cover; border-radius:18px;
       border:1px solid rgba(132,165,157,0.35); background:var(--white);
       box-shadow:0 8px 22px rgba(0,0,0,0.08);
     }
+
+    /* ── Klikbare foto's: vierkant, cursor aanpassen ── */
     .cycle-img{ aspect-ratio:1/1; cursor:pointer; transition:0.25s ease; }
     .cycle-img:hover{ transform:scale(1.03); }
+
+    /* ── Middenkolom: gecentreerd ── */
     .girlies-center{ text-align:center; }
+
+    /* ── Grote golvende GIRLIES-titel ── */
     .girlies-title{
       margin:0; font-size:clamp(46px,6vw,76px); font-weight:900;
       letter-spacing:4px; text-shadow:3px 5px 10px rgba(0,0,0,0.12);
     }
+
+    /* ── Elke letter golft op zijn eigen tempo via --i variabele ── */
     .girlies-title span{
       display:inline-block;
       animation:wave 1.8s ease-in-out infinite;
       animation-delay:calc(var(--i)*0.12s);
     }
+
+    /* ── Keyframe: letter gaat op en neer ── */
     @keyframes wave{ 0%,100%{transform:translateY(0)} 50%{transform:translateY(-10px)} }
+
+    /* ── Grote centrale foto ── */
     .girlies-main-photo{ aspect-ratio:1/1; margin:16px auto 0; max-width:330px; }
     .girlies-text{ margin:14px auto 0; max-width:420px; font-size:16px; }
 
-    /* FAMILIE */
-    .foto-grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:14px; }
-    .foto-grid img{
-      width:100%; aspect-ratio:1/1; object-fit:cover;
-      border-radius:18px; border:1px solid rgba(132,165,157,0.35);
-      background:var(--white); transition:0.25s ease;
-      box-shadow:0 6px 18px rgba(0,0,0,0.06);
-    }
-    .foto-grid img:hover{ transform:translateY(-4px) scale(1.02); }
-    .family-text{ margin:0 0 18px 0; max-width:760px; }
 
-    /* CONTACT */
+    /* ═══════════════════════════════════════════════════════════
+       CONTACT SECTIE
+       Grid met klikbare contactkaarten.
+    ═══════════════════════════════════════════════════════════ */
     .contact-grid{
       display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
       gap: 14px;
     }
+
+    /* ── Eén contactkaart als link ── */
     .contact-card{
       display: flex; align-items: center; gap: 14px;
       background: linear-gradient(135deg, var(--linen), #fff);
@@ -274,6 +416,8 @@
       box-shadow: 0 10px 28px rgba(0,0,0,0.09);
       border-color: rgba(132,165,157,0.5);
     }
+
+    /* ── Emoji-icoon in een rondig vlakje ── */
     .contact-icon{
       font-size: 26px; flex-shrink: 0;
       background: rgba(132,165,157,0.13);
@@ -283,7 +427,10 @@
     .contact-info strong{ display: block; font-size: 15px; margin-bottom: 3px; }
     .contact-info span{ font-size: 13px; color: var(--muted-teal); }
 
-    /* TOP BTN */
+
+    /* ═══════════════════════════════════════════════════════════
+       TERUG NAAR BOVEN KNOP
+    ═══════════════════════════════════════════════════════════ */
     .top-wrap{ text-align:center; margin:30px 0 12px; }
     .top-btn{
       display:inline-block; padding:12px 18px;
@@ -293,37 +440,54 @@
     }
     .top-btn:hover{ transform:translateY(-2px) scale(1.02); }
 
+    /* ── Footer onderaan ── */
     footer{ text-align:center; padding:20px; color:rgba(47,42,38,0.75); font-size:14px; }
 
-    /* RESPONSIVE */
+
+    /* ═══════════════════════════════════════════════════════════
+       RESPONSIVE — TABLET (max 900px)
+       Zet twee-kolom layouts om naar één kolom.
+    ═══════════════════════════════════════════════════════════ */
     @media(max-width:900px){
-      .about-grid{ grid-template-columns:1fr; }
+      .about-grid{ grid-template-columns:1fr; }       /* foto onder tekst */
       .about-photo{ height:320px; }
-      .girlies-layout{ grid-template-columns:1fr; }
+      .girlies-layout{ grid-template-columns:1fr; }   /* girlies onder elkaar */
       .girlies-side{ grid-template-columns:repeat(3,1fr); }
-      .skills-grid{ grid-template-columns:1fr; }
+      .skills-grid{ grid-template-columns:1fr; }      /* skills één kolom */
     }
+
+    /* ═══════════════════════════════════════════════════════════
+       RESPONSIVE — MOBIEL (max 640px)
+       Kleinere padding, minder kolommen.
+    ═══════════════════════════════════════════════════════════ */
     @media(max-width:640px){
       main{ padding:20px 14px 34px; }
       .hero{ padding:52px 16px 42px; }
       .section-card, .girlies{ padding:20px; }
       .info-grid{ grid-template-columns:1fr; }
       .girlies-side{ grid-template-columns:repeat(2,1fr); }
-      .potlood-wrap{ flex-basis: 64px !important; }
+      .potlood-wrap{ flex-basis: 64px !important; } /* kleinere foto-breedte */
       #foto-preview{ width:180px; height:180px; }
       .skills-grid{ grid-template-columns:1fr; }
     }
+
   </style>
 </head>
 
 <body>
+
+  <!-- Onzichtbaar ankerpunt voor "terug naar boven" knop -->
   <div id="top"></div>
+
+  <!-- Zweef-preview die bij de muis verschijnt bij de potloden-sectie -->
   <div id="foto-preview"><img id="preview-img" src="" alt="preview"></div>
 
+  <!-- ═══ HEADER MET NAVIGATIE ═══ -->
   <header>
     <div class="nav-wrap">
       <div class="logo">MOI</div>
       <nav>
+        <!-- Navigatielinks naar de twee pagina's -->
         <a href="index.html">MOI &amp; co</a>
         <a href="school.html">Creations</a>
       </nav>
@@ -332,9 +496,11 @@
 
   <main>
 
-    <!-- HERO -->
+    <!-- ═══ HERO — grote welkomstbanner ═══ -->
     <section class="hero">
       <div class="hero-badge">Mijn persoonlijke portfolio</div>
+
+      <!-- Titel met losse spans per letter voor de inval-animatie -->
       <h1 class="hero-title" aria-label="MOI Portfolio">
         <span style="animation-delay:0s">M</span>
         <span style="animation-delay:0.08s">O</span>
@@ -350,26 +516,33 @@
         <span style="animation-delay:0.88s">i</span>
         <span style="animation-delay:0.96s">o</span>
       </h1>
+
       <p class="hero-sub">
         Welkom op mijn pagina, een plek met foto's, herinneringen, vriendinnen,
         familie en een beetje van wie ik ben.
       </p>
+
+      <!-- GIF decoratie — een animated gif om de pagina levendig te maken -->
+      <img
+        src="https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExY2dzcWt3bDJvMDRhcGt0am4zYjgyeHRxNzh6aHMwOGV6d3ZzMnZ0aSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/kZqbBT64ECtjy/giphy.gif"
+        alt="Animatie"
+        style="margin: 20px auto 0; max-width: 180px; border-radius: 16px; display: block;"
+      >
     </section>
-<!-- GIF decoratie -->
-<img src="https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExY2dzcWt3bDJvMDRhcGt0am4zYjgyeHRxNzh6aHMwOGV6d3ZzMnZ0aSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/kZqbBT64ECtjy/giphy.gif" alt="Animatie" style="
-  margin: 20px auto 0;
-  max-width: 180px;
-  border-radius: 16px;
-  display: block;
-">
-    <!-- ABOUT -->
+
+
+    <!-- ═══ ABOUT ME ═══ -->
     <section class="section-card">
       <h2 class="section-title">About Me</h2>
+
+      <!-- Twee-kolommen grid: tekst + info-kaartjes links, foto rechts -->
       <div class="about-grid">
         <div>
           <p class="about-text">
             Ik ben iemand die energie haalt uit creatief bezig zijn en samenwerken met anderen. Ik ben sociaal, enthousiast en sta open voor nieuwe ideeën, al kan ik soms een beetje onhandig zijn. Juist die combinatie maakt dat ik dingen op mijn eigen manier aanpak en blijf leren.
           </p>
+
+          <!-- 2x2 grid met persoonlijke feiten -->
           <div class="info-grid">
             <div class="info-card">
               <span class="info-label">Favo artiesten</span>
@@ -389,6 +562,8 @@
             </div>
           </div>
         </div>
+
+        <!-- Profielfoto met roze omkadering -->
         <div class="about-photo-wrap">
           <img class="about-photo"
             src="foto/WhatsApp Image 2026-02-10 at 21.52.11.jpeg"
@@ -397,12 +572,14 @@
       </div>
     </section>
 
-    <!-- OPLEIDING -->
+
+    <!-- ═══ OPLEIDING BANNER ═══ -->
     <div class="opleiding-banner">
       <div class="opleiding-icon">🎓</div>
       <div class="opleiding-tekst">
         <h3>Geografie en Datavisualisatie, Aeres Hogeschool</h3>
         <p>Ik studeer geografie en datavisualisatie aan Aeres Hogeschool Almere. In mijn studie leer ik hoe ik data over de wereld om ons heen, zoals steden, natuur en klimaat, kan analyseren en omzetten in duidelijke kaarten en visualisaties. Zo kan ik helpen om ingewikkelde informatie begrijpelijk te maken en oplossingen te bedenken voor bijvoorbeeld duurzaamheid en ruimtelijke vraagstukken.</p>
+        <!-- Kleine labels die de kernvaardigheden tonen -->
         <div class="opleiding-tags">
           <span class="opleiding-tag">Analyse</span>
           <span class="opleiding-tag">Visuele communicatie</span>
@@ -412,12 +589,18 @@
       </div>
     </div>
 
-    <!-- SKILLS -->
+
+    <!-- ═══ SKILLS & SOFTWARE ═══ -->
+    <!-- id="skills" is nodig voor de IntersectionObserver in JavaScript -->
     <section class="section-card" id="skills">
       <h2 class="section-title">Skills &amp; Software</h2>
       <p class="section-intro">De programma's waar ik mee werk en hoe ver ik daarin ben. Scroll naar beneden om de balken te zien bewegen!</p>
+
+      <!-- Twee-kolommen grid met de skill-balken -->
       <div class="skills-grid">
 
+        <!-- Elke skill heeft een naam, percentage en een balk -->
+        <!-- --target-width bepaalt hoe ver de balk groeit via CSS variabele -->
         <div class="skill-item">
           <div class="skill-header">
             <span class="skill-name">After Effects</span>
@@ -481,19 +664,26 @@
       </div>
     </section>
 
-    <!-- ANNEMIJN -->
+
+    <!-- ═══ ANNEMIJN — overlappende potlood-foto's ═══ -->
     <section class="section-card" id="annemijn">
       <h3 class="sub-title">Annemijn</h3>
       <p class="section-intro">
         Een verzameling lieve foto's en herinneringen samen. Beweeg je muis over een foto om hem beter te bekijken.
       </p>
+      <!-- Lege container — foto's worden dynamisch ingevoegd via JavaScript -->
       <div id="potloodContainer"></div>
     </section>
 
-    <!-- GIRLIES -->
+
+    <!-- ═══ GIRLIES — klikbare fotogalerij ═══ -->
     <section class="girlies" id="girlies">
       <div class="girlies-layout">
+
+        <!-- Linker kolom: klikbare foto's die wisselen -->
         <div class="girlies-side">
+          <!-- data-images bevat meerdere paden gescheiden door | -->
+          <!-- JavaScript leest dit uit en wisselt de src bij klikken -->
           <img class="cycle-img" src="foto/WhatsApp Image 2026-02-10 at 21.51.41.jpeg"
             data-images="foto/WhatsApp Image 2026-02-10 at 21.51.41.jpeg|foto/WhatsApp Image 2026-02-10 at 21.54.23.jpeg|foto/WhatsApp Image 2026-02-11 at 14.42.22.jpeg"
             alt="Girlies links 1">
@@ -504,7 +694,10 @@
             data-images="foto/WhatsApp Image 2026-02-11 at 14.45.44.jpeg|foto/WhatsApp Image 2026-02-11 at 14.50.29.jpeg|foto/WhatsApp Image 2026-02-11 at 14.46.19.jpeg"
             alt="Girlies links 3">
         </div>
+
+        <!-- Middenkolom: golvende titel en grote centrale foto -->
         <div class="girlies-center">
+          <!-- Elke letter heeft --i voor de golftiming in CSS -->
           <h2 class="girlies-title" aria-label="GIRLIES">
             <span style="--i:0">G</span><span style="--i:1">I</span>
             <span style="--i:2">R</span><span style="--i:3">L</span>
@@ -519,6 +712,8 @@
             om tussen verschillende beelden te wisselen.
           </p>
         </div>
+
+        <!-- Rechter kolom: klikbare foto's -->
         <div class="girlies-side">
           <img class="cycle-img" src="foto/WhatsApp Image 2026-02-11 at 14.50.54.jpeg"
             data-images="foto/WhatsApp Image 2026-02-11 at 14.50.54.jpeg|foto/WhatsApp Image 2026-02-11 at 14.51.50.jpeg|foto/WhatsApp Image 2026-02-11 at 14.52.25.jpeg"
@@ -530,23 +725,26 @@
             data-images="foto/WhatsApp Image 2026-02-11 at 14.47.44.jpeg|foto/WhatsApp Image 2026-02-11 at 14.47.12.jpeg|foto/WhatsApp Image 2026-02-11 at 14.47.39.jpeg"
             alt="Girlies rechts 3">
         </div>
+
       </div>
     </section>
 
 
-    <!-- CONTACT -->
+    <!-- ═══ CONTACT ═══ -->
     <section class="section-card" id="contact">
       <h2 class="section-title">Contact</h2>
       <p class="section-intro">Wil je samenwerken, meer zien van mijn werk of gewoon hoi zeggen? Neem gerust contact op!</p>
+
+      <!-- Grid met drie klikbare contactkaarten -->
       <div class="contact-grid">
         <a class="contact-card" href="mailto:nkvstroe@gmail.com">
           <div class="contact-icon">✉️</div>
           <div class="contact-info">
             <strong>E-mail</strong>
-            <span>jouw@email.nl</span>
+            <span>nkvstroe@gmail.com</span>
           </div>
         </a>
-        <a class="contact-card" href="https://linkedin.com" target="https://www.linkedin.com/in/no%C3%ABlle-van-stroe-a3656234a/">
+        <a class="contact-card" href="https://www.linkedin.com/in/no%C3%ABlle-van-stroe-a3656234a/" target="_blank">
           <div class="contact-icon">💼</div>
           <div class="contact-info">
             <strong>LinkedIn</strong>
@@ -563,42 +761,68 @@
       </div>
     </section>
 
+    <!-- Terug naar boven knop -->
     <div class="top-wrap">
       <a class="top-btn" href="#top">↑ Terug naar boven</a>
     </div>
+
   </main>
 
   <footer>MOI Portfolio</footer>
 
+
   <script>
-    /* ── GIRLIES cycle ── */
+
+    /* ═══════════════════════════════════════════════════════════
+       GIRLIES — FOTO WISSELEN
+       Bij klikken op een .cycle-img wordt de src gewisseld naar
+       de volgende afbeelding in de data-images lijst.
+    ═══════════════════════════════════════════════════════════ */
     document.querySelectorAll(".cycle-img").forEach(img => {
+      // Splits de pipe-gescheiden string naar een array van paden
       const list = img.dataset.images.split("|");
-      img.dataset.index = "0";
+      img.dataset.index = "0"; // houd bij welk plaatje actief is
+
       img.addEventListener("click", () => {
+        // Ga naar het volgende plaatje, en begin opnieuw na het laatste
         let i = (parseInt(img.dataset.index, 10) + 1) % list.length;
         img.dataset.index = String(i);
-        img.src = list[i];
+        img.src = list[i]; // verander de zichtbare afbeelding
       });
     });
 
-    /* ── SKILLS animatie ── */
+
+    /* ═══════════════════════════════════════════════════════════
+       SKILLS — SCROLL ANIMATIE
+       IntersectionObserver kijkt of de skills-sectie zichtbaar is.
+       Zodra dat zo is, worden de balken geanimeerd door 'animating'
+       toe te voegen — dit triggert de CSS transition naar --target-width.
+    ═══════════════════════════════════════════════════════════ */
     const skillsObserver = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
+          // Voeg 'animating' toe aan alle balken in de sectie
           entry.target.querySelectorAll(".skill-bar").forEach(bar => {
             bar.classList.add("animating");
           });
+          // Stop met observeren zodra de animatie getriggerd is
           skillsObserver.unobserve(entry.target);
         }
       });
-    }, { threshold: 0.25 });
+    }, { threshold: 0.25 }); // start als 25% van de sectie zichtbaar is
 
     const skillsSection = document.getElementById("skills");
     if (skillsSection) skillsObserver.observe(skillsSection);
 
-    /* ── ANNEMIJN potloden ── */
+
+    /* ═══════════════════════════════════════════════════════════
+       ANNEMIJN POTLODEN — DYNAMISCH OPBOUWEN
+       Bouwt rijen van overlappende foto's op basis van de
+       beschikbare breedte. Hoogte varieert per positie in de rij.
+    ═══════════════════════════════════════════════════════════ */
     (function () {
+
+      // Lijst van alle foto's voor de Annemijn sectie
       const fotos = [
         { src: "foto/WhatsApp Image 2026-02-10 at 21.53.29.jpeg", alt: "Annemijn 1" },
         { src: "foto/WhatsApp Image 2026-02-11 at 08.56.42.jpeg",  alt: "Annemijn 2" },
@@ -613,19 +837,21 @@
       ];
 
       const container = document.getElementById("potloodContainer");
-      const ITEM_W    = window.innerWidth <= 640 ? 64 : 88;
-      const OVERLAP   = 10;
-      const STEP      = ITEM_W - OVERLAP;
+      const ITEM_W    = window.innerWidth <= 640 ? 64 : 88; // breedte per foto
+      const OVERLAP   = 10;  // hoeveel pixels foto's overlappen
+      const STEP      = ITEM_W - OVERLAP; // effectieve stap per foto
 
+      // Bereken hoeveel foto's per rij passen
       function perRijAantal() {
         const breedte = container.offsetWidth || 800;
         return Math.max(1, Math.floor((breedte + OVERLAP) / STEP));
       }
 
-      let globalIdx = 0;
+      let globalIdx = 0; // teller voor animatievertraging
 
+      // Bouw alle rijen opnieuw op (ook bij resize)
       function bouwRijen() {
-        container.innerHTML = "";
+        container.innerHTML = ""; // leeg de container
         globalIdx = 0;
         const perRij = perRijAantal();
         const rijen  = Math.ceil(fotos.length / perRij);
@@ -640,7 +866,8 @@
 
           for (let i = startI; i < eindI; i++) {
             const posInRij = i - startI;
-            const frac     = aantalInRij > 1 ? posInRij / (aantalInRij - 1) : 0;
+            // Hoogte varieert van min naar max afhankelijk van positie in de rij
+            const frac = aantalInRij > 1 ? posInRij / (aantalInRij - 1) : 0;
             const minH = 155, maxH = 290;
             const h    = Math.round(minH + frac * (maxH - minH));
 
@@ -648,7 +875,7 @@
             wrap.className = "potlood-wrap";
             wrap.style.height      = h + "px";
             wrap.style.flexBasis   = ITEM_W + "px";
-            wrap.style.animationDelay = (globalIdx * 110) + "ms";
+            wrap.style.animationDelay = (globalIdx * 110) + "ms"; // staggered animatie
             wrap.style.zIndex      = posInRij + 1;
             globalIdx++;
 
@@ -663,42 +890,49 @@
           container.appendChild(groep);
         }
 
-        koppelPreview();
+        koppelPreview(); // koppel zweef-preview opnieuw na opbouw
       }
 
       bouwRijen();
 
+      // Herbouw rijen als venster van grootte verandert
       let resizeTimer;
       window.addEventListener("resize", () => {
         clearTimeout(resizeTimer);
         resizeTimer = setTimeout(bouwRijen, 200);
       });
 
+      // Referenties naar het preview-element
       const preview    = document.getElementById("foto-preview");
       const previewImg = document.getElementById("preview-img");
       let   aktief     = false;
 
+      /* ── Koppel mouseenter/mouseleave aan elke foto voor de preview ── */
       function koppelPreview() {
         document.querySelectorAll(".potlood-wrap").forEach(wrap => {
           const src = wrap.querySelector("img").src;
+
           wrap.addEventListener("mouseenter", () => {
-            previewImg.src = src;
-            preview.classList.add("zichtbaar");
+            previewImg.src = src;           // laad de juiste foto
+            preview.classList.add("zichtbaar"); // maak preview zichtbaar
             aktief = true;
           });
+
           wrap.addEventListener("mouseleave", () => {
-            preview.classList.remove("zichtbaar");
+            preview.classList.remove("zichtbaar"); // verberg preview
             aktief = false;
           });
         });
       }
 
+      /* ── Beweeg de preview mee met de muis ── */
       document.addEventListener("mousemove", e => {
         if (!aktief) return;
         const pw = preview.offsetWidth;
         const ph = preview.offsetHeight;
         let   x  = e.clientX + 22;
         let   y  = e.clientY + 22;
+        // Zorg dat preview niet buiten het scherm valt
         if (x + pw > window.innerWidth)  x = e.clientX - pw - 22;
         if (y + ph > window.innerHeight) y = e.clientY - ph - 22;
         preview.style.left = x + "px";
@@ -706,6 +940,7 @@
       });
 
     })();
+
   </script>
 </body>
 </html>

@@ -5,21 +5,34 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>MOI Portfolio - Creations</title>
 
+  <!-- Leaflet CSS — stijl voor de interactieve kaart -->
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+
+  <!-- Leaflet JS — de kaartbibliotheek zelf -->
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+
+  <!-- Font Awesome — voor iconen op de kaart en de filter-knoppen -->
   <script src="https://kit.fontawesome.com/e766bcebc4.js" crossorigin="anonymous"></script>
+
+  <!-- Google Fonts — Playfair Display voor titels, DM Sans voor tekst -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
 
   <style>
+
+    /* ═══════════════════════════════════════════════════════════
+       GLOBALE KLEURVARIABELEN
+       Eén plek om alle kleuren te beheren.
+       Aanpassen hier werkt meteen overal door.
+    ═══════════════════════════════════════════════════════════ */
     :root{
-      --honey-bronze:#f6bd60;
-      --linen:#f7ede2;
-      --cotton-rose:#f5cac3;
-      --muted-teal:#84a59d;
-      --light-coral:#f28482;
-      --text:#2f2a26;
+      --honey-bronze:#f6bd60;   /* warm goud — knoppen en accenten */
+      --linen:#f7ede2;           /* crème — achtergrond */
+      --cotton-rose:#f5cac3;     /* zacht roze — hero achtergrond */
+      --muted-teal:#84a59d;      /* groen-grijs — kaart-badges en labels */
+      --light-coral:#f28482;     /* koraalrood — design-badges */
+      --text:#2f2a26;            /* donkerbruin — leestekst */
       --white:#ffffff;
       --shadow: 0 12px 30px rgba(0,0,0,0.10);
       --radius-lg: 24px;
@@ -27,9 +40,13 @@
       --radius-sm: 12px;
     }
 
+    /* ── Reset: padding en border tellen mee in de breedte ── */
     *{ box-sizing: border-box; }
+
+    /* ── Vloeiend scrollen bij ankerlinks ── */
     html{ scroll-behavior: smooth; }
 
+    /* ── Body achtergrond: twee gradienten voor diepte-effect ── */
     body{
       margin: 0;
       font-family: 'DM Sans', Arial, sans-serif;
@@ -40,24 +57,42 @@
       line-height: 1.6;
     }
 
+    /* ── Afbeeldingen nooit breder dan hun container ── */
     img{ max-width: 100%; display: block; }
+
+    /* ── Links erven de tekstkleur van hun ouder ── */
     a{ color: inherit; }
+
+    /* ── Onzichtbaar anker voor de "terug naar boven" knop ── */
     #top{ position: absolute; top: 0; }
 
+
+    /* ═══════════════════════════════════════════════════════════
+       HEADER & NAVIGATIE
+       Sticky header die bovenaan blijft bij scrollen.
+    ═══════════════════════════════════════════════════════════ */
     header{
       position: sticky; top: 0; z-index: 1000;
       backdrop-filter: blur(10px);
       background: rgba(247,237,226,0.88);
       border-bottom: 1px solid rgba(132,165,157,0.35);
     }
+
+    /* ── Centreer de nav-inhoud met max breedte ── */
     .nav-wrap{
       max-width: 1100px; margin: 0 auto;
       padding: 16px 20px;
       display: flex; justify-content: space-between; align-items: center;
       gap: 16px; flex-wrap: wrap;
     }
+
+    /* ── Logo in Playfair Display ── */
     .logo{ font-family: 'Playfair Display', serif; font-size: 22px; font-weight: 900; letter-spacing: 2px; }
+
+    /* ── Navigatielinks naast elkaar ── */
     nav{ display: flex; gap: 10px; flex-wrap: wrap; }
+
+    /* ── Pill-vormige navigatieknoppen ── */
     nav a{
       padding: 10px 16px; background: var(--white);
       border: 1px solid rgba(132,165,157,0.5);
@@ -65,10 +100,18 @@
       transition: 0.25s ease;
       box-shadow: 0 4px 12px rgba(0,0,0,0.04);
     }
+    /* ── Hover: omhoog bewegen en goud kleuren ── */
     nav a:hover{ transform: translateY(-2px); background: var(--honey-bronze); }
 
+
+    /* ── Gecentreerde main-wrapper ── */
     main{ max-width: 1100px; margin: 0 auto; padding: 28px 18px 40px; }
 
+
+    /* ═══════════════════════════════════════════════════════════
+       HERO SECTIE
+       Roze banner bovenaan met decoratieve cirkels.
+    ═══════════════════════════════════════════════════════════ */
     .hero{
       position: relative; overflow: hidden;
       background: linear-gradient(135deg, var(--cotton-rose), var(--linen));
@@ -76,32 +119,54 @@
       border-radius: 30px; box-shadow: var(--shadow);
       padding: 60px 24px 46px; text-align: center;
     }
+
+    /* ── Decoratieve cirkels links en rechts ── */
     .hero::before,.hero::after{
       content:""; position:absolute; border-radius:50%; opacity:0.4; pointer-events:none;
     }
     .hero::before{ width:220px;height:220px;background:var(--honey-bronze);top:-70px;left:-70px; }
     .hero::after{ width:180px;height:180px;background:var(--light-coral);right:-50px;bottom:-50px; }
+
+    /* ── Klein badge-label boven de titel ── */
     .hero-badge{
       display:inline-block; background:rgba(255,255,255,0.72);
       border:1px solid rgba(132,165,157,0.35); padding:8px 14px;
       border-radius:999px; margin-bottom:16px;
       font-size:14px; font-weight:bold; letter-spacing:0.5px;
     }
+
+    /* ── Grote titel die schaalt met de schermgrootte ── */
     .hero-title{
       margin:0; font-family:'Playfair Display',serif;
       font-size:clamp(40px,7vw,72px); font-weight:900;
       line-height:1.02; letter-spacing:2px;
     }
+
+    /* ── Ondertitel ── */
     .hero-sub{ max-width:700px; margin:14px auto 0; font-size:18px; opacity:0.9; }
 
+
+    /* ═══════════════════════════════════════════════════════════
+       SECTIE KAARTEN
+       Witte glasachtige kaarten voor elke sectie.
+    ═══════════════════════════════════════════════════════════ */
     .section-card{
       background:rgba(255,255,255,0.7); border:1px solid rgba(132,165,157,0.30);
       border-radius:var(--radius-lg); box-shadow:var(--shadow);
       padding:26px; margin-top:24px;
     }
+
+    /* ── Sectie-titels in Playfair Display ── */
     .section-title{ margin:0 0 10px 0; font-family:'Playfair Display',serif; font-size:28px; }
+
+    /* ── Intro-tekst met max breedte voor leesbaarheid ── */
     .section-text{ margin:0 0 18px 0; opacity:0.9; max-width:780px; }
 
+
+    /* ═══════════════════════════════════════════════════════════
+       LEGENDA
+       Rij met gekleurde pill-labels die de kaarttypen uitleggen.
+    ═══════════════════════════════════════════════════════════ */
     .legenda{ display:flex; flex-wrap:wrap; gap:10px; margin-bottom:14px; }
     .legenda-item{
       display:flex; align-items:center; gap:7px;
@@ -110,26 +175,43 @@
     }
     .legenda-item i{ font-size:15px; }
 
+
+    /* ═══════════════════════════════════════════════════════════
+       LEAFLET KAART
+    ═══════════════════════════════════════════════════════════ */
+
+    /* ── Lichte wrapper rondom de kaart ── */
     .map-wrap{
       background:linear-gradient(135deg,var(--linen),#fff);
       border:1px solid rgba(132,165,157,0.28);
       border-radius:20px; padding:12px;
       box-shadow:0 10px 20px rgba(0,0,0,0.06);
     }
+
+    /* ── De kaart zelf met vaste hoogte ── */
     #map{ width:100%; height:480px; border-radius:16px; overflow:hidden; }
 
+    /* ── Kleur per icoontype op de kaart ── */
     .icon-school{ color:var(--light-coral); }
     .icon-biblio{ color:#84a59d; }
     .icon-cafe  { color:var(--honey-bronze); }
     .icon-tip   { color:#c9a0a0; }
 
+    /* ── Leaflet popup stijl ── */
     .leaflet-popup-content-wrapper{ border-radius:14px!important; box-shadow:0 8px 24px rgba(0,0,0,0.13)!important; }
     .popup-content{ font-family:'DM Sans',Arial,sans-serif; min-width:180px; }
     .popup-content strong{ display:block; font-size:15px; margin-bottom:4px; color:var(--text); }
     .popup-content .popup-adres{ font-size:13px; color:#666; margin-bottom:6px; }
     .popup-content .popup-tip{ font-size:12px; background:var(--linen); border-radius:8px; padding:5px 9px; color:var(--text); }
 
+
+    /* ═══════════════════════════════════════════════════════════
+       GALLERY FILTER KNOPPEN
+       Rij knoppen waarmee je de gallery filtert op categorie.
+    ═══════════════════════════════════════════════════════════ */
     .filter-bar{ display:flex; gap:10px; flex-wrap:wrap; margin-bottom:24px; }
+
+    /* ── Basis stijl voor alle filterknoppen ── */
     .filter-btn{
       display:inline-flex; align-items:center; gap:7px;
       padding:10px 20px; background:var(--white);
@@ -140,13 +222,22 @@
       box-shadow:0 3px 10px rgba(0,0,0,0.05);
     }
     .filter-btn:hover{ transform:translateY(-2px); box-shadow:0 6px 16px rgba(0,0,0,0.09); }
+
+    /* ── Actieve knop: donkere achtergrond ── */
     .filter-btn.active{ background:var(--text); color:var(--linen); border-color:var(--text); box-shadow:0 6px 18px rgba(47,42,38,0.18); }
+
+    /* ── Categorie-specifieke actieve kleuren ── */
     .filter-btn[data-filter="design"].active { background:var(--light-coral); border-color:var(--light-coral); color:#fff; }
     .filter-btn[data-filter="gis"].active    { background:var(--muted-teal);  border-color:var(--muted-teal);  color:#fff; }
     .filter-btn[data-filter="fotos"].active  { background:var(--honey-bronze);border-color:var(--honey-bronze);color:var(--text); }
 
+
+    /* ═══════════════════════════════════════════════════════════
+       GALLERY GRID — drie kolommen van projectkaarten
+    ═══════════════════════════════════════════════════════════ */
     .gallery-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:20px; }
 
+    /* ── Eén projectkaart ── */
     .gallery-card{
       position:relative; border-radius:20px; overflow:hidden;
       background:#fff; border:1px solid rgba(132,165,157,0.25);
@@ -154,30 +245,36 @@
       transition:transform 0.28s cubic-bezier(0.34,1.56,0.64,1),
                  box-shadow 0.28s ease, opacity 0.35s ease;
     }
+
+    /* ── Verborgen kaart: onzichtbaar en uit de flow ── */
     .gallery-card.hidden{
       opacity:0; pointer-events:none; transform:scale(0.92);
       position:absolute; visibility:hidden;
     }
+
+    /* ── Hover: kaart springt omhoog ── */
     .gallery-card:hover{ transform:translateY(-7px) scale(1.01); box-shadow:0 18px 38px rgba(0,0,0,0.12); }
 
-    /* ── afbeelding altijd passend in de kaart ── */
+    /* ── Afbeeldingswrapper met vaste 4:3 verhouding ── */
     .card-img-wrap{
-      position:relative;
-      width:100%;
-      aspect-ratio:4/3;
-      overflow:hidden;
+      position:relative; width:100%;
+      aspect-ratio:4/3; overflow:hidden;
       background:linear-gradient(135deg,var(--linen),#ffe8df);
     }
+
+    /* ── Afbeelding vult altijd het hele vlak (bijsnijden) ── */
     .card-img-wrap img{
-      width:100%;
-      height:100%;
-      object-fit:cover;       /* vult het vlak, snijdt bij indien nodig */
-      object-position:center; /* centreert de afbeelding */
+      width:100%; height:100%;
+      object-fit:cover;       /* bijsnijden zodat het past */
+      object-position:center; /* centreer de afbeelding */
       display:block;
       transition:transform 0.45s ease;
     }
+
+    /* ── Lichte zoom bij hover ── */
     .gallery-card:hover .card-img-wrap img{ transform:scale(1.07); }
 
+    /* ── Placeholder als afbeelding ontbreekt ── */
     .card-placeholder{
       width:100%; height:100%;
       display:flex; flex-direction:column;
@@ -187,6 +284,7 @@
     }
     .card-placeholder i{ font-size:36px; }
 
+    /* ── Categorie-badge linksboven op de afbeelding ── */
     .card-badge{
       position:absolute; top:12px; left:12px;
       padding:5px 12px; border-radius:999px;
@@ -194,10 +292,13 @@
       letter-spacing:0.5px; text-transform:uppercase;
       backdrop-filter:blur(8px);
     }
+
+    /* ── Kleuren per badge-categorie ── */
     .badge-design{ background:rgba(242,132,130,0.85); color:#fff; }
     .badge-gis   { background:rgba(132,165,157,0.9);  color:#fff; }
     .badge-fotos { background:rgba(246,189,96,0.9);   color:var(--text); }
 
+    /* ── Donkere overlay zichtbaar bij hover ── */
     .card-overlay{
       position:absolute; inset:0;
       background:linear-gradient(to top,rgba(47,42,38,0.72) 0%,transparent 55%);
@@ -207,7 +308,10 @@
     .gallery-card:hover .card-overlay{ opacity:1; }
     .overlay-text{ color:#fff; font-size:13px; font-weight:500; display:flex; align-items:center; gap:6px; }
 
-    /* YouTube thumbnail play-knop */
+    /* ═══════════════════════════════════════════════════════════
+       YOUTUBE PLAY-KNOP
+       Absolute overlay — klikken opent YouTube in nieuw tabblad.
+    ═══════════════════════════════════════════════════════════ */
     .yt-play{
       position:absolute; inset:0;
       display:flex; align-items:center; justify-content:center;
@@ -220,27 +324,32 @@
       font-size:22px;
       transition:transform 0.2s ease, background 0.2s ease;
     }
-    .gallery-card:hover .yt-play span{
-      background:rgba(255,0,0,0.85);
-      transform:scale(1.12);
-    }
+    /* ── Hover: rood YouTube-kleur ── */
+    .gallery-card:hover .yt-play span{ background:rgba(255,0,0,0.85); transform:scale(1.12); }
 
+    /* ── Tekst-sectie onder de afbeelding ── */
     .card-body{ padding:16px 18px 18px; }
     .card-body h4{ margin:0 0 6px; font-family:'Playfair Display',serif; font-size:18px; line-height:1.2; }
     .card-body p{ margin:0; font-size:13px; opacity:0.75; line-height:1.5; }
 
+    /* ── Gekleurde accentlijn bovenaan elke kaart ── */
     .card-accent{ height:3px; width:100%; }
     .accent-design{ background:linear-gradient(90deg,var(--light-coral),var(--cotton-rose)); }
     .accent-gis   { background:linear-gradient(90deg,var(--muted-teal),#b5d0c8); }
     .accent-fotos { background:linear-gradient(90deg,var(--honey-bronze),#fde8a0); }
 
+    /* ── Lege staat als alle kaarten gefilterd zijn ── */
     .gallery-empty{
       display:none; grid-column:1/-1;
       text-align:center; padding:40px 20px;
       opacity:0.55; font-size:15px;
     }
+
+    /* ── Kleine teller boven de gallery ── */
     .gallery-count{ font-size:13px; font-weight:600; color:var(--muted-teal); margin-bottom:16px; }
 
+
+    /* ── Terug naar boven knop ── */
     .top-wrap{ text-align:center; margin:30px 0 12px; }
     .top-btn{
       display:inline-block; margin:5px; padding:12px 18px;
@@ -250,16 +359,38 @@
     }
     .top-btn:hover{ transform:translateY(-2px); }
 
+    /* ── Footer ── */
     footer{ text-align:center; padding:20px; color:rgba(47,42,38,0.75); font-size:14px; }
 
-    @media (max-width:900px){ .gallery-grid{ grid-template-columns:repeat(2,1fr); } #map{ height:380px; } }
-    @media (max-width:640px){ main{ padding:20px 14px 34px; } .hero{ padding:48px 16px 38px; } .section-card{ padding:20px; } #map{ height:320px; } .gallery-grid{ grid-template-columns:1fr; } }
+
+    /* ═══════════════════════════════════════════════════════════
+       RESPONSIVE — TABLET (max 900px)
+    ═══════════════════════════════════════════════════════════ */
+    @media (max-width:900px){
+      .gallery-grid{ grid-template-columns:repeat(2,1fr); }
+      #map{ height:380px; }
+    }
+
+    /* ═══════════════════════════════════════════════════════════
+       RESPONSIVE — MOBIEL (max 640px)
+    ═══════════════════════════════════════════════════════════ */
+    @media (max-width:640px){
+      main{ padding:20px 14px 34px; }
+      .hero{ padding:48px 16px 38px; }
+      .section-card{ padding:20px; }
+      #map{ height:320px; }
+      .gallery-grid{ grid-template-columns:1fr; }
+    }
+
   </style>
 </head>
 
 <body>
+
+  <!-- Onzichtbaar ankerpunt voor "terug naar boven" -->
   <div id="top"></div>
 
+  <!-- ═══ HEADER ═══ -->
   <header>
     <div class="nav-wrap">
       <div class="logo">MOI</div>
@@ -271,6 +402,8 @@
   </header>
 
   <main>
+
+    <!-- ═══ HERO ═══ -->
     <section class="hero">
       <div class="hero-badge">School &amp; creatieve projecten</div>
       <h1 class="hero-title">Creations</h1>
@@ -279,28 +412,37 @@
       </p>
     </section>
 
+
+    <!-- ═══ KAART — studeerlocaties in Almere ═══ -->
     <section class="section-card">
       <h2 class="section-title">Waar ik dit leer</h2>
       <p class="section-text">
         Op deze plekken studeer ik en maak ik creaties voor school. Van mijn hogeschool tot bibliotheken en gezellige cafés in Almere.
       </p>
+
+      <!-- Legenda: uitleg van de icoontjes op de kaart -->
       <div class="legenda">
         <div class="legenda-item"><i class="fa-solid fa-graduation-cap icon-school"></i> School</div>
         <div class="legenda-item"><i class="fa-solid fa-book icon-biblio"></i> Bibliotheek</div>
         <div class="legenda-item"><i class="fa-solid fa-mug-hot icon-cafe"></i> Café (wifi)</div>
         <div class="legenda-item"><i class="fa-solid fa-mug-saucer icon-tip"></i> Café (tip)</div>
       </div>
+
+      <!-- De kaart wordt hier ingeladen door Leaflet -->
       <div class="map-wrap">
         <div id="map"></div>
       </div>
     </section>
 
+
+    <!-- ═══ GALLERY — mijn creaties ═══ -->
     <section class="section-card">
       <h3 class="section-title">Mijn Creaties</h3>
       <p class="section-text">
         Een overzicht van mijn werk — van designprojecten en GIS-analyses tot foto's en video's.
       </p>
 
+      <!-- Filter knoppen — data-filter koppelt knop aan kaart-categorie -->
       <div class="filter-bar">
         <button class="filter-btn active" data-filter="all"><i class="fa-solid fa-border-all"></i> Alles</button>
         <button class="filter-btn" data-filter="design"><i class="fa-solid fa-pen-nib"></i> Design</button>
@@ -308,11 +450,13 @@
         <button class="filter-btn" data-filter="fotos"><i class="fa-solid fa-camera"></i> Foto's &amp; Video</button>
       </div>
 
+      <!-- Teller — bijgewerkt door JavaScript -->
       <div class="gallery-count" id="gallery-count">6 creaties</div>
 
+      <!-- Grid — data-cat koppelt elke kaart aan een filter-categorie -->
       <div class="gallery-grid" id="gallery-grid">
 
-        <!-- DESIGN 1 -->
+        <!-- ── DESIGN 1 ── -->
         <div class="gallery-card" data-cat="design">
           <div class="card-accent accent-design"></div>
           <div class="card-img-wrap">
@@ -332,7 +476,7 @@
           </div>
         </div>
 
-        <!-- DESIGN 2 -->
+        <!-- ── DESIGN 2 ── -->
         <div class="gallery-card" data-cat="design">
           <div class="card-accent accent-design"></div>
           <div class="card-img-wrap">
@@ -352,7 +496,7 @@
           </div>
         </div>
 
-        <!-- GIS 1 -->
+        <!-- ── GIS 1 ── -->
         <div class="gallery-card" data-cat="gis">
           <div class="card-accent accent-gis"></div>
           <div class="card-img-wrap">
@@ -372,7 +516,7 @@
           </div>
         </div>
 
-        <!-- GIS 2 -->
+        <!-- ── GIS 2 ── -->
         <div class="gallery-card" data-cat="gis">
           <div class="card-accent accent-gis"></div>
           <div class="card-img-wrap">
@@ -392,7 +536,7 @@
           </div>
         </div>
 
-        <!-- FOTO 1 -->
+        <!-- ── FOTO 1 ── -->
         <div class="gallery-card" data-cat="fotos">
           <div class="card-accent accent-fotos"></div>
           <div class="card-img-wrap">
@@ -412,12 +556,15 @@
           </div>
         </div>
 
-        <!-- VIDEO 1 — YouTube thumbnail met play-knop -->
+        <!-- ── VIDEO — YouTube thumbnail met play-knop ── -->
+        <!-- Klikken opent de video op YouTube in een nieuw tabblad -->
         <div class="gallery-card" data-cat="fotos">
           <div class="card-accent accent-fotos"></div>
           <div class="card-img-wrap">
+            <!-- YouTube levert automatisch de thumbnail via deze URL -->
             <img src="https://img.youtube.com/vi/-TXT4bxY824/hqdefault.jpg" alt="Video Ossola Vallei">
             <span class="card-badge badge-fotos">Video</span>
+            <!-- Link over de hele afbeelding, play-knop in het midden -->
             <a class="yt-play" href="https://youtu.be/-TXT4bxY824" target="_blank" rel="noopener">
               <span>▶</span>
             </a>
@@ -428,7 +575,7 @@
           </div>
         </div>
 
-        <!-- Leeg-staat (buiten alle kaarten!) -->
+        <!-- Lege staat — alleen zichtbaar als alle kaarten gefilterd zijn -->
         <div class="gallery-empty" id="gallery-empty">
           <i class="fa-regular fa-face-sad-tear" style="font-size:32px; display:block; margin-bottom:10px;"></i>
           Geen creaties gevonden in deze categorie.
@@ -440,22 +587,35 @@
     <div class="top-wrap">
       <a class="top-btn" href="#top">↑ Terug naar boven</a>
     </div>
+
   </main>
 
   <footer>MOI Portfolio</footer>
 
+
   <script>
+
+    /* ═══════════════════════════════════════════════════════════
+       LEAFLET KAART OPBOUWEN
+       Maakt een kaart met CartoDB achtergrond, gecentreerd op Almere.
+    ═══════════════════════════════════════════════════════════ */
+
+    // Tegel-laag: lichte stratenkaart van CartoDB
     const osm = L.tileLayer("https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png",{
       attribution:'&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/">CARTO</a>',
       subdomains:"abcd", maxZoom:19
     });
+
+    // Maak de kaart aan en laad de tegel-laag
     const map = L.map('map',{center:[52.358,5.185],zoom:13,layers:[osm]});
 
+    /* ── Custom iconen per locatietype ── */
     const schoolIcon   = L.divIcon({html:'<i class="fa-solid fa-graduation-cap fa-2x icon-school"></i>',iconSize:[28,28],iconAnchor:[14,14],className:''});
     const biblioIcon   = L.divIcon({html:'<i class="fa-solid fa-book fa-2x icon-biblio"></i>',iconSize:[24,24],iconAnchor:[12,12],className:''});
     const cafeWifiIcon = L.divIcon({html:'<i class="fa-solid fa-mug-hot fa-2x icon-cafe"></i>',iconSize:[24,24],iconAnchor:[12,12],className:''});
     const cafeTipIcon  = L.divIcon({html:'<i class="fa-solid fa-mug-saucer fa-2x icon-tip"></i>',iconSize:[24,24],iconAnchor:[12,12],className:''});
 
+    /* ── GeoJSON: alle locaties met coördinaten en beschrijving ── */
     const geojson_marker={
       "type":"FeatureCollection","features":[
         {"type":"Feature","geometry":{"type":"Point","coordinates":[5.22309285574719,52.3565363874106]},"properties":{"naam":"Hogeschool Aeres","adres":"Arboretum West 98, 1325 WB Almere","type":"school","tip":"Hier heb ik geleerd en leer ik om al deze creaties te maken 🎓"}},
@@ -471,6 +631,7 @@
       ]
     };
 
+    /* ── Kies het juiste icoon op basis van het type ── */
     function getIcon(type){
       if(type==="school")    return schoolIcon;
       if(type==="biblio")    return biblioIcon;
@@ -478,49 +639,81 @@
       return cafeTipIcon;
     }
 
+    /* ── Plaats alle markers op de kaart met popups ── */
     L.geoJson(geojson_marker,{
+      // Bouw popup op uit de properties van elk punt
       onEachFeature:(feature,layer)=>{
         const p=feature.properties;
-        layer.bindPopup('<div class="popup-content"><strong>'+p.naam+'</strong><div class="popup-adres">'+p.adres+'</div><div class="popup-tip">'+p.tip+'</div></div>');
+        layer.bindPopup(
+          '<div class="popup-content">' +
+          '<strong>'+p.naam+'</strong>' +
+          '<div class="popup-adres">'+p.adres+'</div>' +
+          '<div class="popup-tip">'+p.tip+'</div>' +
+          '</div>'
+        );
       },
+      // Gebruik custom icoon in plaats van standaard pin
       pointToLayer:(feature,latlng)=>L.marker(latlng,{icon:getIcon(feature.properties.type)})
     }).addTo(map);
+
   </script>
 
+
   <script>
+
+    /* ═══════════════════════════════════════════════════════════
+       GALLERY FILTER
+       Filtert projectkaarten op categorie via data-cat attribuut.
+       Verborgen kaarten krijgen de CSS klasse 'hidden'.
+    ═══════════════════════════════════════════════════════════ */
+
+    // Selecteer alle elementen die nodig zijn
     const filterBtns = document.querySelectorAll('.filter-btn');
     const cards      = document.querySelectorAll('.gallery-card');
     const countEl    = document.getElementById('gallery-count');
     const emptyEl    = document.getElementById('gallery-empty');
 
+    // Werk de teller bij ("6 creaties" / "2 creaties" enz.)
     function updateCount(visible){
       countEl.textContent = visible + (visible === 1 ? ' creatie' : ' creaties');
     }
 
+    // Voeg klik-listener toe aan elke filterknop
     filterBtns.forEach(btn => {
       btn.addEventListener('click', () => {
+
+        // Verwijder 'active' van alle knoppen, voeg toe aan geklikte
         filterBtns.forEach(b => b.classList.remove('active'));
         btn.classList.add('active');
-        const filter = btn.dataset.filter;
+
+        const filter = btn.dataset.filter; // "all", "design", "gis" of "fotos"
         let visible = 0;
+
         cards.forEach(card => {
-          if(card.id === 'gallery-empty') return;
+          if(card.id === 'gallery-empty') return; // sla de lege-staat over
+
+          // Toon als filter "all" is of categorie overeenkomt
           const match = filter === 'all' || card.dataset.cat === filter;
+
           if(match){
             card.classList.remove('hidden');
             card.style.position = '';
             card.style.visibility = '';
             visible++;
           } else {
-            card.classList.add('hidden');
+            card.classList.add('hidden'); // verberg via CSS
           }
         });
+
+        // Teller bijwerken en lege staat tonen/verbergen
         updateCount(visible);
         emptyEl.style.display = visible === 0 ? 'block' : 'none';
       });
     });
 
+    // Stel beginteller in (minus de gallery-empty div)
     updateCount(cards.length - 1);
+
   </script>
 
 </body>
