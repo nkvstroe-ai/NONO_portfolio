@@ -5,21 +5,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>MOI Portfolio - Creations</title>
 
-  <!-- Leaflet -->
-  <link
-    rel="stylesheet"
-    href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
-    integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
-    crossorigin=""
-  />
-  <script
-    src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
-    integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
-    crossorigin=""
-  ></script>
-
-  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
   <script src="https://kit.fontawesome.com/e766bcebc4.js" crossorigin="anonymous"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
 
   <style>
     :root{
@@ -36,17 +27,12 @@
       --radius-sm: 12px;
     }
 
-    *{
-      box-sizing: border-box;
-    }
-
-    html{
-      scroll-behavior: smooth;
-    }
+    *{ box-sizing: border-box; }
+    html{ scroll-behavior: smooth; }
 
     body{
       margin: 0;
-      font-family: Arial, sans-serif;
+      font-family: 'DM Sans', Arial, sans-serif;
       background:
         radial-gradient(circle at top, rgba(246,189,96,0.18), transparent 30%),
         linear-gradient(180deg, var(--linen), #fffaf6);
@@ -54,353 +40,220 @@
       line-height: 1.6;
     }
 
-    img{
-      max-width: 100%;
-      display: block;
-    }
+    img{ max-width: 100%; display: block; }
+    a{ color: inherit; }
+    #top{ position: absolute; top: 0; }
 
-    a{
-      color: inherit;
-    }
-
-    #top{
-      position: absolute;
-      top: 0;
-    }
-
-    /* HEADER */
     header{
-      position: sticky;
-      top: 0;
-      z-index: 1000;
+      position: sticky; top: 0; z-index: 1000;
       backdrop-filter: blur(10px);
-      background: rgba(247, 237, 226, 0.88);
+      background: rgba(247,237,226,0.88);
       border-bottom: 1px solid rgba(132,165,157,0.35);
     }
-
     .nav-wrap{
-      max-width: 1100px;
-      margin: 0 auto;
+      max-width: 1100px; margin: 0 auto;
       padding: 16px 20px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 16px;
-      flex-wrap: wrap;
+      display: flex; justify-content: space-between; align-items: center;
+      gap: 16px; flex-wrap: wrap;
     }
-
-    .logo{
-      font-size: 22px;
-      font-weight: 900;
-      letter-spacing: 2px;
-    }
-
-    nav{
-      display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
-    }
-
+    .logo{ font-family: 'Playfair Display', serif; font-size: 22px; font-weight: 900; letter-spacing: 2px; }
+    nav{ display: flex; gap: 10px; flex-wrap: wrap; }
     nav a{
-      padding: 10px 16px;
-      background: var(--white);
+      padding: 10px 16px; background: var(--white);
       border: 1px solid rgba(132,165,157,0.5);
-      border-radius: 999px;
-      text-decoration: none;
+      border-radius: 999px; text-decoration: none;
       transition: 0.25s ease;
       box-shadow: 0 4px 12px rgba(0,0,0,0.04);
     }
+    nav a:hover{ transform: translateY(-2px); background: var(--honey-bronze); }
 
-    nav a:hover{
-      transform: translateY(-2px);
-      background: var(--honey-bronze);
-    }
+    main{ max-width: 1100px; margin: 0 auto; padding: 28px 18px 40px; }
 
-    /* MAIN */
-    main{
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 28px 18px 40px;
-    }
-
-    /* HERO */
     .hero{
-      position: relative;
-      overflow: hidden;
+      position: relative; overflow: hidden;
       background: linear-gradient(135deg, var(--cotton-rose), var(--linen));
       border: 1px solid rgba(132,165,157,0.35);
-      border-radius: 30px;
-      box-shadow: var(--shadow);
-      padding: 60px 24px 46px;
-      text-align: center;
+      border-radius: 30px; box-shadow: var(--shadow);
+      padding: 60px 24px 46px; text-align: center;
     }
-
-    .hero::before,
-    .hero::after{
-      content: "";
-      position: absolute;
-      border-radius: 50%;
-      opacity: 0.4;
-      pointer-events: none;
+    .hero::before,.hero::after{
+      content:""; position:absolute; border-radius:50%; opacity:0.4; pointer-events:none;
     }
-
-    .hero::before{
-      width: 220px;
-      height: 220px;
-      background: var(--honey-bronze);
-      top: -70px;
-      left: -70px;
-    }
-
-    .hero::after{
-      width: 180px;
-      height: 180px;
-      background: var(--light-coral);
-      right: -50px;
-      bottom: -50px;
-    }
-
+    .hero::before{ width:220px;height:220px;background:var(--honey-bronze);top:-70px;left:-70px; }
+    .hero::after{ width:180px;height:180px;background:var(--light-coral);right:-50px;bottom:-50px; }
     .hero-badge{
-      display: inline-block;
-      background: rgba(255,255,255,0.72);
-      border: 1px solid rgba(132,165,157,0.35);
-      padding: 8px 14px;
-      border-radius: 999px;
-      margin-bottom: 16px;
-      font-size: 14px;
-      font-weight: bold;
-      letter-spacing: 0.5px;
+      display:inline-block; background:rgba(255,255,255,0.72);
+      border:1px solid rgba(132,165,157,0.35); padding:8px 14px;
+      border-radius:999px; margin-bottom:16px;
+      font-size:14px; font-weight:bold; letter-spacing:0.5px;
     }
-
     .hero-title{
-      margin: 0;
-      font-size: clamp(40px, 7vw, 72px);
-      font-weight: 900;
-      line-height: 1.02;
-      letter-spacing: 2px;
+      margin:0; font-family:'Playfair Display',serif;
+      font-size:clamp(40px,7vw,72px); font-weight:900;
+      line-height:1.02; letter-spacing:2px;
     }
+    .hero-sub{ max-width:700px; margin:14px auto 0; font-size:18px; opacity:0.9; }
 
-    .hero-sub{
-      max-width: 700px;
-      margin: 14px auto 0;
-      font-size: 18px;
-      opacity: 0.9;
-    }
-
-    /* SECTION CARDS */
     .section-card{
-      background: rgba(255,255,255,0.7);
-      border: 1px solid rgba(132,165,157,0.30);
-      border-radius: var(--radius-lg);
-      box-shadow: var(--shadow);
-      padding: 26px;
-      margin-top: 24px;
+      background:rgba(255,255,255,0.7); border:1px solid rgba(132,165,157,0.30);
+      border-radius:var(--radius-lg); box-shadow:var(--shadow);
+      padding:26px; margin-top:24px;
     }
+    .section-title{ margin:0 0 10px 0; font-family:'Playfair Display',serif; font-size:28px; }
+    .section-text{ margin:0 0 18px 0; opacity:0.9; max-width:780px; }
 
-    .section-title{
-      margin: 0 0 10px 0;
-      font-size: 28px;
-    }
-
-    .section-text{
-      margin: 0 0 18px 0;
-      opacity: 0.9;
-      max-width: 780px;
-    }
-
-    /* LEGENDA */
-    .legenda{
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-bottom: 14px;
-    }
-
+    .legenda{ display:flex; flex-wrap:wrap; gap:10px; margin-bottom:14px; }
     .legenda-item{
-      display: flex;
-      align-items: center;
-      gap: 7px;
-      background: rgba(255,255,255,0.7);
-      border: 1px solid rgba(132,165,157,0.30);
-      border-radius: 999px;
-      padding: 6px 14px;
-      font-size: 13px;
-      font-weight: bold;
+      display:flex; align-items:center; gap:7px;
+      background:rgba(255,255,255,0.7); border:1px solid rgba(132,165,157,0.30);
+      border-radius:999px; padding:6px 14px; font-size:13px; font-weight:bold;
     }
+    .legenda-item i{ font-size:15px; }
 
-    .legenda-item i{
-      font-size: 15px;
-    }
-
-    /* MAP */
     .map-wrap{
-      background: linear-gradient(135deg, var(--linen), #fff);
-      border: 1px solid rgba(132,165,157,0.28);
-      border-radius: 20px;
-      padding: 12px;
-      box-shadow: 0 10px 20px rgba(0,0,0,0.06);
+      background:linear-gradient(135deg,var(--linen),#fff);
+      border:1px solid rgba(132,165,157,0.28);
+      border-radius:20px; padding:12px;
+      box-shadow:0 10px 20px rgba(0,0,0,0.06);
+    }
+    #map{ width:100%; height:480px; border-radius:16px; overflow:hidden; }
+
+    .icon-school{ color:var(--light-coral); }
+    .icon-biblio{ color:#84a59d; }
+    .icon-cafe  { color:var(--honey-bronze); }
+    .icon-tip   { color:#c9a0a0; }
+
+    .leaflet-popup-content-wrapper{ border-radius:14px!important; box-shadow:0 8px 24px rgba(0,0,0,0.13)!important; }
+    .popup-content{ font-family:'DM Sans',Arial,sans-serif; min-width:180px; }
+    .popup-content strong{ display:block; font-size:15px; margin-bottom:4px; color:var(--text); }
+    .popup-content .popup-adres{ font-size:13px; color:#666; margin-bottom:6px; }
+    .popup-content .popup-tip{ font-size:12px; background:var(--linen); border-radius:8px; padding:5px 9px; color:var(--text); }
+
+    .filter-bar{ display:flex; gap:10px; flex-wrap:wrap; margin-bottom:24px; }
+    .filter-btn{
+      display:inline-flex; align-items:center; gap:7px;
+      padding:10px 20px; background:var(--white);
+      border:1.5px solid rgba(132,165,157,0.45);
+      border-radius:999px; font-family:'DM Sans',sans-serif;
+      font-size:14px; font-weight:600; cursor:pointer;
+      transition:all 0.22s ease;
+      box-shadow:0 3px 10px rgba(0,0,0,0.05);
+    }
+    .filter-btn:hover{ transform:translateY(-2px); box-shadow:0 6px 16px rgba(0,0,0,0.09); }
+    .filter-btn.active{ background:var(--text); color:var(--linen); border-color:var(--text); box-shadow:0 6px 18px rgba(47,42,38,0.18); }
+    .filter-btn[data-filter="design"].active { background:var(--light-coral); border-color:var(--light-coral); color:#fff; }
+    .filter-btn[data-filter="gis"].active    { background:var(--muted-teal);  border-color:var(--muted-teal);  color:#fff; }
+    .filter-btn[data-filter="fotos"].active  { background:var(--honey-bronze);border-color:var(--honey-bronze);color:var(--text); }
+
+    .gallery-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:20px; }
+
+    .gallery-card{
+      position:relative; border-radius:20px; overflow:hidden;
+      background:#fff; border:1px solid rgba(132,165,157,0.25);
+      box-shadow:0 8px 22px rgba(0,0,0,0.07); cursor:pointer;
+      transition:transform 0.28s cubic-bezier(0.34,1.56,0.64,1),
+                 box-shadow 0.28s ease, opacity 0.35s ease;
+    }
+    .gallery-card.hidden{
+      opacity:0; pointer-events:none; transform:scale(0.92);
+      position:absolute; visibility:hidden;
+    }
+    .gallery-card:hover{ transform:translateY(-7px) scale(1.01); box-shadow:0 18px 38px rgba(0,0,0,0.12); }
+
+    /* ── afbeelding altijd passend in de kaart ── */
+    .card-img-wrap{
+      position:relative;
+      width:100%;
+      aspect-ratio:4/3;
+      overflow:hidden;
+      background:linear-gradient(135deg,var(--linen),#ffe8df);
+    }
+    .card-img-wrap img{
+      width:100%;
+      height:100%;
+      object-fit:cover;       /* vult het vlak, snijdt bij indien nodig */
+      object-position:center; /* centreert de afbeelding */
+      display:block;
+      transition:transform 0.45s ease;
+    }
+    .gallery-card:hover .card-img-wrap img{ transform:scale(1.07); }
+
+    .card-placeholder{
+      width:100%; height:100%;
+      display:flex; flex-direction:column;
+      align-items:center; justify-content:center;
+      gap:10px; font-size:13px; font-weight:600;
+      opacity:0.55; color:var(--text);
+    }
+    .card-placeholder i{ font-size:36px; }
+
+    .card-badge{
+      position:absolute; top:12px; left:12px;
+      padding:5px 12px; border-radius:999px;
+      font-size:11px; font-weight:700;
+      letter-spacing:0.5px; text-transform:uppercase;
+      backdrop-filter:blur(8px);
+    }
+    .badge-design{ background:rgba(242,132,130,0.85); color:#fff; }
+    .badge-gis   { background:rgba(132,165,157,0.9);  color:#fff; }
+    .badge-fotos { background:rgba(246,189,96,0.9);   color:var(--text); }
+
+    .card-overlay{
+      position:absolute; inset:0;
+      background:linear-gradient(to top,rgba(47,42,38,0.72) 0%,transparent 55%);
+      opacity:0; transition:opacity 0.30s ease;
+      display:flex; align-items:flex-end; padding:18px;
+    }
+    .gallery-card:hover .card-overlay{ opacity:1; }
+    .overlay-text{ color:#fff; font-size:13px; font-weight:500; display:flex; align-items:center; gap:6px; }
+
+    /* YouTube thumbnail play-knop */
+    .yt-play{
+      position:absolute; inset:0;
+      display:flex; align-items:center; justify-content:center;
+      text-decoration:none;
+    }
+    .yt-play span{
+      background:rgba(0,0,0,0.65); color:#fff;
+      border-radius:50%; width:54px; height:54px;
+      display:flex; align-items:center; justify-content:center;
+      font-size:22px;
+      transition:transform 0.2s ease, background 0.2s ease;
+    }
+    .gallery-card:hover .yt-play span{
+      background:rgba(255,0,0,0.85);
+      transform:scale(1.12);
     }
 
-    #map{
-      width: 100%;
-      height: 480px;
-      border-radius: 16px;
-      overflow: hidden;
-    }
+    .card-body{ padding:16px 18px 18px; }
+    .card-body h4{ margin:0 0 6px; font-family:'Playfair Display',serif; font-size:18px; line-height:1.2; }
+    .card-body p{ margin:0; font-size:13px; opacity:0.75; line-height:1.5; }
 
-    /* Icoon kleuren per type */
-    .fontawesome_icon{
-      color: var(--light-coral);
-    }
-    .icon-school  { color: var(--light-coral); }
-    .icon-biblio  { color: #84a59d; }
-    .icon-cafe    { color: var(--honey-bronze); }
-    .icon-tip     { color: #c9a0a0; }
+    .card-accent{ height:3px; width:100%; }
+    .accent-design{ background:linear-gradient(90deg,var(--light-coral),var(--cotton-rose)); }
+    .accent-gis   { background:linear-gradient(90deg,var(--muted-teal),#b5d0c8); }
+    .accent-fotos { background:linear-gradient(90deg,var(--honey-bronze),#fde8a0); }
 
-    /* Leaflet popup styling */
-    .leaflet-popup-content-wrapper{
-      border-radius: 14px !important;
-      box-shadow: 0 8px 24px rgba(0,0,0,0.13) !important;
+    .gallery-empty{
+      display:none; grid-column:1/-1;
+      text-align:center; padding:40px 20px;
+      opacity:0.55; font-size:15px;
     }
+    .gallery-count{ font-size:13px; font-weight:600; color:var(--muted-teal); margin-bottom:16px; }
 
-    .popup-content{
-      font-family: Arial, sans-serif;
-      min-width: 180px;
-    }
-
-    .popup-content strong{
-      display: block;
-      font-size: 15px;
-      margin-bottom: 4px;
-      color: var(--text);
-    }
-
-    .popup-content .popup-adres{
-      font-size: 13px;
-      color: #666;
-      margin-bottom: 6px;
-    }
-
-    .popup-content .popup-tip{
-      font-size: 12px;
-      background: var(--linen);
-      border-radius: 8px;
-      padding: 5px 9px;
-      color: var(--text);
-    }
-
-    /* CREATIES */
-    .creaties-container{
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0,1fr));
-      gap: 18px;
-    }
-
-    .creatie-balk{
-      background: linear-gradient(135deg, var(--linen), #fff);
-      border: 1px solid rgba(132,165,157,0.28);
-      border-radius: 22px;
-      padding: 18px;
-      box-shadow: 0 10px 20px rgba(0,0,0,0.06);
-      transition: 0.25s ease;
-    }
-
-    .creatie-balk:hover{
-      transform: translateY(-4px);
-      box-shadow: 0 14px 28px rgba(0,0,0,0.08);
-    }
-
-    .creatie-balk h4{
-      margin-top: 0;
-      margin-bottom: 10px;
-      font-size: 21px;
-    }
-
-    .creatie-balk p{
-      margin-top: 0;
-      margin-bottom: 16px;
-    }
-
-    .creatie-balk img{
-      width: 100%;
-      aspect-ratio: 4 / 3;
-      object-fit: cover;
-      border-radius: 16px;
-      border: 1px solid rgba(132,165,157,0.35);
-      background: var(--white);
-    }
-
-    /* BUTTONS */
-    .button-row{
-      margin-top: 22px;
-      text-align: center;
-    }
-
-    .button-row a,
+    .top-wrap{ text-align:center; margin:30px 0 12px; }
     .top-btn{
-      display: inline-block;
-      margin: 5px;
-      padding: 12px 18px;
-      background: var(--white);
-      border: 1px solid rgba(132,165,157,0.5);
-      border-radius: 999px;
-      text-decoration: none;
-      transition: 0.25s ease;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.04);
-      font-weight: bold;
+      display:inline-block; margin:5px; padding:12px 18px;
+      background:var(--honey-bronze); border:1px solid rgba(132,165,157,0.5);
+      border-radius:999px; text-decoration:none; transition:0.25s ease;
+      box-shadow:0 8px 20px rgba(246,189,96,0.35); font-weight:bold;
     }
+    .top-btn:hover{ transform:translateY(-2px); }
 
-    .button-row a:hover,
-    .top-btn:hover{
-      transform: translateY(-2px);
-      background: var(--honey-bronze);
-    }
+    footer{ text-align:center; padding:20px; color:rgba(47,42,38,0.75); font-size:14px; }
 
-    .top-wrap{
-      text-align: center;
-      margin: 30px 0 12px;
-    }
-
-    .top-btn{
-      background: var(--honey-bronze);
-      box-shadow: 0 8px 20px rgba(246,189,96,0.35);
-    }
-
-    footer{
-      text-align: center;
-      padding: 20px;
-      color: rgba(47,42,38,0.75);
-      font-size: 14px;
-    }
-
-    /* RESPONSIVE */
-    @media (max-width: 900px){
-      .creaties-container{
-        grid-template-columns: 1fr;
-      }
-
-      #map{
-        height: 380px;
-      }
-    }
-
-    @media (max-width: 640px){
-      main{
-        padding: 20px 14px 34px;
-      }
-
-      .hero{
-        padding: 48px 16px 38px;
-      }
-
-      .section-card{
-        padding: 20px;
-      }
-
-      #map{
-        height: 320px;
-      }
-    }
+    @media (max-width:900px){ .gallery-grid{ grid-template-columns:repeat(2,1fr); } #map{ height:380px; } }
+    @media (max-width:640px){ main{ padding:20px 14px 34px; } .hero{ padding:48px 16px 38px; } .section-card{ padding:20px; } #map{ height:320px; } .gallery-grid{ grid-template-columns:1fr; } }
   </style>
 </head>
 
@@ -410,7 +263,6 @@
   <header>
     <div class="nav-wrap">
       <div class="logo">MOI</div>
-
       <nav>
         <a href="index.html">MOI &amp; co</a>
         <a href="kat.html">Pinkie</a>
@@ -433,23 +285,12 @@
       <p class="section-text">
         Op deze plekken studeer ik en maak ik creaties voor school. Van mijn hogeschool tot bibliotheken en gezellige cafés in Almere.
       </p>
-
-      <!-- Legenda -->
       <div class="legenda">
-        <div class="legenda-item">
-          <i class="fa-solid fa-graduation-cap icon-school"></i> School
-        </div>
-        <div class="legenda-item">
-          <i class="fa-solid fa-book icon-biblio"></i> Bibliotheek
-        </div>
-        <div class="legenda-item">
-          <i class="fa-solid fa-mug-hot icon-cafe"></i> Café (wifi)
-        </div>
-        <div class="legenda-item">
-          <i class="fa-solid fa-mug-saucer icon-tip"></i> Café (tip)
-        </div>
+        <div class="legenda-item"><i class="fa-solid fa-graduation-cap icon-school"></i> School</div>
+        <div class="legenda-item"><i class="fa-solid fa-book icon-biblio"></i> Bibliotheek</div>
+        <div class="legenda-item"><i class="fa-solid fa-mug-hot icon-cafe"></i> Café (wifi)</div>
+        <div class="legenda-item"><i class="fa-solid fa-mug-saucer icon-tip"></i> Café (tip)</div>
       </div>
-
       <div class="map-wrap">
         <div id="map"></div>
       </div>
@@ -458,28 +299,143 @@
     <section class="section-card">
       <h3 class="section-title">Mijn Creaties</h3>
       <p class="section-text">
-        Een overzicht van verschillende soorten werk die ik maak tijdens mijn opleiding.
+        Een overzicht van mijn werk — van designprojecten en GIS-analyses tot foto's en video's.
       </p>
 
-      <div class="creaties-container">
-        <div class="creatie-balk">
-          <h4>Design Creaties</h4>
-          <p>
-            Hier staan mijn designprojecten, zoals posters, logo's of andere creatieve opdrachten waarin vormgeving centraal staat.
-          </p>
-          <img src="images/design1.jpg" alt="Design project">
-        </div>
-
-        <div class="creatie-balk">
-          <h4>GIS Creaties</h4>
-          <p>
-            Hier staan mijn GIS-projecten, zoals kaarten, analyses en schoolopdrachten waarbij ik werk met data en locaties.
-          </p>
-          <img src="images/gis1.jpg" alt="GIS project">
-        </div>
+      <div class="filter-bar">
+        <button class="filter-btn active" data-filter="all"><i class="fa-solid fa-border-all"></i> Alles</button>
+        <button class="filter-btn" data-filter="design"><i class="fa-solid fa-pen-nib"></i> Design</button>
+        <button class="filter-btn" data-filter="gis"><i class="fa-solid fa-map"></i> GIS</button>
+        <button class="filter-btn" data-filter="fotos"><i class="fa-solid fa-camera"></i> Foto's &amp; Video</button>
       </div>
 
+      <div class="gallery-count" id="gallery-count">6 creaties</div>
 
+      <div class="gallery-grid" id="gallery-grid">
+
+        <!-- DESIGN 1 -->
+        <div class="gallery-card" data-cat="design">
+          <div class="card-accent accent-design"></div>
+          <div class="card-img-wrap">
+            <img src="c:\Users\nkvst\Aeres Groep\HWUD\HWUD04\NONO_portfolio\foto\Schermafbeelding 2025-06-06 114511.png" alt="Infographic maatschappelijk probleem"
+                 onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+            <div class="card-placeholder" style="display:none">
+              <i class="fa-solid fa-image"></i><span>design1.png</span>
+            </div>
+            <span class="card-badge badge-design">Design</span>
+            <div class="card-overlay">
+              <span class="overlay-text"><i class="fa-solid fa-eye"></i> Bekijk project</span>
+            </div>
+          </div>
+          <div class="card-body">
+            <h4>Poster Ontwerp</h4>
+            <p>Schoolopdracht waarbij ik een infographic moest maken over een maatschappelijk probleem.</p>
+          </div>
+        </div>
+
+        <!-- DESIGN 2 -->
+        <div class="gallery-card" data-cat="design">
+          <div class="card-accent accent-design"></div>
+          <div class="card-img-wrap">
+            <img src="c:\Users\nkvst\Aeres Groep\HWUD\HWUD04\NONO_portfolio\foto\Schermafbeelding 2025-06-07 212820.png" alt="Poster over jezelf"
+                 onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+            <div class="card-placeholder" style="display:none">
+              <i class="fa-solid fa-image"></i><span>design2.png</span>
+            </div>
+            <span class="card-badge badge-design">Design</span>
+            <div class="card-overlay">
+              <span class="overlay-text"><i class="fa-solid fa-eye"></i> Bekijk project</span>
+            </div>
+          </div>
+          <div class="card-body">
+            <h4>Een poster over jezelf</h4>
+            <p>Ik moest voor een schoolopdracht een poster over mezelf maken waarbij ik ook alle icoontjes zelf moest tekenen.</p>
+          </div>
+        </div>
+
+        <!-- GIS 1 -->
+        <div class="gallery-card" data-cat="gis">
+          <div class="card-accent accent-gis"></div>
+          <div class="card-img-wrap">
+            <img src="c:\Users\nkvst\Aeres Groep\HWUD\HWUD04\NONO_portfolio\foto\Schermafbeelding 2026-01-12 005307.png" alt="Geluidsanalyse"
+                 onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+            <div class="card-placeholder" style="display:none">
+              <i class="fa-solid fa-map-location-dot"></i><span>gis1.png</span>
+            </div>
+            <span class="card-badge badge-gis">GIS</span>
+            <div class="card-overlay">
+              <span class="overlay-text"><i class="fa-solid fa-eye"></i> Bekijk kaart</span>
+            </div>
+          </div>
+          <div class="card-body">
+            <h4>Geluidsanalyse</h4>
+            <p>Een GIS-analyse waarbij ik heb gekeken hoeveel last ze van geluid zouden hebben in dit gebied.</p>
+          </div>
+        </div>
+
+        <!-- GIS 2 -->
+        <div class="gallery-card" data-cat="gis">
+          <div class="card-accent accent-gis"></div>
+          <div class="card-img-wrap">
+            <img src="c:\Users\nkvst\Aeres Groep\HWUD\HWUD04\NONO_portfolio\foto\Schermafbeelding 2025-11-10 204952.png" alt="Afstandsanalyse Almere"
+                 onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+            <div class="card-placeholder" style="display:none">
+              <i class="fa-solid fa-map-location-dot"></i><span>gis2.png</span>
+            </div>
+            <span class="card-badge badge-gis">GIS</span>
+            <div class="card-overlay">
+              <span class="overlay-text"><i class="fa-solid fa-eye"></i> Bekijk kaart</span>
+            </div>
+          </div>
+          <div class="card-body">
+            <h4>Afstandsanalyse Almere</h4>
+            <p>Schoolproject waarbij ik een afstandsanalyse had uitgevoerd om te kijken hoe ver een vrachtwagen moet reizen naar de supermarkten.</p>
+          </div>
+        </div>
+
+        <!-- FOTO 1 -->
+        <div class="gallery-card" data-cat="fotos">
+          <div class="card-accent accent-fotos"></div>
+          <div class="card-img-wrap">
+            <img src="c:\Users\nkvst\Aeres Groep\HWUD\HWUD04\NONO_portfolio\foto\Schermafbeelding 2025-06-13 012712.png" alt="Photoshop visualisatie"
+                 onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+            <div class="card-placeholder" style="display:none">
+              <i class="fa-solid fa-camera"></i><span>foto1.png</span>
+            </div>
+            <span class="card-badge badge-fotos">Foto's</span>
+            <div class="card-overlay">
+              <span class="overlay-text"><i class="fa-solid fa-eye"></i> Bekijk foto</span>
+            </div>
+          </div>
+          <div class="card-body">
+            <h4>Photoshop</h4>
+            <p>Voor school moest ik in een foto een visualisatie maken over een maatschappelijk probleem.</p>
+          </div>
+        </div>
+
+        <!-- VIDEO 1 — YouTube thumbnail met play-knop -->
+        <div class="gallery-card" data-cat="fotos">
+          <div class="card-accent accent-fotos"></div>
+          <div class="card-img-wrap">
+            <img src="https://img.youtube.com/vi/-TXT4bxY824/hqdefault.jpg" alt="Video Ossola Vallei">
+            <span class="card-badge badge-fotos">Video</span>
+            <a class="yt-play" href="https://youtu.be/-TXT4bxY824" target="_blank" rel="noopener">
+              <span>▶</span>
+            </a>
+          </div>
+          <div class="card-body">
+            <h4>Video</h4>
+            <p>Een korte video waarbij ik een toelichting geef over de situatie in de Ossola Vallei met visuele animaties.</p>
+          </div>
+        </div>
+
+        <!-- Leeg-staat (buiten alle kaarten!) -->
+        <div class="gallery-empty" id="gallery-empty">
+          <i class="fa-regular fa-face-sad-tear" style="font-size:32px; display:block; margin-bottom:10px;"></i>
+          Geen creaties gevonden in deze categorie.
+        </div>
+
+      </div>
     </section>
 
     <div class="top-wrap">
@@ -487,208 +443,86 @@
     </div>
   </main>
 
-  <footer>
-    MOI Portfolio
-  </footer>
+  <footer>MOI Portfolio</footer>
 
   <script>
-    const osm = L.tileLayer("https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png", {
-      attribution:
-        '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/">CARTO</a>',
-      subdomains: "abcd",
-      maxZoom: 19,
+    const osm = L.tileLayer("https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png",{
+      attribution:'&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/">CARTO</a>',
+      subdomains:"abcd", maxZoom:19
     });
+    const map = L.map('map',{center:[52.358,5.185],zoom:13,layers:[osm]});
 
-    const map = L.map('map', {
-      center: [52.358, 5.185],
-      zoom: 13,
-      layers: [osm]
-    });
+    const schoolIcon   = L.divIcon({html:'<i class="fa-solid fa-graduation-cap fa-2x icon-school"></i>',iconSize:[28,28],iconAnchor:[14,14],className:''});
+    const biblioIcon   = L.divIcon({html:'<i class="fa-solid fa-book fa-2x icon-biblio"></i>',iconSize:[24,24],iconAnchor:[12,12],className:''});
+    const cafeWifiIcon = L.divIcon({html:'<i class="fa-solid fa-mug-hot fa-2x icon-cafe"></i>',iconSize:[24,24],iconAnchor:[12,12],className:''});
+    const cafeTipIcon  = L.divIcon({html:'<i class="fa-solid fa-mug-saucer fa-2x icon-tip"></i>',iconSize:[24,24],iconAnchor:[12,12],className:''});
 
-    // ── Iconen per type ──────────────────────────────────────────────
-    const schoolIcon = L.divIcon({
-      html: '<i class="fa-solid fa-graduation-cap fa-2x icon-school"></i>',
-      iconSize: [28, 28],
-      iconAnchor: [14, 14],
-      className: ''
-    });
-
-    const biblioIcon = L.divIcon({
-      html: '<i class="fa-solid fa-book fa-2x icon-biblio"></i>',
-      iconSize: [24, 24],
-      iconAnchor: [12, 12],
-      className: ''
-    });
-
-    const cafeWifiIcon = L.divIcon({
-      html: '<i class="fa-solid fa-mug-hot fa-2x icon-cafe"></i>',
-      iconSize: [24, 24],
-      iconAnchor: [12, 12],
-      className: ''
-    });
-
-    const cafeTipIcon = L.divIcon({
-      html: '<i class="fa-solid fa-mug-saucer fa-2x icon-tip"></i>',
-      iconSize: [24, 24],
-      iconAnchor: [12, 12],
-      className: ''
-    });
-
-    // ── GeoJSON met alle 10 locaties ────────────────────────────────
-    const geojson_marker = {
-      "type": "FeatureCollection",
-      "features": [
-
-        // 1 – School (Hogeschool Aeres)
-        {
-          "type": "Feature",
-          "geometry": { "type": "Point", "coordinates": [5.22309285574719, 52.3565363874106] },
-          "properties": {
-            "naam": "Hogeschool Aeres",
-            "adres": "Arboretum West 98, 1325 WB Almere",
-            "type": "school",
-            "tip": "Hier heb ik geleerd en leer ik om al deze creaties te maken 🎓"
-          }
-        },
-
-        // 2 – Bibliotheek Almere Stad
-        {
-          "type": "Feature",
-          "geometry": { "type": "Point", "coordinates": [5.2209318, 52.3704889] },
-          "properties": {
-            "naam": "De Nieuwe Bibliotheek",
-            "adres": "Stadhuisplein 101, 1315 XC Almere",
-            "type": "biblio",
-            "tip": "Grote, moderne bibliotheek met gratis wifi en veel studieplekken 📚"
-          }
-        },
-
-        // 3 – Café Copper Branch (vega, gratis wifi)
-        {
-          "type": "Feature",
-          "geometry": { "type": "Point", "coordinates": [5.2206996, 52.3712129] },
-          "properties": {
-            "naam": "Copper Branch",
-            "adres": "De Diagonaal 3, 1315 XD Almere",
-            "type": "cafe-wifi",
-            "tip": "Leuk vega café met gratis wifi ☕🌱"
-          }
-        },
-
-        // 4 – Bagels & Beans
-        {
-          "type": "Feature",
-          "geometry": { "type": "Point", "coordinates": [5.2194227, 52.3702312] },
-          "properties": {
-            "naam": "Bagels & Beans",
-            "adres": "Schutterstraat 5, 1315 VH Almere",
-            "type": "cafe-wifi",
-            "tip": "Leuk café om te studeren ☕🥯"
-          }
-        },
-
-        // 5 – Ekmekci (gratis wifi)
-        {
-          "type": "Feature",
-          "geometry": { "type": "Point", "coordinates": [5.2192235, 52.3703025] },
-          "properties": {
-            "naam": "Ekmekci",
-            "adres": "Schutterstraat 9, 1315 VR Almere",
-            "type": "cafe-wifi",
-            "tip": "Leuk café met gratis wifi ☕🥐"
-          }
-        },
-
-        // 6 – Toastable (geen garantie stopcontact)
-        {
-          "type": "Feature",
-          "geometry": { "type": "Point", "coordinates": [5.2196132, 52.3702278] },
-          "properties": {
-            "naam": "Toastable",
-            "adres": "Schutterstraat 3, 1315 VH Almere",
-            "type": "cafe-tip",
-            "tip": "Leuk café, maar geen garantie op een stopcontact 🔌"
-          }
-        },
-
-        // 7 – Zuyder
-        {
-          "type": "Feature",
-          "geometry": { "type": "Point", "coordinates": [5.1372748, 52.3398117] },
-          "properties": {
-            "naam": "Zuyder",
-            "adres": "Zeeduinweg 574, 1361 BG Almere",
-            "type": "cafe-wifi",
-            "tip": "Leuk café om te studeren ☕"
-          }
-        },
-
-        // 8 – Dunes (beetje duur)
-        {
-          "type": "Feature",
-          "geometry": { "type": "Point", "coordinates": [5.1368266, 52.3402343] },
-          "properties": {
-            "naam": "Restaurant Dunes",
-            "adres": "Zeeduinweg 201, 1361 BG Almere",
-            "type": "cafe-tip",
-            "tip": "Leuk café, wel een beetje duur 💸"
-          }
-        },
-
-        // 9 – Poortiek (geen stopcontact)
-        {
-          "type": "Feature",
-          "geometry": { "type": "Point", "coordinates": [5.157437, 52.345538] },
-          "properties": {
-            "naam": "Poortiek",
-            "adres": "Europalaan 495, 1362 JV Almere",
-            "type": "cafe-tip",
-            "tip": "Leuk café, maar helaas geen stopcontact 🔌"
-          }
-        },
-
-        // 10 – Kleine bibliotheek Poort
-        {
-          "type": "Feature",
-          "geometry": { "type": "Point", "coordinates": [5.1514265, 52.3462595] },
-          "properties": {
-            "naam": "Bibliotheek Almere Poort",
-            "adres": "Oostenrijkstraat 2, 1363 CB Almere",
-            "type": "biblio",
-            "tip": "Kleinere bibliotheek met minder plek, maar fijn in de buurt 📖"
-          }
-        }
-
+    const geojson_marker={
+      "type":"FeatureCollection","features":[
+        {"type":"Feature","geometry":{"type":"Point","coordinates":[5.22309285574719,52.3565363874106]},"properties":{"naam":"Hogeschool Aeres","adres":"Arboretum West 98, 1325 WB Almere","type":"school","tip":"Hier heb ik geleerd en leer ik om al deze creaties te maken 🎓"}},
+        {"type":"Feature","geometry":{"type":"Point","coordinates":[5.2209318,52.3704889]},"properties":{"naam":"De Nieuwe Bibliotheek","adres":"Stadhuisplein 101, 1315 XC Almere","type":"biblio","tip":"Grote, moderne bibliotheek met gratis wifi en veel studieplekken 📚"}},
+        {"type":"Feature","geometry":{"type":"Point","coordinates":[5.2206996,52.3712129]},"properties":{"naam":"Copper Branch","adres":"De Diagonaal 3, 1315 XD Almere","type":"cafe-wifi","tip":"Leuk vega café met gratis wifi ☕🌱"}},
+        {"type":"Feature","geometry":{"type":"Point","coordinates":[5.2194227,52.3702312]},"properties":{"naam":"Bagels & Beans","adres":"Schutterstraat 5, 1315 VH Almere","type":"cafe-wifi","tip":"Leuk café om te studeren ☕🥯"}},
+        {"type":"Feature","geometry":{"type":"Point","coordinates":[5.2192235,52.3703025]},"properties":{"naam":"Ekmekci","adres":"Schutterstraat 9, 1315 VR Almere","type":"cafe-wifi","tip":"Leuk café met gratis wifi ☕🥐"}},
+        {"type":"Feature","geometry":{"type":"Point","coordinates":[5.2196132,52.3702278]},"properties":{"naam":"Toastable","adres":"Schutterstraat 3, 1315 VH Almere","type":"cafe-tip","tip":"Leuk café, maar geen garantie op een stopcontact 🔌"}},
+        {"type":"Feature","geometry":{"type":"Point","coordinates":[5.1372748,52.3398117]},"properties":{"naam":"Zuyder","adres":"Zeeduinweg 574, 1361 BG Almere","type":"cafe-wifi","tip":"Leuk café om te studeren ☕"}},
+        {"type":"Feature","geometry":{"type":"Point","coordinates":[5.1368266,52.3402343]},"properties":{"naam":"Restaurant Dunes","adres":"Zeeduinweg 201, 1361 BG Almere","type":"cafe-tip","tip":"Leuk café, wel een beetje duur 💸"}},
+        {"type":"Feature","geometry":{"type":"Point","coordinates":[5.157437,52.345538]},"properties":{"naam":"Poortiek","adres":"Europalaan 495, 1362 JV Almere","type":"cafe-tip","tip":"Leuk café, maar helaas geen stopcontact 🔌"}},
+        {"type":"Feature","geometry":{"type":"Point","coordinates":[5.1514265,52.3462595]},"properties":{"naam":"Bibliotheek Almere Poort","adres":"Oostenrijkstraat 2, 1363 CB Almere","type":"biblio","tip":"Kleinere bibliotheek met minder plek, maar fijn in de buurt 📖"}}
       ]
     };
 
-    // ── Kies icoon op basis van type ────────────────────────────────
-    function getIcon(type) {
-      if (type === "school")    return schoolIcon;
-      if (type === "biblio")    return biblioIcon;
-      if (type === "cafe-wifi") return cafeWifiIcon;
+    function getIcon(type){
+      if(type==="school")    return schoolIcon;
+      if(type==="biblio")    return biblioIcon;
+      if(type==="cafe-wifi") return cafeWifiIcon;
       return cafeTipIcon;
     }
 
-    // ── Popup opbouwen ───────────────────────────────────────────────
-    function onEachFeature(feature, layer) {
-      const p = feature.properties;
-      layer.bindPopup(
-        '<div class="popup-content">' +
-          '<strong>' + p.naam + '</strong>' +
-          '<div class="popup-adres">' + p.adres + '</div>' +
-          '<div class="popup-tip">' + p.tip + '</div>' +
-        '</div>'
-      );
-    }
-
-    // ── Markers op kaart plaatsen ────────────────────────────────────
-    L.geoJson(geojson_marker, {
-      onEachFeature: onEachFeature,
-      pointToLayer: function (feature, latlng) {
-        return L.marker(latlng, { icon: getIcon(feature.properties.type) });
-      }
+    L.geoJson(geojson_marker,{
+      onEachFeature:(feature,layer)=>{
+        const p=feature.properties;
+        layer.bindPopup('<div class="popup-content"><strong>'+p.naam+'</strong><div class="popup-adres">'+p.adres+'</div><div class="popup-tip">'+p.tip+'</div></div>');
+      },
+      pointToLayer:(feature,latlng)=>L.marker(latlng,{icon:getIcon(feature.properties.type)})
     }).addTo(map);
   </script>
+
+  <script>
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    const cards      = document.querySelectorAll('.gallery-card');
+    const countEl    = document.getElementById('gallery-count');
+    const emptyEl    = document.getElementById('gallery-empty');
+
+    function updateCount(visible){
+      countEl.textContent = visible + (visible === 1 ? ' creatie' : ' creaties');
+    }
+
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        filterBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        const filter = btn.dataset.filter;
+        let visible = 0;
+        cards.forEach(card => {
+          if(card.id === 'gallery-empty') return;
+          const match = filter === 'all' || card.dataset.cat === filter;
+          if(match){
+            card.classList.remove('hidden');
+            card.style.position = '';
+            card.style.visibility = '';
+            visible++;
+          } else {
+            card.classList.add('hidden');
+          }
+        });
+        updateCount(visible);
+        emptyEl.style.display = visible === 0 ? 'block' : 'none';
+      });
+    });
+
+    updateCount(cards.length - 1);
+  </script>
+
 </body>
 </html>
