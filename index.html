@@ -126,75 +126,85 @@
     .info-label{ display:inline-block; font-size:13px; font-weight:bold; letter-spacing:0.5px; text-transform:uppercase; color:var(--muted-teal); margin-bottom:6px; }
     .info-card p{ margin:0; font-size:15px; }
 
-    /* ── ANNEMIJN POTLODEN ── */
+    /* OPLEIDING BANNER */
+    .opleiding-banner{
+      display: flex; align-items: center; gap: 20px; flex-wrap: wrap;
+      background: linear-gradient(135deg, rgba(132,165,157,0.13), rgba(246,189,96,0.10));
+      border: 1px solid rgba(132,165,157,0.30);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow);
+      padding: 24px 28px; margin-top: 24px;
+    }
+    .opleiding-icon{ font-size: 40px; flex-shrink: 0; }
+    .opleiding-tekst h3{ margin: 0 0 5px; font-size: 20px; }
+    .opleiding-tekst p{ margin: 0; font-size: 15px; opacity: 0.85; max-width: 680px; }
+    .opleiding-tags{ display: flex; gap: 8px; flex-wrap: wrap; margin-top: 12px; }
+    .opleiding-tag{
+      background: rgba(255,255,255,0.80);
+      border: 1px solid rgba(132,165,157,0.35);
+      border-radius: 999px; padding: 5px 14px;
+      font-size: 13px; font-weight: bold;
+    }
 
-    /* Elke rij is een flex-rij met onderkant-uitlijning */
+    /* SKILLS */
+    .skills-grid{
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 18px 40px;
+    }
+    .skill-item{ display: flex; flex-direction: column; gap: 8px; }
+    .skill-header{ display: flex; justify-content: space-between; align-items: center; }
+    .skill-name{ font-size: 15px; font-weight: bold; }
+    .skill-pct{ font-size: 13px; color: var(--muted-teal); font-weight: bold; }
+    .skill-track{
+      background: rgba(132,165,157,0.15);
+      border-radius: 999px; height: 13px; overflow: hidden;
+      border: 1px solid rgba(132,165,157,0.18);
+    }
+    .skill-bar{
+      height: 100%; border-radius: 999px;
+      background: linear-gradient(90deg, var(--muted-teal), var(--honey-bronze));
+      width: 0%;
+      transition: width 1.3s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .skill-bar.animating{ width: var(--target-width); }
+
+    /* POTLODEN */
     .potlood-groep{
-      display: flex;
-      align-items: flex-end;
-      flex-wrap: nowrap;
-      gap: 0;
-      margin-bottom: 18px;
+      display: flex; align-items: flex-end;
+      flex-wrap: nowrap; gap: 0; margin-bottom: 18px;
     }
     .potlood-groep:last-child{ margin-bottom: 0; }
-
     .potlood-wrap{
-      flex: 0 0 88px;
-      position: relative;
-      cursor: crosshair;
-      margin-right: -10px;
-      z-index: 1;
+      flex: 0 0 88px; position: relative;
+      cursor: crosshair; margin-right: -10px; z-index: 1;
       transition: transform 0.3s cubic-bezier(0.34,1.56,0.64,1);
-
-      /* verschijnen */
       opacity: 0;
       animation: potloodIn 0.5s cubic-bezier(0.34,1.56,0.64,1) forwards;
     }
     .potlood-wrap:last-child{ margin-right: 0; }
-
-    .potlood-wrap:hover{
-      transform: translateY(-14px) scale(1.1) !important;
-      z-index: 50 !important;
-    }
-
+    .potlood-wrap:hover{ transform: translateY(-14px) scale(1.1) !important; z-index: 50 !important; }
     @keyframes potloodIn{
       from{ opacity:0; transform:translateY(40px); }
       to{   opacity:1; transform:translateY(0); }
     }
-
     .potlood-wrap img{
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      border-radius: 12px;
-      border: 2px solid rgba(255,255,255,0.9);
-      box-shadow: 0 6px 18px rgba(0,0,0,0.13);
-      display: block;
+      width: 100%; height: 100%; object-fit: cover;
+      border-radius: 12px; border: 2px solid rgba(255,255,255,0.9);
+      box-shadow: 0 6px 18px rgba(0,0,0,0.13); display: block;
     }
 
-    /* ── ZWEVENDE PREVIEW ── */
+    /* PREVIEW */
     #foto-preview{
-      position: fixed;
-      width: 260px;
-      height: 260px;
-      border-radius: 20px;
-      overflow: hidden;
+      position: fixed; width: 260px; height: 260px;
+      border-radius: 20px; overflow: hidden;
       box-shadow: 0 24px 60px rgba(0,0,0,0.30);
       border: 3px solid var(--white);
-      pointer-events: none;
-      opacity: 0;
-      transform: scale(0.8);
+      pointer-events: none; opacity: 0; transform: scale(0.8);
       transition: opacity 0.18s ease, transform 0.18s ease;
       z-index: 9999;
     }
-    #foto-preview.zichtbaar{
-      opacity: 1;
-      transform: scale(1);
-    }
-    #foto-preview img{
-      width: 100%; height: 100%;
-      object-fit: cover;
-    }
+    #foto-preview.zichtbaar{ opacity: 1; transform: scale(1); }
+    #foto-preview img{ width: 100%; height: 100%; object-fit: cover; }
 
     /* GIRLIES */
     .girlies{
@@ -246,6 +256,33 @@
     .foto-grid img:hover{ transform:translateY(-4px) scale(1.02); }
     .family-text{ margin:0 0 18px 0; max-width:760px; }
 
+    /* CONTACT */
+    .contact-grid{
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 14px;
+    }
+    .contact-card{
+      display: flex; align-items: center; gap: 14px;
+      background: linear-gradient(135deg, var(--linen), #fff);
+      border: 1px solid rgba(132,165,157,0.28);
+      border-radius: 18px; padding: 18px 20px;
+      text-decoration: none; color: var(--text);
+      transition: 0.25s ease;
+    }
+    .contact-card:hover{
+      transform: translateY(-4px);
+      box-shadow: 0 10px 28px rgba(0,0,0,0.09);
+      border-color: rgba(132,165,157,0.5);
+    }
+    .contact-icon{
+      font-size: 26px; flex-shrink: 0;
+      background: rgba(132,165,157,0.13);
+      width: 50px; height: 50px; border-radius: 14px;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .contact-info strong{ display: block; font-size: 15px; margin-bottom: 3px; }
+    .contact-info span{ font-size: 13px; color: var(--muted-teal); }
+
     /* TOP BTN */
     .top-wrap{ text-align:center; margin:30px 0 12px; }
     .top-btn{
@@ -264,6 +301,7 @@
       .about-photo{ height:320px; }
       .girlies-layout{ grid-template-columns:1fr; }
       .girlies-side{ grid-template-columns:repeat(3,1fr); }
+      .skills-grid{ grid-template-columns:1fr; }
     }
     @media(max-width:640px){
       main{ padding:20px 14px 34px; }
@@ -273,14 +311,13 @@
       .girlies-side{ grid-template-columns:repeat(2,1fr); }
       .potlood-wrap{ flex-basis: 64px !important; }
       #foto-preview{ width:180px; height:180px; }
+      .skills-grid{ grid-template-columns:1fr; }
     }
   </style>
 </head>
 
 <body>
   <div id="top"></div>
-
-  <!-- Zwevende preview volgt de muis -->
   <div id="foto-preview"><img id="preview-img" src="" alt="preview"></div>
 
   <header>
@@ -315,7 +352,7 @@
         <span style="animation-delay:0.96s">o</span>
       </h1>
       <p class="hero-sub">
-        Welkom op mijn pagina een plek met foto's, herinneringen, vriendinnen,
+        Welkom op mijn pagina — een plek met foto's, herinneringen, vriendinnen,
         familie en een beetje van wie ik ben.
       </p>
     </section>
@@ -326,10 +363,7 @@
       <div class="about-grid">
         <div>
           <p class="about-text">
-            Ik ben spontaan, sociaal en soms een beetje onhandig, maar altijd enthousiast.
-            Ik haal veel energie uit tijd doorbrengen met mijn vriendinnen en familie,
-            en thuis word ik bijna altijd gevolgd door mijn lieve kat.
-            Creatief bezig zijn past helemaal bij mij en geeft me ruimte om mezelf te uiten.
+            Ik ben iemand die energie haalt uit creatief bezig zijn en samenwerken met anderen. Ik ben sociaal, enthousiast en sta open voor nieuwe ideeën, al kan ik soms een beetje onhandig zijn. Juist die combinatie maakt dat ik dingen op mijn eigen manier aanpak en blijf leren.
           </p>
           <div class="info-grid">
             <div class="info-card">
@@ -338,7 +372,7 @@
             </div>
             <div class="info-card">
               <span class="info-label">Sterrenbeeld</span>
-              <p>Schorpioen-17/11</p>
+              <p>Schorpioen — 17/11</p>
             </div>
             <div class="info-card">
               <span class="info-label">Student</span>
@@ -358,14 +392,96 @@
       </div>
     </section>
 
+    <!-- OPLEIDING -->
+    <div class="opleiding-banner">
+      <div class="opleiding-icon">🎓</div>
+      <div class="opleiding-tekst">
+        <h3>Geografie en Datavisualisatie, Aeres Hogeschool</h3>
+        <p>Ik studeer geografie en datavisualisatie aan Aeres Hogeschool Almere. In mijn studie leer ik hoe ik data over de wereld om ons heen, zoals steden, natuur en klimaat, kan analyseren en omzetten in duidelijke kaarten en visualisaties. Zo kan ik helpen om ingewikkelde informatie begrijpelijk te maken en oplossingen te bedenken voor bijvoorbeeld duurzaamheid en ruimtelijke vraagstukken.</p>
+        <div class="opleiding-tags">
+          <span class="opleiding-tag">Analyse</span>
+          <span class="opleiding-tag">Visuele communicatie</span>
+          <span class="opleiding-tag">Storytelling</span>
+          <span class="opleiding-tag">Impact</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- SKILLS -->
+    <section class="section-card" id="skills">
+      <h2 class="section-title">Skills &amp; Software</h2>
+      <p class="section-intro">De programma's waar ik mee werk en hoe ver ik daarin ben. Scroll naar beneden om de balken te zien bewegen!</p>
+      <div class="skills-grid">
+
+        <div class="skill-item">
+          <div class="skill-header">
+            <span class="skill-name">After Effects</span>
+            <span class="skill-pct">80%</span>
+          </div>
+          <div class="skill-track">
+            <div class="skill-bar" style="--target-width: 80%"></div>
+          </div>
+        </div>
+
+        <div class="skill-item">
+          <div class="skill-header">
+            <span class="skill-name">Adobe XD</span>
+            <span class="skill-pct">75%</span>
+          </div>
+          <div class="skill-track">
+            <div class="skill-bar" style="--target-width: 75%"></div>
+          </div>
+        </div>
+
+        <div class="skill-item">
+          <div class="skill-header">
+            <span class="skill-name">Adobe InDesign</span>
+            <span class="skill-pct">70%</span>
+          </div>
+          <div class="skill-track">
+            <div class="skill-bar" style="--target-width: 70%"></div>
+          </div>
+        </div>
+
+        <div class="skill-item">
+          <div class="skill-header">
+            <span class="skill-name">Adobe Illustrator</span>
+            <span class="skill-pct">90%</span>
+          </div>
+          <div class="skill-track">
+            <div class="skill-bar" style="--target-width: 90%"></div>
+          </div>
+        </div>
+
+        <div class="skill-item">
+          <div class="skill-header">
+            <span class="skill-name">QGIS</span>
+            <span class="skill-pct">55%</span>
+          </div>
+          <div class="skill-track">
+            <div class="skill-bar" style="--target-width: 55%"></div>
+          </div>
+        </div>
+
+        <div class="skill-item">
+          <div class="skill-header">
+            <span class="skill-name">ARC GIS</span>
+            <span class="skill-pct">60%</span>
+          </div>
+          <div class="skill-track">
+            <div class="skill-bar" style="--target-width: 60%"></div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
     <!-- ANNEMIJN -->
     <section class="section-card" id="annemijn">
       <h3 class="sub-title">Annemijn</h3>
       <p class="section-intro">
-        Een verzameling lieve foto's en herinneringen samen. Beweeg je muis over een foto om hem beter te bekijken ✨
+        Een verzameling lieve foto's en herinneringen samen. Beweeg je muis over een foto om hem beter te bekijken.
       </p>
-
-      <!-- JS vult dit in met de juiste groepen en hoogtes -->
       <div id="potloodContainer"></div>
     </section>
 
@@ -374,13 +490,13 @@
       <div class="girlies-layout">
         <div class="girlies-side">
           <img class="cycle-img" src="foto/WhatsApp Image 2026-02-10 at 21.51.41.jpeg"
-            data-images="foto/WhatsApp Image 2026-02-10 at 21.51.41.jpeg|foto/girlies1_2.jpg|foto/girlies1_3.jpg"
+            data-images="foto/WhatsApp Image 2026-02-10 at 21.51.41.jpeg|foto/WhatsApp Image 2026-02-10 at 21.54.23.jpeg|foto/WhatsApp Image 2026-02-11 at 14.42.22.jpeg"
             alt="Girlies links 1">
-          <img class="cycle-img" src="foto/girlies2.jpg"
-            data-images="foto/girlies2.jpg|foto/girlies2_2.jpg|foto/girlies2_3.jpg"
+          <img class="cycle-img" src="foto/WhatsApp Image 2026-02-11 at 14.56.20.jpeg"
+            data-images="foto/WhatsApp Image 2026-02-11 at 14.56.20.jpeg|foto/WhatsApp Image 2026-02-11 at 14.43.19.jpeg|foto/WhatsApp Image 2026-02-11 at 14.43.46.jpeg"
             alt="Girlies links 2">
-          <img class="cycle-img" src="foto/girlies3.jpg"
-            data-images="foto/girlies3.jpg|foto/girlies3_2.jpg|foto/girlies3_3.jpg"
+          <img class="cycle-img" src="foto/WhatsApp Image 2026-02-11 at 14.45.44.jpeg"
+            data-images="foto/WhatsApp Image 2026-02-11 at 14.45.44.jpeg|foto/WhatsApp Image 2026-02-11 at 14.50.29.jpeg|foto/WhatsApp Image 2026-02-11 at 14.46.19.jpeg"
             alt="Girlies links 3">
         </div>
         <div class="girlies-center">
@@ -399,14 +515,14 @@
           </p>
         </div>
         <div class="girlies-side">
-          <img class="cycle-img" src="foto/girlies4.jpg"
-            data-images="foto/girlies4.jpg|foto/girlies4_2.jpg|foto/girlies4_3.jpg"
+          <img class="cycle-img" src="foto/WhatsApp Image 2026-02-11 at 14.50.54.jpeg"
+            data-images="foto/WhatsApp Image 2026-02-11 at 14.50.54.jpeg|foto/WhatsApp Image 2026-02-11 at 14.51.50.jpeg|foto/WhatsApp Image 2026-02-11 at 14.52.25.jpeg"
             alt="Girlies rechts 1">
-          <img class="cycle-img" src="foto/girlies5.jpg"
-            data-images="foto/girlies5.jpg|foto/girlies5_2.jpg|foto/girlies5_3.jpg"
+          <img class="cycle-img" src="foto/WhatsApp Image 2026-02-11 at 14.48.12.jpeg"
+            data-images="foto/WhatsApp Image 2026-02-11 at 14.48.12.jpeg|foto/WhatsApp Image 2026-02-11 at 14.53.34.jpeg|foto/WhatsApp Image 2026-02-11 at 14.55.12.jpeg"
             alt="Girlies rechts 2">
-          <img class="cycle-img" src="foto/girlies6.jpg"
-            data-images="foto/girlies6.jpg|foto/girlies6_2.jpg|foto/girlies6_3.jpg"
+          <img class="cycle-img" src="foto/WhatsApp Image 2026-02-11 at 14.47.44.jpeg"
+            data-images="foto/WhatsApp Image 2026-02-11 at 14.47.44.jpeg|foto/WhatsApp Image 2026-02-11 at 14.47.12.jpeg|foto/WhatsApp Image 2026-02-11 at 14.47.39.jpeg"
             alt="Girlies rechts 3">
         </div>
       </div>
@@ -425,6 +541,35 @@
         <img src="foto/WhatsApp Image 2026-02-11 at 19.51.22.jpeg" alt="Familie foto 3">
         <img src="foto/WhatsApp Image 2026-02-11 at 19.55.39.jpeg" alt="Familie foto 4">
         <img src="foto/WhatsApp Image 2026-02-11 at 19.52.30.jpeg" alt="Familie foto 5">
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section class="section-card" id="contact">
+      <h2 class="section-title">Contact</h2>
+      <p class="section-intro">Wil je samenwerken, meer zien van mijn werk of gewoon hoi zeggen? Neem gerust contact op!</p>
+      <div class="contact-grid">
+        <a class="contact-card" href="mailto:nkvstroe@gmail.com">
+          <div class="contact-icon">✉️</div>
+          <div class="contact-info">
+            <strong>E-mail</strong>
+            <span>jouw@email.nl</span>
+          </div>
+        </a>
+        <a class="contact-card" href="https://linkedin.com" target="www.linkedin.com/in/noëlle-van-stroe-a3656234a">
+          <div class="contact-icon">💼</div>
+          <div class="contact-info">
+            <strong>LinkedIn</strong>
+            <span>Bekijk mijn profiel</span>
+          </div>
+        </a>
+        <a class="contact-card" href="school.html">
+          <div class="contact-icon">🎨</div>
+          <div class="contact-info">
+            <strong>Mijn werk</strong>
+            <span>Bekijk mijn creaties</span>
+          </div>
+        </a>
       </div>
     </section>
 
@@ -447,6 +592,21 @@
       });
     });
 
+    /* ── SKILLS animatie ── */
+    const skillsObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.querySelectorAll(".skill-bar").forEach(bar => {
+            bar.classList.add("animating");
+          });
+          skillsObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.25 });
+
+    const skillsSection = document.getElementById("skills");
+    if (skillsSection) skillsObserver.observe(skillsSection);
+
     /* ── ANNEMIJN potloden ── */
     (function () {
       const fotos = [
@@ -467,13 +627,12 @@
       const OVERLAP   = 10;
       const STEP      = ITEM_W - OVERLAP;
 
-      /* hoeveel passen er per rij? */
       function perRijAantal() {
         const breedte = container.offsetWidth || 800;
         return Math.max(1, Math.floor((breedte + OVERLAP) / STEP));
       }
 
-      let globalIdx = 0; /* voor animatie delay over alle foto's */
+      let globalIdx = 0;
 
       function bouwRijen() {
         container.innerHTML = "";
@@ -492,10 +651,7 @@
           for (let i = startI; i < eindI; i++) {
             const posInRij = i - startI;
             const frac     = aantalInRij > 1 ? posInRij / (aantalInRij - 1) : 0;
-
-            /* hoogte loopt op van min naar max per rij */
-            const minH = 155;
-            const maxH = 290;
+            const minH = 155, maxH = 290;
             const h    = Math.round(minH + frac * (maxH - minH));
 
             const wrap = document.createElement("div");
@@ -517,21 +673,17 @@
           container.appendChild(groep);
         }
 
-        /* preview koppelen aan nieuwe elementen */
         koppelPreview();
       }
 
-      /* eerste keer bouwen */
       bouwRijen();
 
-      /* herbereken bij resize */
       let resizeTimer;
       window.addEventListener("resize", () => {
         clearTimeout(resizeTimer);
         resizeTimer = setTimeout(bouwRijen, 200);
       });
 
-      /* ── Preview die de muis volgt ── */
       const preview    = document.getElementById("foto-preview");
       const previewImg = document.getElementById("preview-img");
       let   aktief     = false;
@@ -539,13 +691,11 @@
       function koppelPreview() {
         document.querySelectorAll(".potlood-wrap").forEach(wrap => {
           const src = wrap.querySelector("img").src;
-
           wrap.addEventListener("mouseenter", () => {
             previewImg.src = src;
             preview.classList.add("zichtbaar");
             aktief = true;
           });
-
           wrap.addEventListener("mouseleave", () => {
             preview.classList.remove("zichtbaar");
             aktief = false;
